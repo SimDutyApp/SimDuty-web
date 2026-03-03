@@ -1586,6 +1586,32 @@ code {
   line-height: 1.6;
 }
 
+.roadmap-highlights {
+  margin-top: 3rem;
+  padding: 1.5rem;
+  border: 1px solid var(--border-generic);
+  border-radius: var(--radius-md);
+  background: linear-gradient(180deg, rgba(0, 229, 255, 0.04) 0%, var(--bg-surface) 100%);
+  position: relative;
+  z-index: 1;
+}
+
+.roadmap-highlights h3 {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  color: var(--text-primary);
+}
+
+.roadmap-highlights ul {
+  display: grid;
+  gap: 0.6rem;
+  margin: 0;
+  padding-left: 1.2rem;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
 /* --- Versatility Section --- */
 .versatility-section {
     padding: 6rem 0;
