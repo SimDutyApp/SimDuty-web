@@ -2,20 +2,24 @@
 
 ## App
 - Run `SimDuty.exe` from the release package.
+- Recommended game settings:
+  - Fatigue simulation must be OFF.
+- Window tips:
+  - You can enable Always On Top in Settings.
+  - Minimize to tray is available for quick hide/restore.
+- DVIR v2:
+  - DVIR now uses the single-page accordion flow (Pre-Trip/Post-Trip).
+  - Minimum inspection time is 45s before submit.
+  - Defects require a note; Safe Mode warns if DVIR is pending.
 - Logs/Saves/Config will be created in:
-  - `%LOCALAPPDATA%\SimDuty\Logs`
-  - `%LOCALAPPDATA%\SimDuty\Saves`
-  - `%LOCALAPPDATA%\SimDuty\Config`
+- `%LOCALAPPDATA%\SimDuty\Logs`
+- `%LOCALAPPDATA%\SimDuty\Saves`
+- `%LOCALAPPDATA%\SimDuty\Config`
 - Key files you may see:
   - `Config/gui_setup.json`
   - `Saves/eld_save_<PLATE>_<TRUCK>.json` (+ `.bak`/`.tmp`)
   - `Saves/eld_audit_<PLATE>_<TRUCK>.jsonl`
   - `Saves/user_save_<DRIVER>_<POLICY>.json`
-
-## Requirements
-- Windows 10/11 x64.
-- No .NET install required (self-contained build).
-- ATS/ETS2 installed to use plugins.
 
 ## Plugins (ATS / ETS)
 - The DLLs located in the **plugins** folder must be installed in the game plugins directory:

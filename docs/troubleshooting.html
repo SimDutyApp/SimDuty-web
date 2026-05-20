@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SimDuty Docs | Troubleshooting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="docs.css">
+</head>
+
+<body>
+  <main class="docs-shell">
+    <header class="docs-topbar">
+      <div>
+        <h1 class="docs-title">Troubleshooting</h1>
+        <p class="docs-subtitle">Resolve common startup, plugin, and connection issues quickly.</p>
+      </div>
+      <nav class="docs-links" aria-label="Docs navigation">
+        <a href="index.html">Wiki</a>
+        <a href="index.html">Next: Wiki</a>
+      </nav>
+    </header>
+
+    <div class="doc-layout">
+      <aside class="doc-sidebar" aria-label="On this page">
+        <h3>On this page</h3>
+        <a href="#overview">Overview</a>
+        <a href="#plugin">Plugin not detected</a>
+        <a href="#connection">No truck connection</a>
+        <a href="#faq">Quick FAQ</a>
+        <a href="#escalation">Escalation</a>
+      </aside>
+
+      <div class="doc-content">
+        <section id="overview" class="section section-step">
+          <h2>Overview</h2>
+          <p>Use this page to resolve startup, plugin, and telemetry issues in a deterministic order.</p>
+          <div class="quick-facts">
+            <span>Estimated time: 5 minutes</span>
+            <span>Focus: SDK/NET recovery</span>
+            <span>Result: restored connection</span>
+          </div>
+        </section>
+
+        <section id="plugin" class="section">
+          <h2>Plugin not detected</h2>
+          <ul>
+            <li>SDK FAIL: verify <code>scs-telemetry.dll</code> in <code>\bin\win_x64\plugins</code>.</li>
+            <li>NET FAIL: verify <code>simduty.dll</code> in <code>\bin\win_x64\plugins</code>.</li>
+            <li>Confirm both DLL files are in the correct game directory.</li>
+            <li>Confirm the game is launched in x64 mode with matching plugin files.</li>
+            <li>Restart in this sequence: SimDuty first, then ATS/ETS2.</li>
+          </ul>
+        </section>
+
+        <section id="connection" class="section">
+          <h2>No truck connection</h2>
+          <ul>
+            <li>Launch SimDuty before opening ATS/ETS2.</li>
+            <li>Enter the truck cabin to initialize telemetry reads.</li>
+            <li>Review permission, antivirus, and firewall restrictions.</li>
+          </ul>
+        </section>
+
+        <section id="faq" class="section">
+          <h2>Quick FAQ</h2>
+          <ul>
+            <li>Can I use it offline? Yes, for local operation.</li>
+            <li>Do I need to install .NET? No, current releases are self-contained.</li>
+            <li>Does it work in ETS2 and ATS? Yes, with correct plugins.</li>
+          </ul>
+        </section>
+
+        <section id="escalation" class="section">
+          <h2>Escalation</h2>
+          <div class="callout">If all checks pass and SDK/NET still fail, collect screenshots, plugin paths, and app status, then open a support request in Discord.</div>
+        </section>
+      </div>
+    </div>
+
+    <nav class="page-nav" aria-label="Page navigation">
+      <a href="setup.html">Previous page</a>
+      <a href="index.html">Next page</a>
+    </nav>
+
+    <footer class="wiki-footer">
+      <span>Last updated: May 2026</span>
+      <span><a href="https://discord.gg/NATM3BEzbe" target="_blank" rel="noopener">Join Discord Support</a></span>
+    </footer>
+  </main>
+</body>
+
+</html>

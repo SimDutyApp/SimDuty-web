@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SimDuty Docs | HOS Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="docs.css">
+</head>
+
+<body>
+  <main class="docs-shell">
+    <header class="docs-topbar">
+      <div>
+        <h1 class="docs-title">HOS Dashboard</h1>
+        <p class="docs-subtitle">Manage drive time, rest periods, and compliance status in real time.</p>
+      </div>
+      <nav class="docs-links" aria-label="Docs navigation">
+        <a href="index.html">Wiki</a>
+        <a href="setup.html">Next: Setup</a>
+      </nav>
+    </header>
+
+    <div class="doc-layout">
+      <aside class="doc-sidebar" aria-label="On this page">
+        <h3>On this page</h3>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Core concepts</a>
+        <a href="#workflow">Rest workflow</a>
+        <a href="#checkpoint">Validation checkpoint</a>
+        <a href="#support">Quick support</a>
+      </aside>
+
+      <div class="doc-content">
+        <section id="overview" class="section section-step">
+          <h2>Overview</h2>
+          <p>This page explains how HOS timers work and how to stay compliant during active driving sessions.</p>
+          <div class="quick-facts">
+            <span>Estimated time: 4 minutes</span>
+            <span>Purpose: compliance-safe operation</span>
+            <span>Output: lower HOS violation risk</span>
+          </div>
+        </section>
+
+        <section id="concepts" class="section">
+          <h2>Core concepts</h2>
+          <ul>
+            <li>Drive Left: remaining legal driving time before a required rest event.</li>
+            <li>Shift Left: remaining time in the current duty shift window.</li>
+            <li>Cycle Left: remaining time in your multi-day cycle limit.</li>
+          </ul>
+        </section>
+
+        <section id="workflow" class="section">
+          <h2>Rest and break workflow</h2>
+          <ol>
+            <li>Drive while monitoring remaining time against safety thresholds.</li>
+            <li>Begin break or rest before the timer reaches a violation state.</li>
+            <li>Resume driving only after HOS status returns to a compliant state.</li>
+          </ol>
+          <div class="callout">TODO: add image sequence for DRIVE -> BREAK -> ON DUTY flow.</div>
+        </section>
+
+        <section id="checkpoint" class="section">
+          <h2>Validation checkpoint</h2>
+          <ul>
+            <li>Drive Left and Shift Left are reviewed before route extension.</li>
+            <li>Break is started before timer reaches a violation state.</li>
+            <li>Status is compliant before resuming movement.</li>
+          </ul>
+        </section>
+
+        <section id="support" class="section">
+          <h2>Quick support</h2>
+          <ul>
+            <li>If timers look frozen, verify SDK/NET connection first.</li>
+            <li>If status does not switch, check engine/vehicle state and movement threshold.</li>
+            <li>If limits seem inconsistent, confirm active policy and recent rest events.</li>
+          </ul>
+        </section>
+      </div>
+    </div>
+
+    <nav class="page-nav" aria-label="Page navigation">
+      <a href="home.html">Previous page</a>
+      <a href="setup.html">Next page</a>
+    </nav>
+
+    <footer class="wiki-footer">
+      <span>Last updated: May 2026</span>
+      <span><a href="https://discord.gg/NATM3BEzbe" target="_blank" rel="noopener">Join Discord Support</a></span>
+    </footer>
+  </main>
+</body>
+
+</html>

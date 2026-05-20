@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SimDuty Docs | First Run Guide</title>
+  <meta name="description" content="Install SimDuty, deploy ATS/ETS2 telemetry DLLs, and verify your first successful connection.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="docs.css">
+</head>
+
+<body>
+  <main class="docs-shell">
+    <header class="docs-topbar">
+      <div>
+        <h1 class="docs-title">First Run Guide</h1>
+        <p class="docs-subtitle">Install SimDuty correctly, enable telemetry, and validate your first operational session.</p>
+      </div>
+      <nav class="docs-links" aria-label="Docs navigation">
+        <a href="index.html">Wiki</a>
+        <a href="setup.html">Next: Setup</a>
+      </nav>
+    </header>
+
+    <div class="doc-layout">
+      <aside class="doc-sidebar" aria-label="On this page">
+        <h3>On this page</h3>
+        <a href="#overview">Overview</a>
+        <a href="#step-1">Step 1 - Download</a>
+        <a href="#step-2">Step 2 - Install DLLs</a>
+        <a href="#step-3">Step 3 - Validate SDK/NET</a>
+        <a href="#checkpoint">Validation checkpoint</a>
+        <a href="#support">Quick support</a>
+      </aside>
+
+      <div class="doc-content">
+        <section id="overview" class="section section-step">
+          <h2>Overview</h2>
+          <p>Use this guide to prepare your ATS/ETS2 environment for a reliable first run.</p>
+          <p>SimDuty runs in the background and captures telemetry directly from the game engine without manual data entry.</p>
+          <div class="quick-facts">
+            <span>Estimated time: 4 minutes</span>
+            <span>Target result: SDK OK + NET OK</span>
+            <span>Required: ATS/ETS2 (x64)</span>
+          </div>
+          <div class="impact-matrix" aria-label="First run impact matrix">
+            <div class="impact-row"><span class="impact-tag">Required</span><p>Install plugin DLLs in the correct <code>win_x64/plugins</code> folder</p></div>
+            <div class="impact-row"><span class="impact-tag">Required</span><p>Launch sequence: SimDuty first, then ATS/ETS2, then enter cabin</p></div>
+            <div class="impact-row"><span class="impact-tag">Required</span><p>Validate SDK/NET status before starting real trips</p></div>
+            <div class="impact-row"><span class="impact-tag">Recommended</span><p>Approve plugin prompts on first game launch</p></div>
+            <div class="impact-row"><span class="impact-tag">Optional</span><p>Pre-check antivirus exceptions to avoid DLL false positives</p></div>
+          </div>
+        </section>
+
+        <section id="step-1" class="section section-step">
+          <h2>Step 1: Download and extract the app</h2>
+          <ol>
+            <li>Join our official Discord: <a href="https://discord.gg/NATM3BEzbe" target="_blank" rel="noopener">discord.gg/NATM3BEzbe</a>.</li>
+            <li>Open the <code>#downloads</code> channel and get the latest SimDuty release package.</li>
+            <li>Extract the `.zip` file to a fixed folder on your computer.</li>
+          </ol>
+          <div class="callout"><strong>Expected state:</strong> SimDuty files are extracted to a permanent folder and can be opened without moving paths later.</div>
+        </section>
+
+        <section id="step-2" class="section">
+          <h2>Step 2: Install telemetry files</h2>
+          <ol>
+            <li>Open the `dll` folder inside your extracted SimDuty files.</li>
+            <li>Copy `simduty.dll` and `scs-telemetry.dll`.</li>
+            <li>Paste both files into your game `plugins` folder.</li>
+            <li>If the `plugins` folder does not exist, create it manually.</li>
+            <li>If the game asks permission for plugins on first launch, allow it.</li>
+          </ol>
+
+          <div class="path-list">
+            <p>Path reference:</p>
+            <ul>
+              <li>ATS: <code>\American Truck Simulator\bin\win_x64\plugins</code></li>
+              <li>ETS2: <code>\Euro Truck Simulator 2\bin\win_x64\plugins</code></li>
+            </ul>
+            <p>Requirement: use 64-bit game launch options.</p>
+          </div>
+
+          <figure class="doc-image">
+            <div class="img-frame ratio-4x3 img-contain">
+              <img src="../assets/imgs/docs/img1_instalacao.png" alt="Windows Explorer showing DLL files inside the simulator plugins folder">
+            </div>
+            <figcaption>Expected folder structure after copying `simduty.dll` and `scs-telemetry.dll`.</figcaption>
+          </figure>
+          <div class="callout"><strong>Expected state:</strong> both DLL files are visible in the correct `win_x64/plugins` folder and plugin approval is allowed on first game launch.</div>
+        </section>
+
+        <section id="step-3" class="section section-step">
+          <h2>Step 3: Launch SimDuty and validate connectivity</h2>
+          <ol>
+            <li>Open SimDuty before starting the game.</li>
+            <li>Launch ATS or ETS2 in 64-bit mode.</li>
+            <li>Enter the truck cabin and drive briefly to initialize telemetry data flow.</li>
+          </ol>
+          <div class="compare-grid">
+            <figure class="doc-image">
+              <div class="img-frame ratio-16x10">
+                <img src="../assets/imgs/docs/img3_instalacao.png" alt="SDK and NET indicators in normal connected state">
+              </div>
+              <figcaption>OK state: SDK and NET are working.</figcaption>
+            </figure>
+            <figure class="doc-image">
+              <div class="img-frame ratio-16x10">
+                <img src="../assets/imgs/docs/img2_instalacao.png" alt="SDK and NET indicators in yellow failure state">
+              </div>
+              <figcaption>Failure state: SDK and NET are yellow with no active connection.</figcaption>
+            </figure>
+          </div>
+          <ul>
+            <li>SDK OK: Telemetry connected.</li>
+            <li>SDK FAIL: Telemetry unavailable (check <code>scs-telemetry.dll</code>).</li>
+            <li>NET OK: SimDuty channel connected.</li>
+            <li>NET FAIL: SimDuty channel unavailable (check <code>simduty.dll</code>).</li>
+          </ul>
+          <div class="path-list">
+            <p>Signal reference:</p>
+            <ul>
+              <li><strong>SDK OK:</strong> game telemetry is available and updating.</li>
+              <li><strong>SDK FAIL:</strong> check <code>scs-telemetry.dll</code>, plugin path, and game startup mode.</li>
+              <li><strong>NET OK:</strong> SimDuty communication channel is active.</li>
+              <li><strong>NET FAIL:</strong> check <code>simduty.dll</code> and restart sequence.</li>
+            </ul>
+          </div>
+          <div class="callout">If SDK/NET remain yellow or blinking, close both applications, verify DLL placement, then relaunch in this order: SimDuty first, game second.</div>
+          <div class="callout"><strong>Expected state:</strong> after entering cabin and moving briefly, both SDK and NET remain in OK state.</div>
+        </section>
+
+        <section id="checkpoint" class="section">
+          <h2>Validation checkpoint</h2>
+          <ul>
+            <li>Windows 10/11 x64</li>
+            <li>ATS/ETS2 installed</li>
+            <li>Game fatigue disabled</li>
+            <li>SimDuty opened before game launch</li>
+            <li>SDK and NET in OK state after entering the cabin</li>
+          </ul>
+        </section>
+
+        <section id="support" class="section">
+          <h2>Quick support</h2>
+          <p><strong>Symptom:</strong> status does not change or SDK/NET lights stay yellow.</p>
+          <p><strong>Likely cause:</strong> wrong DLL folder, antivirus block, or plugin approval missing.</p>
+          <ul>
+            <li>SDK FAIL: verify <code>scs-telemetry.dll</code> in <code>\bin\win_x64\plugins</code>.</li>
+            <li>NET FAIL: verify <code>simduty.dll</code> in <code>\bin\win_x64\plugins</code>.</li>
+            <li>Close both game and SimDuty.</li>
+            <li>Copy both DLL files again to the target plugins folder.</li>
+            <li>Check whether antivirus or Windows blocked the DLL files.</li>
+            <li>If the app does not launch, install .NET Desktop Runtime (x64) and VC++ 2015-2022 (x64), then restart Windows.</li>
+            <li>If modules appear missing after first startup, confirm App Edition in <a href="setup.html">Setup Guide</a> (Lite vs Full).</li>
+            <li>If tabs are not visible on small layouts, confirm display mode and check the <code>More</code> menu.</li>
+          </ul>
+          <div class="callout"><strong>If still failing:</strong> continue to <a href="setup.html">Setup Guide</a> for root/path validation and support bundle tools, then share diagnostics in Discord support.</div>
+        </section>
+      </div>
+    </div>
+
+    <nav class="page-nav" aria-label="Page navigation">
+      <a href="index.html">Back to Wiki</a>
+      <a href="setup.html">Next page</a>
+    </nav>
+
+    <footer class="wiki-footer">
+      <span>Last updated: May 2026</span>
+      <span><a href="https://discord.gg/NATM3BEzbe" target="_blank" rel="noopener">Join Discord Support</a></span>
+    </footer>
+  </main>
+</body>
+
+</html>

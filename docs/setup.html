@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SimDuty Docs | Setup Guide</title>
+  <meta name="description" content="Configure profiles, custom delivery paths, HOS policy, appearance, support tools, keybinds, and audio in SimDuty.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="docs.css">
+</head>
+
+<body>
+  <main class="docs-shell">
+    <header class="docs-topbar">
+      <div>
+        <h1 class="docs-title">Setup Guide</h1>
+        <p class="docs-subtitle">Configure SimDuty for daily use, stable telemetry, and reliable operational behavior.</p>
+      </div>
+      <nav class="docs-links" aria-label="Docs navigation">
+        <a href="index.html">Wiki</a>
+        <a href="troubleshooting.html">Next: Troubleshooting</a>
+      </nav>
+    </header>
+
+    <div class="doc-layout">
+      <aside class="doc-sidebar" aria-label="On this page">
+        <h3>On this page</h3>
+        <a href="#overview">Overview</a>
+        <a href="#where-to-find">Where to find each option</a>
+        <a href="#edition-mode">Edition mode (Full vs Lite)</a>
+        <a href="#display-modes">Display modes (Tablet vs Phone)</a>
+        <a href="#profile">Profile and preferences</a>
+        <a href="#custom-delivery">Custom Delivery</a>
+        <a href="#appearance">Appearance and window behavior</a>
+        <a href="#support-tools">Support tools</a>
+        <a href="#keybinds">Keybinds and navigation</a>
+        <a href="#audio">Audio controls</a>
+        <a href="#checkpoint">Validation checkpoint</a>
+        <a href="#support">Quick support</a>
+      </aside>
+
+      <div class="doc-content">
+        <section id="overview" class="section section-step">
+          <h2>Overview</h2>
+          <p>This page covers the settings required to run SimDuty reliably in ATS/ETS2 operations.</p>
+          <p>Use it after first install and any time you change game paths, profile locations, or UI behavior.</p>
+          <div class="quick-facts">
+            <span>Estimated time: 6 minutes</span>
+            <span>Priority: profile + custom delivery paths</span>
+            <span>Output: stable startup and data sync</span>
+          </div>
+          <div class="impact-matrix" aria-label="Setup impact matrix">
+            <div class="impact-row"><span class="impact-tag">Required</span><p>Confirm active edition (Full or Lite) before validating missing features</p></div>
+            <div class="impact-row"><span class="impact-tag">Required</span><p>Custom Delivery roots (ATS/ETS2) + Effective paths</p></div>
+            <div class="impact-row"><span class="impact-tag">Required</span><p>HOS policy mode and active policy validation</p></div>
+            <div class="impact-row"><span class="impact-tag">Recommended</span><p>Always On Top, fullscreen behavior, and tray mode</p></div>
+            <div class="impact-row"><span class="impact-tag">Recommended</span><p>Support bundle tools for fast troubleshooting</p></div>
+            <div class="impact-row"><span class="impact-tag">Optional</span><p>Keybind and audio personalization</p></div>
+          </div>
+        </section>
+
+        <section id="where-to-find" class="section">
+          <h2>Where to find each option</h2>
+          <p>This is the primary orientation map for Setup. Use it first when configuring or troubleshooting.</p>
+          <div class="path-list">
+            <p><strong>Settings &gt; Preferences</strong></p>
+            <ul>
+              <li>Language, Start with Windows, Alert overlay, Inbox messages, Speed alerts</li>
+              <li>Friend messages, Units, HOS policy mode, manual policy selector</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Settings &gt; Custom Delivery</strong></p>
+            <ul>
+              <li>ATS/ETS2 roots via Browse, Effective path text</li>
+              <li>Yard Move speed limit and auto-disable behavior</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Settings &gt; Appearance</strong></p>
+            <ul>
+              <li>Theme mode, Always On Top, Suspend Topmost in Fullscreen</li>
+              <li>Minimize to tray, Software Render, resolution and scaling strategy</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Settings &gt; Support / Keybinds / Audio</strong></p>
+            <ul>
+              <li>Support mode, Include saves, Generate/Open/Copy support bundle path</li>
+              <li>Keybind capture fields and audio controls (volume, test, HOS mute options)</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="edition-mode" class="section">
+          <h2>Edition mode (Full vs Lite)</h2>
+          <ul>
+            <li><strong>Lite:</strong> focused on HOS workflows and HOS extension features.</li>
+            <li><strong>Full:</strong> provides access to the full SimDuty feature set.</li>
+            <li>If Economy, Dispatch, Compliance, DVIR, or Debug views are missing, verify the active edition first.</li>
+            <li>You can switch edition from the top bar (near SDK/NET) or in <code>Settings &gt; App Edition</code>.</li>
+            <li>After switching edition, validate visible tabs and restart SimDuty if interface state does not refresh immediately.</li>
+          </ul>
+          <figure class="doc-image img-medium">
+            <div class="img-frame ratio-16x9 img-contain">
+              <img src="../assets/imgs/docs/img1_setup.png" alt="SimDuty interface highlighting edition switch in top bar near SDK and NET, and the App Edition option inside Settings">
+            </div>
+            <figcaption>Edition switch points: top bar (near SDK/NET) and <code>Settings &gt; App Edition</code>.</figcaption>
+          </figure>
+          <div class="callout">Recommended: use Lite for HOS-only operation. Use Full when you need complete operational modules.</div>
+        </section>
+
+        <section id="display-modes" class="section">
+          <h2>Display modes (Tablet vs Phone)</h2>
+          <ul>
+            <li>SimDuty supports explicit layout modes: <strong>Tablet</strong> and <strong>Phone</strong>.</li>
+            <li>In compact layouts, some navigation entries may move under <code>More</code>.</li>
+            <li>If a tab seems missing, validate <code>Layout mode</code>, <code>More</code> menu, and <code>App Edition</code> together.</li>
+            <li>For phone layouts, verify scaling strategy and readability before long sessions.</li>
+          </ul>
+          <div class="compare-grid compact">
+            <figure class="doc-image">
+              <div class="img-frame ratio-21x9 img-contain">
+                <img src="../assets/imgs/docs/img1_tablet.png" alt="Tablet layout showing wider navigation and dashboard cards in SimDuty">
+              </div>
+              <figcaption>Tablet mode: recommended for primary operations and second-screen workflows.</figcaption>
+            </figure>
+            <figure class="doc-image">
+              <div class="img-frame ratio-21x9 img-contain">
+                <img src="../assets/imgs/docs/img2_mobile.png" alt="Phone layout showing compact navigation and reduced-width content in SimDuty">
+              </div>
+              <figcaption>Phone mode: compact navigation, optimized for quick checks and essential actions.</figcaption>
+            </figure>
+          </div>
+          <div class="path-list">
+            <p>Mobile-ready checklist:</p>
+            <ul>
+              <li>Selected layout mode matches your device and screen size.</li>
+              <li>Scaling mode (<code>Overlay</code> or <code>Manual</code>) is readable during driving.</li>
+              <li><code>Always On Top</code> and fullscreen behavior are validated in your game mode.</li>
+              <li>Home shortcuts visibility is configured for your preferred layout behavior.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="profile" class="section">
+          <h2>Profile and preferences</h2>
+          <ul>
+            <li>Set <code>Driver Name</code> for HOS identity and score records.</li>
+            <li>Review <code>User ID</code>, local <code>Save path</code>, and current app version.</li>
+            <li>In <code>Preferences</code>, configure language, start with Windows, and notification toggles.</li>
+            <li>Notification controls are split by channel: <code>Alert overlay</code>, <code>Inbox messages</code>, and <code>Speed alerts</code>.</li>
+            <li>Configure <code>Friend messages</code> (name, enable switch, and frequency).</li>
+            <li>Set <code>Units</code> (metric or imperial) and choose <code>HOS policy mode</code> (auto or manual).</li>
+            <li>When manual policy mode is active, choose the fixed policy in the policy selector.</li>
+          </ul>
+          <div class="callout"><strong>Policy behavior:</strong> In <code>Auto</code>, SimDuty detects the active game (ATS/ETS2), switches policy automatically, and updates HOS metrics accordingly. In <code>Manual</code>, one fixed policy remains active regardless of the detected game.</div>
+          <div class="path-list">
+            <p>Operational guidance:</p>
+            <ul>
+              <li>Use <code>Auto</code> if you switch between ATS and ETS2 frequently.</li>
+              <li>Use <code>Manual</code> if your VTC/league requires one fixed compliance policy.</li>
+              <li>Before every trip, verify <code>Policy mode</code>, <code>Active policy</code>, and HOS limits shown in dashboard.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p>HOS policy mode - high-impact notes:</p>
+            <ul>
+              <li><strong>Policy switch side effects:</strong> switching between <code>Auto</code> and <code>Manual</code> can change how <code>Drive Left</code>, <code>Shift Left</code>, and <code>Cycle Left</code> are calculated and displayed.</li>
+              <li><strong>When to use each mode:</strong> use <code>Auto</code> for standard behavior per detected game; use <code>Manual</code> for fixed-policy operations (VTC/league requirements).</li>
+              <li><strong>Pre-trip validation:</strong> confirm <code>Game detected</code>, <code>Policy mode</code>, <code>Active policy</code>, and visible HOS limits before departing.</li>
+              <li><strong>Mismatch warning:</strong> if ATS is running while a manual Europe policy is selected, different limits are expected and intentional.</li>
+              <li><strong>Recovery action:</strong> if HOS metrics look wrong after mode changes, review mode and policy, click <code>Save changes</code>, restart SimDuty, and re-check HOS dashboard values.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="custom-delivery" class="section">
+          <h2>Custom Delivery and profile roots</h2>
+          <p>This section is required for reliable freight sync and active job manipulation.</p>
+          <ol>
+            <li>Open <code>More &gt; Setup</code> and scroll to the <code>Custom Delivery</code> block.</li>
+            <li>Use <code>Browse</code> for <code>ATS profiles folder</code> and select the ATS save root.</li>
+            <li>Use <code>Browse</code> for <code>ETS2 profiles folder</code> and select the ETS2 save root.</li>
+            <li>Confirm the <code>Effective:</code> path text matches the expected location.</li>
+            <li>Adjust <code>Yard Move speed limit</code> and <code>Yard Move auto disable</code> if required.</li>
+          </ol>
+          <div class="callout">Select the profile root location used by your game installation. Do not point to random subfolders that do not contain active save data.</div>
+        </section>
+
+        <section id="appearance" class="section">
+          <h2>Appearance and window behavior</h2>
+          <ul>
+            <li>Choose theme mode (Light or Dark).</li>
+            <li>Enable <code>Always On Top</code> to keep SimDuty visible while driving.</li>
+            <li>Use <code>Suspend Topmost in Fullscreen</code> to avoid overlay issues in exclusive fullscreen.</li>
+            <li>Enable <code>Minimize to tray</code> for quick hide/restore behavior.</li>
+            <li>Use <code>Software Render</code> as a compatibility fallback when rendering is unstable (flicker, GPU-related glitches, or draw failures).</li>
+            <li>If Software Render causes higher CPU usage, stutter, or worse responsiveness, disable it and retest.</li>
+            <li>Set window resolution and scaling strategy (<code>Overlay</code> or <code>Manual</code>).</li>
+            <li>If manual scaling is used, adjust UI scale and use <code>Reset Scale</code> when needed.</li>
+          </ul>
+        </section>
+
+        <section id="support-tools" class="section">
+          <h2>Support tools and diagnostics</h2>
+          <ul>
+            <li>Enable <code>Support mode</code> to collect richer diagnostics when troubleshooting.</li>
+            <li>Enable <code>Include saves</code> only when support requests specifically require save data.</li>
+            <li>Use <code>Generate support bundle</code> to create a support package.</li>
+            <li>Use <code>Open support folder</code> and <code>Copy support path</code> for ticket sharing.</li>
+            <li>Key app folders are under <code>%LOCALAPPDATA%\SimDuty</code> (<code>Logs</code>, <code>Saves</code>, <code>Config</code>).</li>
+          </ul>
+        </section>
+
+        <section id="keybinds" class="section">
+          <h2>Keybinds and navigation</h2>
+          <ul>
+            <li>Review action-to-binding pairs in the keybind table.</li>
+            <li>Capture combinations directly in each binding field.</li>
+            <li>Use clear, non-conflicting shortcuts for tab navigation and HOS actions.</li>
+          </ul>
+        </section>
+
+        <section id="audio" class="section">
+          <h2>Audio controls</h2>
+          <ul>
+            <li>Enable or disable app sound globally.</li>
+            <li>Adjust output volume and use <code>Test audio</code>.</li>
+            <li>Configure HOS warning mute presets when noise reduction is needed.</li>
+          </ul>
+        </section>
+
+        <section id="checkpoint" class="section">
+          <h2>Validation checkpoint</h2>
+          <ul>
+            <li>Active edition matches intended workflow (Lite for HOS-focused use, Full for complete modules).</li>
+            <li>Display mode and navigation behavior are validated (including compact mode and More menu).</li>
+            <li>Custom Delivery ATS/ETS2 roots are valid and saved.</li>
+            <li>HOS mode and unit system are set as intended.</li>
+            <li>Auto mode shows expected policy for the detected game (or manual policy is intentionally fixed).</li>
+            <li>Always On Top behavior works in your game display mode.</li>
+            <li>Keybinds and alerts behave as expected during a short test run.</li>
+            <li>Support bundle generation works without errors.</li>
+            <li>Save changes was executed after any edit, and post-change restart was performed when required.</li>
+          </ul>
+        </section>
+
+        <section id="support" class="section">
+          <h2>Quick support</h2>
+          <ul>
+            <li>If a feature appears missing, check App Edition first (Lite hides non-HOS modules by design).</li>
+            <li>If navigation looks incomplete on small screens, check layout mode and open the <code>More</code> menu.</li>
+            <li>If Custom Jobs or active delivery data does not update, re-check ATS/ETS2 root paths and click <code>Save changes</code>.</li>
+            <li>If HOS metrics look inconsistent, verify <code>HOS policy mode</code> and the current active policy first.</li>
+            <li>If you recently switched Auto/Manual, save settings, restart SimDuty, and re-validate limits on Home/HOS.</li>
+            <li>If overlays do not stay visible, switch the game to borderless mode and verify topmost options.</li>
+            <li>If startup behavior is unstable, review minimize/tray and software render toggles, then restart SimDuty.</li>
+            <li>If unresolved, generate a support bundle and share it in Discord with screenshots of Setup sections.</li>
+          </ul>
+        </section>
+      </div>
+    </div>
+
+    <nav class="page-nav" aria-label="Page navigation">
+      <a href="first-run.html">Previous page</a>
+      <a href="troubleshooting.html">Next page</a>
+    </nav>
+
+    <footer class="wiki-footer">
+      <span>Last updated: May 2026</span>
+      <span><a href="https://discord.gg/NATM3BEzbe" target="_blank" rel="noopener">Join Discord Support</a></span>
+    </footer>
+  </main>
+</body>
+
+</html>

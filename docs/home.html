@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SimDuty Docs | Home Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="docs.css">
+</head>
+
+<body>
+  <main class="docs-shell">
+    <header class="docs-topbar">
+      <div>
+        <h1 class="docs-title">Home Dashboard</h1>
+        <p class="docs-subtitle">Interpret your core operational indicators quickly and accurately.</p>
+      </div>
+      <nav class="docs-links" aria-label="Docs navigation">
+        <a href="index.html">Wiki</a>
+        <a href="hos.html">Next: HOS</a>
+      </nav>
+    </header>
+
+    <div class="doc-layout">
+      <aside class="doc-sidebar" aria-label="On this page">
+        <h3>On this page</h3>
+        <a href="#overview">Overview</a>
+        <a href="#indicators">Key indicators</a>
+        <a href="#workflow">Recommended workflow</a>
+        <a href="#checkpoint">Validation checkpoint</a>
+        <a href="#support">Quick support</a>
+      </aside>
+
+      <div class="doc-content">
+        <section id="overview" class="section section-step">
+          <h2>Overview</h2>
+          <p>This page explains how to read core Home metrics before and during each trip.</p>
+          <div class="quick-facts">
+            <span>Estimated time: 3 minutes</span>
+            <span>Purpose: operational visibility</span>
+            <span>Output: safer trip decisions</span>
+          </div>
+        </section>
+
+        <section id="indicators" class="section">
+          <h2>Key indicators</h2>
+          <ul>
+            <li>Safety & Performance Score</li>
+            <li>Net Profit and Trip Profit</li>
+            <li>Active Trip (cargo and ETA)</li>
+            <li>Truck Health</li>
+            <li>Drive Limit and Shift Left</li>
+          </ul>
+          <div class="callout">TODO: add an annotated screenshot that labels every dashboard card.</div>
+        </section>
+
+        <section id="workflow" class="section">
+          <h2>Recommended workflow</h2>
+          <ol>
+            <li>Confirm current duty state (ON/OFF DUTY) before dispatch.</li>
+            <li>Review available driving and shift limits before departure.</li>
+            <li>Track profitability and vehicle condition throughout the trip.</li>
+          </ol>
+        </section>
+
+        <section id="checkpoint" class="section">
+          <h2>Validation checkpoint</h2>
+          <ul>
+            <li>Duty status is correct before departure.</li>
+            <li>Drive and shift limits are reviewed.</li>
+            <li>Trip and profit indicators update during operation.</li>
+          </ul>
+        </section>
+
+        <section id="support" class="section">
+          <h2>Quick support</h2>
+          <ul>
+            <li>If trip data looks stale, confirm SDK/NET status in the top bar.</li>
+            <li>If limits look wrong, confirm active policy and current duty state.</li>
+            <li>If cards do not refresh, restart SimDuty before reopening the game.</li>
+          </ul>
+        </section>
+      </div>
+    </div>
+
+    <nav class="page-nav" aria-label="Page navigation">
+      <a href="first-run.html">Previous page</a>
+      <a href="hos.html">Next page</a>
+    </nav>
+
+    <footer class="wiki-footer">
+      <span>Last updated: May 2026</span>
+      <span><a href="https://discord.gg/NATM3BEzbe" target="_blank" rel="noopener">Join Discord Support</a></span>
+    </footer>
+  </main>
+</body>
+
+</html>
