@@ -30,33 +30,59 @@
   <!-- Open Graph / Social -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://simduty.com/">
+  <meta property="og:site_name" content="SimDuty">
+  <meta property="og:locale" content="en_US">
   <meta property="og:title" content="SimDuty - Smart HOS & ELD for Truck Simulators">
   <meta property="og:description"
     content="The armored engine for your simulation. Persistent HOS, fully auditable, and crash-proof. Compatible with ETS2 & ATS.">
   <meta property="og:image" content="https://simduty.com/assets/imgs/home_tablet.png">
+  <meta property="og:image:alt" content="SimDuty tablet dashboard with HOS and trip data">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://simduty.com/">
   <meta name="twitter:title" content="SimDuty - Smart HOS & ELD">
   <meta name="twitter:description"
     content="Persistent HOS Simulator for ATS/ETS2. Auditable, fail-proof, and ready for real operations.">
   <meta name="twitter:image" content="https://simduty.com/assets/imgs/home_tablet.png">
+  <meta name="twitter:image:alt" content="SimDuty tablet dashboard with HOS and trip data">
 
   <!-- Schema.org JSON-LD -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "SimDuty",
-    "operatingSystem": "Windows 10, Windows 11",
-    "applicationCategory": "GameApplication",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    },
-    "description": "Persistent ELD/HOS system for Euro Truck Simulator 2 and American Truck Simulator.",
-    "softwareVersion": "Alpha"
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://simduty.com/#website",
+        "url": "https://simduty.com/",
+        "name": "SimDuty",
+        "description": "Persistent ELD/HOS system for Euro Truck Simulator 2 and American Truck Simulator.",
+        "inLanguage": "en"
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "SimDuty",
+        "operatingSystem": "Windows 10, Windows 11",
+        "applicationCategory": "GameApplication",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "description": "Persistent ELD/HOS system for Euro Truck Simulator 2 and American Truck Simulator.",
+        "softwareVersion": "Alpha",
+        "url": "https://simduty.com/"
+      },
+      {
+        "@type": "Organization",
+        "name": "SimDuty Project",
+        "url": "https://simduty.com/",
+        "sameAs": [
+          "https://discord.gg/NATM3BEzbe"
+        ]
+      }
+    ]
   }
   </script>
 </head>

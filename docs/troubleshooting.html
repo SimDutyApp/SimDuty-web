@@ -5,6 +5,50 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SimDuty Docs | Troubleshooting</title>
+  <meta name="description" content="Resolve startup, plugin, telemetry, and cross-flow Home/HOS/Setup issues in SimDuty with a deterministic recovery path.">
+  <meta name="author" content="SimDuty Project">
+  <link rel="canonical" href="https://simduty.com/docs/troubleshooting.html">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://simduty.com/docs/troubleshooting.html">
+  <meta property="og:title" content="SimDuty Docs | Troubleshooting">
+  <meta property="og:description" content="Resolve startup, plugin, telemetry, and cross-flow Home/HOS/Setup issues in SimDuty with a deterministic recovery path.">
+  <meta property="og:image" content="https://simduty.com/assets/imgs/home_tablet.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SimDuty Docs | Troubleshooting">
+  <meta name="twitter:description" content="Resolve startup, plugin, telemetry, and cross-flow Home/HOS/Setup issues in SimDuty with a deterministic recovery path.">
+  <meta name="twitter:image" content="https://simduty.com/assets/imgs/home_tablet.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Can I use SimDuty offline?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. SimDuty supports local offline operation."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need to install .NET to run SimDuty?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Current SimDuty releases are self-contained."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does SimDuty work with ETS2 and ATS?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. It works with ETS2 and ATS when the plugin DLLs are installed in the correct x64 plugins folder."
+        }
+      }
+    ]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
@@ -28,8 +72,12 @@
       <aside class="doc-sidebar" aria-label="On this page">
         <h3>On this page</h3>
         <a href="#overview">Overview</a>
-        <a href="#plugin">Plugin not detected</a>
+        <a href="#triage">Triage order</a>
+        <a href="#plugin">Plugin and SDK/NET recovery</a>
         <a href="#connection">No truck connection</a>
+        <a href="#cross-flow">Home/HOS/Setup cross-flow issues</a>
+        <a href="#references">Path and reference</a>
+        <a href="#checkpoint">Validation checkpoint</a>
         <a href="#faq">Quick FAQ</a>
         <a href="#escalation">Escalation</a>
       </aside>
@@ -38,15 +86,34 @@
         <section id="overview" class="section section-step">
           <h2>Overview</h2>
           <p>Use this page to resolve startup, plugin, and telemetry issues in a deterministic order.</p>
+          <p>Follow these checks sequentially to avoid false fixes and to keep Home/HOS behavior predictable after recovery.</p>
           <div class="quick-facts">
             <span>Estimated time: 5 minutes</span>
             <span>Focus: SDK/NET recovery</span>
             <span>Result: restored connection</span>
           </div>
+          <div class="impact-matrix" aria-label="Troubleshooting impact matrix">
+            <div class="impact-row"><span class="impact-tag">Required</span><p>Validate DLL path and startup sequence before changing advanced settings</p></div>
+            <div class="impact-row"><span class="impact-tag">Required</span><p>Re-check SDK/NET state after entering cabin and moving briefly</p></div>
+            <div class="impact-row"><span class="impact-tag">Required</span><p>Confirm policy mode and active policy when HOS values look wrong</p></div>
+            <div class="impact-row"><span class="impact-tag">Recommended</span><p>Review Setup options (paths, Yard Move speed, mode toggles) for recurring issues</p></div>
+            <div class="impact-row"><span class="impact-tag">Optional</span><p>Generate support bundle before escalation for faster support turnaround</p></div>
+          </div>
+        </section>
+
+        <section id="triage" class="section">
+          <h2>Triage order</h2>
+          <ol>
+            <li>Check <code>SDK/NET</code> indicators and confirm app/game launch order.</li>
+            <li>Validate plugin DLL files and exact <code>win_x64/plugins</code> path.</li>
+            <li>Enter cabin and move briefly to initialize full telemetry flow.</li>
+            <li>If HOS/Home values still look wrong, validate policy mode and setup controls.</li>
+            <li>If unresolved, gather diagnostics and escalate with reproducible evidence.</li>
+          </ol>
         </section>
 
         <section id="plugin" class="section">
-          <h2>Plugin not detected</h2>
+          <h2>Plugin and SDK/NET recovery</h2>
           <ul>
             <li>SDK FAIL: verify <code>scs-telemetry.dll</code> in <code>\bin\win_x64\plugins</code>.</li>
             <li>NET FAIL: verify <code>simduty.dll</code> in <code>\bin\win_x64\plugins</code>.</li>
@@ -54,6 +121,7 @@
             <li>Confirm the game is launched in x64 mode with matching plugin files.</li>
             <li>Restart in this sequence: SimDuty first, then ATS/ETS2.</li>
           </ul>
+          <div class="callout"><strong>Expected state:</strong> after entering cabin and moving briefly, both SDK and NET remain in stable OK state.</div>
         </section>
 
         <section id="connection" class="section">
@@ -62,6 +130,56 @@
             <li>Launch SimDuty before opening ATS/ETS2.</li>
             <li>Enter the truck cabin to initialize telemetry reads.</li>
             <li>Review permission, antivirus, and firewall restrictions.</li>
+            <li>If values stay stale, close both apps, verify DLLs again, then relaunch in recommended order.</li>
+          </ul>
+        </section>
+
+        <section id="cross-flow" class="section">
+          <h2>Home/HOS/Setup cross-flow issues</h2>
+          <div class="path-list">
+            <p><strong>Symptom:</strong> Home shows unexpected limits or timer behavior</p>
+            <ul>
+              <li><strong>Check:</strong> active policy mode (<code>Auto</code>/<code>Manual</code>) and current policy label in HOS.</li>
+              <li><strong>Fix:</strong> adjust policy mode in <a href="setup.html">Setup Guide</a>, save changes, and restart SimDuty.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Symptom:</strong> Off Duty or Yard Move toggles behave unexpectedly</p>
+            <ul>
+              <li><strong>Check:</strong> vehicle stop state and Yard Move speed limit/auto-disable settings in Setup.</li>
+              <li><strong>Fix:</strong> reduce maneuver speed, tune Yard Move settings, and re-validate controls in HOS.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Symptom:</strong> HOS Extension request is refused immediately</p>
+            <ul>
+              <li><strong>Check:</strong> requested extra time against remaining shift envelope.</li>
+              <li><strong>Fix:</strong> request less time or rest first, then submit again with accurate context.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="references" class="section">
+          <h2>Path and reference</h2>
+          <div class="path-list">
+            <p><strong>Primary references:</strong></p>
+            <ul>
+              <li>First-run install and plugin placement: <a href="first-run.html">First Run Guide</a></li>
+              <li>Policy mode, path validation, and control settings: <a href="setup.html">Setup Guide</a></li>
+              <li>Home indicator interpretation: <a href="home.html">Home Dashboard</a></li>
+              <li>HOS controls and extension behavior: <a href="hos.html">HOS Dashboard</a></li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="checkpoint" class="section">
+          <h2>Validation checkpoint</h2>
+          <ul>
+            <li>SDK and NET indicators are stable in OK state during active cabin context.</li>
+            <li>Plugin DLL files are confirmed in correct x64 plugins directory.</li>
+            <li>Home and HOS values update after movement and match active policy behavior.</li>
+            <li>Yard Move and Off Duty controls behave as expected for stopped/moving contexts.</li>
+            <li>Any policy or setup change was saved and verified after restart.</li>
           </ul>
         </section>
 

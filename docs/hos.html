@@ -5,6 +5,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SimDuty Docs | HOS Dashboard</title>
+  <meta name="description" content="Understand HOS timers, rest controls, and compliance decisions in SimDuty with an interactive controls map.">
+  <meta name="author" content="SimDuty Project">
+  <link rel="canonical" href="https://simduty.com/docs/hos.html">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://simduty.com/docs/hos.html">
+  <meta property="og:title" content="SimDuty Docs | HOS Dashboard">
+  <meta property="og:description" content="Understand HOS timers, rest controls, and compliance decisions in SimDuty with an interactive controls map.">
+  <meta property="og:image" content="https://simduty.com/assets/imgs/hos_tablet.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SimDuty Docs | HOS Dashboard">
+  <meta name="twitter:description" content="Understand HOS timers, rest controls, and compliance decisions in SimDuty with an interactive controls map.">
+  <meta name="twitter:image" content="https://simduty.com/assets/imgs/hos_tablet.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
@@ -28,8 +40,18 @@
       <aside class="doc-sidebar" aria-label="On this page">
         <h3>On this page</h3>
         <a href="#overview">Overview</a>
-        <a href="#concepts">Core concepts</a>
-        <a href="#workflow">Rest workflow</a>
+        <a href="#policy-model">Policy model and baseline</a>
+        <a href="#policy-table">Policy reference table</a>
+        <a href="#timers">Core timers explained</a>
+        <a href="#timer-logic">How timer logic works</a>
+        <a href="#status-rules">Status transitions by app rules</a>
+        <a href="#controls-map">Interactive controls map</a>
+        <a href="#more-menu">Hidden controls (3-dots menu)</a>
+        <a href="#hos-extension">HOS Extension (Full and Lite)</a>
+        <a href="#hos-extension-rules">HOS Extension rules</a>
+        <a href="#daily-scenarios">Daily management scenarios</a>
+        <a href="#workflow">Operational workflow</a>
+        <a href="#references">Path and reference</a>
         <a href="#checkpoint">Validation checkpoint</a>
         <a href="#support">Quick support</a>
       </aside>
@@ -37,48 +59,300 @@
       <div class="doc-content">
         <section id="overview" class="section section-step">
           <h2>Overview</h2>
-          <p>This page explains how HOS timers work and how to stay compliant during active driving sessions.</p>
+          <p>This page explains how to read HOS limits, use rest controls safely, and avoid compliance violations in active operations.</p>
+          <p>The HOS screen is a core SimDuty workflow. Use this guide before extending routes or applying rest actions.</p>
           <div class="quick-facts">
-            <span>Estimated time: 4 minutes</span>
-            <span>Purpose: compliance-safe operation</span>
-            <span>Output: lower HOS violation risk</span>
+            <span>Estimated time: 7 minutes</span>
+            <span>Purpose: compliance-safe trip execution</span>
+            <span>Output: fewer HOS violations and safer timing decisions</span>
+          </div>
+          <div class="impact-matrix" aria-label="HOS impact matrix">
+            <div class="impact-row"><span class="impact-tag">Required</span><p>Read Drive Left, Shift Left, and Cycle Left together before route commitment</p></div>
+            <div class="impact-row"><span class="impact-tag">Required</span><p>Use rest controls only in appropriate vehicle state (stopped vs moving)</p></div>
+            <div class="impact-row"><span class="impact-tag">Required</span><p>Differentiate Yard Move from Off Duty to avoid wrong compliance assumptions</p></div>
+            <div class="impact-row"><span class="impact-tag">Recommended</span><p>Plan breaks before urgency reaches critical countdown windows</p></div>
+            <div class="impact-row"><span class="impact-tag">Recommended</span><p>Re-check HOS after every status transition (rest start, rest end, dispatch change)</p></div>
+            <div class="impact-row"><span class="impact-tag">Optional</span><p>Use Quick Reset only when operationally justified by your policy context</p></div>
           </div>
         </section>
 
-        <section id="concepts" class="section">
-          <h2>Core concepts</h2>
+        <section id="policy-model" class="section">
+          <h2>Policy model and baseline</h2>
+          <p>SimDuty supports multiple HOS policies and applies timer behavior according to the active policy.</p>
           <ul>
-            <li>Drive Left: remaining legal driving time before a required rest event.</li>
-            <li>Shift Left: remaining time in the current duty shift window.</li>
-            <li>Cycle Left: remaining time in your multi-day cycle limit.</li>
+            <li><strong>Documentation baseline:</strong> this page uses <strong>USA Federal (11h/14h)</strong> as the primary example model.</li>
+            <li><strong>Operational recommendation:</strong> use <code>Auto</code> policy mode when switching between ATS and ETS2 so SimDuty can align policy by detected game.</li>
+            <li><strong>Manual mode:</strong> use when your league/VTC requires one fixed policy regardless of game.</li>
+            <li>USA examples are used for clarity; real limits can differ in CA, EU, BR, and Custom policies.</li>
+          </ul>
+          <div class="callout"><strong>Important:</strong> always validate the policy label shown on the HOS screen before trusting a timer-based decision.</div>
+        </section>
+
+        <section id="policy-table" class="section">
+          <h2>Policy reference table</h2>
+          <div class="path-list">
+            <p>Reference values below are operational summaries in hours/minutes.</p>
+            <ul>
+              <li><strong>USA Federal:</strong> Drive 11h, Shift/Elapsed 14h, Break after 8h (30m), Rest 10h, Cycle 70h, Restart 34h.</li>
+              <li><strong>Canada South:</strong> Drive 13h, On-duty 14h, Elapsed 16h, no mandatory break timer, Rest 10h, Cycle 70h, Restart 36h.</li>
+              <li><strong>Europe:</strong> Drive 9h, Shift 13h, Break after 4.5h (45m), Rest 11h, Cycle 56h, Restart 45h.</li>
+              <li><strong>Brazil:</strong> Drive 10h, Shift 12h, Break after 5.5h (30m), Rest 11h, cycle/restart may be disabled by policy profile.</li>
+              <li><strong>Custom:</strong> starts from USA defaults and can be manually changed in settings.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="timers" class="section">
+          <h2>Core timers explained</h2>
+          <ul>
+            <li><strong>Drive Left:</strong> remaining legal driving time before a required stop or violation state.</li>
+            <li><strong>Shift Left:</strong> remaining time in your duty-shift window for the current operational day.</li>
+            <li><strong>Cycle Left:</strong> remaining allowance in the multi-day cycle limit defined by policy.</li>
+            <li>Drive Left controls immediate driving viability, while Shift Left and Cycle Left control broader legal envelope.</li>
+            <li>A trip can look safe by Drive Left alone but still be constrained by Shift Left or Cycle Left.</li>
+            <li>Always evaluate all three before accepting or extending a long route.</li>
+          </ul>
+          <div class="callout"><strong>Decision rule:</strong> if any major timer is near critical, plan rest first and route second.</div>
+        </section>
+
+        <section id="timer-logic" class="section">
+          <h2>How timer logic works</h2>
+          <ul>
+            <li><strong>Drive Left:</strong> remaining drive allowance from policy max drive, including approved extension minutes when granted.</li>
+            <li><strong>Shift Left:</strong> remaining shift window using the strictest applicable policy envelope (elapsed vs on-duty model where applicable).</li>
+            <li><strong>Cycle Left:</strong> remaining multi-day capacity when cycle is enabled in the active policy.</li>
+            <li><strong>Break reset:</strong> once break qualifying time reaches policy minimum, break pressure resets.</li>
+            <li><strong>Rest reset:</strong> once required rest is completed, drive/shift counters reset for the next operational block.</li>
+            <li><strong>Restart reset:</strong> when restart duration is met and cycle is enabled, cycle usage resets.</li>
           </ul>
         </section>
 
-        <section id="workflow" class="section">
-          <h2>Rest and break workflow</h2>
+        <section id="status-rules" class="section">
+          <h2>Status transitions by app rules</h2>
+          <p>These transitions follow SimDuty runtime logic, not only UI intent.</p>
+          <ul>
+            <li><strong>Driving:</strong> status becomes <code>DRIVING</code> when the truck is moving above the app movement threshold.</li>
+            <li><strong>On Duty:</strong> with engine on and no manual override, a stopped truck resolves to <code>ON DUTY</code>; moving with <code>Yard Move</code> also resolves to <code>ON DUTY</code>.</li>
+            <li><strong>Off Duty:</strong> set it manually while stopped; in automatic flow with engine off, the app waits briefly before switching to off-duty.</li>
+            <li><strong>Yard Move:</strong> can only be enabled while stopped, then operates as a controlled low-speed maneuver mode.</li>
+            <li><strong>Manual Off Duty safety:</strong> if Off Duty is active and the vehicle starts moving, SimDuty turns it off automatically.</li>
+            <li><strong>Short idle behavior:</strong> after recent movement, the app can keep driving context briefly before settling into stopped on-duty behavior.</li>
+          </ul>
+          <div class="callout"><strong>Practical effect:</strong> if a toggle was accepted but effective status differs from expectation, validate speed, engine state, and special modes first.</div>
+        </section>
+
+        <section id="controls-map" class="section">
+          <h2>Interactive controls map</h2>
+          <p>Use this map to understand what is available when the vehicle is stopped versus moving.</p>
+
+          <div class="hos-map-head">
+            <button type="button" class="hos-state-btn is-active" data-state="stopped" aria-pressed="true">Vehicle stopped</button>
+            <button type="button" class="hos-state-btn" data-state="moving" aria-pressed="false">Vehicle moving</button>
+          </div>
+
+          <div class="hos-map-grid">
+            <div class="hos-map-figure">
+              <figure class="doc-image">
+                <div class="img-frame hos-hotspot-frame ratio-4x3 img-contain" data-hos-map>
+                  <img src="../assets/imgs/docs/hos_botoes1.png" alt="SimDuty HOS dashboard with highlighted controls while vehicle is stopped" data-hos-image data-state="stopped">
+                  <img src="../assets/imgs/docs/hos_botoes2.png" alt="SimDuty HOS dashboard with highlighted controls while vehicle is moving" data-hos-image data-state="moving" hidden>
+
+                  <button type="button" class="hos-hotspot" data-state="stopped" data-target="off-duty" style="top: 40%; left: 97%;" aria-label="Off Duty control hotspot">1</button>
+                  <button type="button" class="hos-hotspot" data-state="stopped" data-target="short-break" style="top: 51%; left: 97%;" aria-label="Short Break control hotspot">2</button>
+                  <button type="button" class="hos-hotspot" data-state="stopped" data-target="rest-10h" style="top: 62%; left: 97%;" aria-label="Rest 10h control hotspot">3</button>
+                  <button type="button" class="hos-hotspot" data-state="stopped" data-target="reset-34h" style="top: 73%; left: 97%;" aria-label="34h Reset control hotspot">4</button>
+                  <button type="button" class="hos-hotspot" data-state="stopped" data-target="custom-rest" style="top: 84%; left: 97%;" aria-label="Custom control hotspot">5</button>
+
+                  <button type="button" class="hos-hotspot" data-state="moving" data-target="quick-reset" style="top: 45%; left: 97%;" aria-label="Quick Reset control hotspot while moving">1</button>
+                  <button type="button" class="hos-hotspot" data-state="moving" data-target="yard-move" style="top: 57%; left: 97%;" aria-label="Yard Move control hotspot while moving">2</button>
+                  <button type="button" class="hos-hotspot" data-state="moving" data-target="off-duty" style="top: 69%; left: 97%;" aria-label="Off Duty control hotspot while moving">3</button>
+                </div>
+                <figcaption>Switch between stopped and moving states to see which controls are available and how to use them safely.</figcaption>
+              </figure>
+            </div>
+
+            <div class="hos-panel" data-hos-panel aria-live="polite">
+              <h3 data-hos-title>Off Duty</h3>
+              <p data-hos-desc>Enters off-duty context when the vehicle is stopped and manual control conditions are valid.</p>
+              <ul data-hos-points>
+                <li>Use for compliance-safe downtime and rest transitions.</li>
+                <li>Expected effect: off-duty timers and rest progression can advance according to policy.</li>
+                <li>If blocked, verify vehicle stopped state and manual status safety conditions.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="path-list">
+            <p>Controls fallback reference:</p>
+            <ul>
+              <li><strong>Stopped state order:</strong> 1) Off Duty, 2) Break (policy duration), 3) Rest (policy duration), 4) Reset (policy duration), 5) Custom.</li>
+              <li><strong>Moving state order:</strong> 1) Quick Reset, 2) Yard Move, 3) Off Duty.</li>
+              <li><strong>Quick Reset:</strong> enables reset behavior when a new quick job delivery starts.</li>
+              <li><strong>Policy note:</strong> examples use USA baseline labels, but Break/Rest/Reset durations follow the active policy.</li>
+              <li><strong>Yard Move speed:</strong> speed limit and auto-disable behavior are configurable in <code>Settings</code>.</li>
+              <li><strong>Yard Move:</strong> maneuver mode for low-speed yard operations, not a rest state.</li>
+              <li><strong>Off Duty:</strong> out-of-duty status for rest/off-work context, not yard maneuvering.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="more-menu" class="section">
+          <h2>Hidden controls (3-dots menu)</h2>
+          <p>Some HOS actions are grouped inside the top-right 3-dots menu and become available based on current state.</p>
+          <figure class="doc-image">
+            <div class="img-frame ratio-4x3 img-contain">
+              <img src="../assets/imgs/docs/hos_botoes3.png" alt="HOS dashboard showing the 3-dots popup menu with Off Duty, 0h 30m Break, 10h Rest, 34h Reset, and Custom options">
+            </div>
+            <figcaption>3-dots menu exposes rest actions and state controls that may be hidden in the compact action rail.</figcaption>
+          </figure>
+          <ul>
+            <li><strong>Off Duty:</strong> enters off-duty context when stopped and allowed by control state.</li>
+            <li><strong>Break (policy duration):</strong> short break action based on policy break duration.</li>
+            <li><strong>Rest (policy duration):</strong> rest action based on policy required rest duration.</li>
+            <li><strong>Reset (policy duration):</strong> restart action based on policy restart duration when restart is defined.</li>
+            <li><strong>Custom:</strong> opens custom rest dialog to apply a manual duration.</li>
+          </ul>
+          <div class="callout"><strong>Safety behavior:</strong> rest actions are blocked if stop-state conditions are not met.</div>
+        </section>
+
+        <section id="hos-extension" class="section">
+          <h2>HOS Extension (Full and Lite)</h2>
+          <p>HOS Extension is available in both editions, but entry flow differs.</p>
+          <div class="compare-grid">
+            <figure class="doc-image">
+              <div class="img-frame ratio-4x3 img-contain">
+                <img src="../assets/imgs/docs/hos_extension_full.png" alt="Full edition Dispatch view showing HOS extension request flow in dispatch chat context">
+              </div>
+              <figcaption>Full edition: request flow runs in Dispatch context.</figcaption>
+            </figure>
+            <figure class="doc-image">
+              <div class="img-frame ratio-4x3 img-contain">
+                <img src="../assets/imgs/docs/hos_extension_lite.png" alt="Lite edition HOS extension screen showing reason selection and submit request action">
+              </div>
+              <figcaption>Lite edition: dedicated HOS Extension flow with reason and duration selection.</figcaption>
+            </figure>
+          </div>
           <ol>
-            <li>Drive while monitoring remaining time against safety thresholds.</li>
-            <li>Begin break or rest before the timer reaches a violation state.</li>
-            <li>Resume driving only after HOS status returns to a compliant state.</li>
+            <li>Select a reason for the extension request.</li>
+            <li>Select requested extra time (30, 45, 60, 90, or 120 minutes).</li>
+            <li>Submit request and wait for dispatch/compliance decision.</li>
+            <li>If approved or partial, re-check Drive Left, Shift Left, and Cycle Left before continuing route.</li>
           </ol>
-          <div class="callout">TODO: add image sequence for DRIVE -> BREAK -> ON DUTY flow.</div>
+        </section>
+
+        <section id="hos-extension-rules" class="section">
+          <h2>HOS Extension rules</h2>
+          <ul>
+            <li>Before sending, SimDuty checks whether requested extra drive time still fits your current shift envelope.</li>
+            <li>If it does not fit, the request is refused immediately and you should plan rest first.</li>
+            <li>When accepted for evaluation, outcomes are: <strong>Approved</strong>, <strong>Partial</strong>, or <strong>Denied</strong>.</li>
+            <li>Emergency and adverse-condition reasons usually have stronger approval potential than convenience reasons.</li>
+            <li>Near-destination and delay cases often receive partial time rather than full requested time.</li>
+            <li>After approval or partial approval, always re-check Drive Left, Shift Left, and Cycle Left before continuing.</li>
+          </ul>
+          <div class="path-list">
+            <p>Practical examples:</p>
+            <ul>
+              <li><strong>Example A:</strong> 32 miles to destination + near-destination reason + 45m request -> partial approval is common.</li>
+              <li><strong>Example B:</strong> emergency delivery + 120m request -> full approval is possible when context supports it.</li>
+              <li><strong>Example C:</strong> Drive Left 20m, Shift Left 50m, request 60m -> immediate refusal due to shift limit mismatch.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="daily-scenarios" class="section">
+          <h2>Daily management scenarios</h2>
+          <div class="path-list">
+            <p><strong>Scenario 1 - Pre-dispatch long haul</strong></p>
+            <ul>
+              <li><strong>Check:</strong> Drive Left + Shift Left + Cycle Left with policy label visible.</li>
+              <li><strong>Action:</strong> if any timer is near critical, rest first and dispatch after reset.</li>
+              <li><strong>Result:</strong> lower violation probability during mid-route segments.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Scenario 2 - Urban delay under pressure</strong></p>
+            <ul>
+              <li><strong>Check:</strong> remaining drive vs destination distance and shift envelope.</li>
+              <li><strong>Action:</strong> request HOS Extension with accurate reason and minimal required duration.</li>
+              <li><strong>Result:</strong> compliant continuation when extension is approved/partial.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Scenario 3 - Yard operations at destination</strong></p>
+            <ul>
+              <li><strong>Check:</strong> whether operation goal is maneuvering or rest transition.</li>
+              <li><strong>Action:</strong> use <code>Yard Move</code> for maneuvering; use <code>Off Duty</code> for rest context.</li>
+              <li><strong>Result:</strong> clearer HOS state and better compliance decisions.</li>
+              <li><strong>Extra check:</strong> if Yard Move behaves unexpectedly, review speed limit and auto-disable settings.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Advanced note</strong></p>
+            <ul>
+              <li><strong>Sleeper</strong> and <strong>Personal Conveyance</strong> exist in app logic and can affect status resolution.</li>
+              <li>They are advanced operational states and are not the main controls in this HOS page workflow.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="workflow" class="section">
+          <h2>Operational workflow</h2>
+          <ol>
+            <li>Before dispatch, validate Drive Left, Shift Left, and Cycle Left together.</li>
+            <li>Confirm active policy and policy mode (Auto or Manual) match intended operation.</li>
+            <li>During trip progression, watch for approaching thresholds and pre-plan safe stop points.</li>
+            <li>When stopped, apply Off Duty, Break (policy duration), Rest (policy duration), Reset (policy duration), or Custom based on expected recovery target.</li>
+            <li>Use Yard Move only for controlled low-speed maneuver operations.</li>
+            <li>Use Off Duty for compliance rest context, not for active yard movement tasks.</li>
+            <li>Resume movement only after verifying updated timer state is compliant for your next leg.</li>
+          </ol>
+        </section>
+
+        <section id="references" class="section">
+          <h2>Path and reference</h2>
+          <div class="path-list">
+            <p><strong>Main path:</strong> <code>HOS</code> tab</p>
+            <ul>
+              <li>Primary cards: Until Break, Drive Left, Shift Left, Cycle Left</li>
+              <li>Policy scope: USA, BR, CA, EU, and Custom profiles supported</li>
+              <li>Action cluster (stopped): Off Duty, Break (policy duration), Rest (policy duration), Reset (policy duration), Custom</li>
+              <li>Moving-state cluster: Quick Reset, Yard Move, Off Duty</li>
+              <li>More menu: Off Duty, policy-duration Break/Rest/Restart, and Custom dialog</li>
+              <li>HOS Extension: Full via Dispatch panel, Lite via dedicated Extension flow</li>
+              <li>Policy context shown in top region should match intended operation mode</li>
+            </ul>
+          </div>
         </section>
 
         <section id="checkpoint" class="section">
           <h2>Validation checkpoint</h2>
           <ul>
-            <li>Drive Left and Shift Left are reviewed before route extension.</li>
-            <li>Break is started before timer reaches a violation state.</li>
-            <li>Status is compliant before resuming movement.</li>
+            <li>Drive Left, Shift Left, and Cycle Left are reviewed before departure and route extension.</li>
+            <li>USA baseline is used for examples, and policy label is confirmed for real operations.</li>
+            <li>Auto policy mode behavior is understood when switching between ATS and ETS2.</li>
+            <li>Rest action selected matches current vehicle state (stopped or moving context) and active policy duration.</li>
+            <li>Yard Move and Off Duty are not treated as equivalent controls.</li>
+            <li>3-dots menu controls are understood and used intentionally.</li>
+            <li>HOS Extension gate and decision outcomes are understood before requesting extra drive time.</li>
+            <li>Break/rest is applied before any critical timer reaches violation state.</li>
+            <li>After rest transitions, HOS values are re-validated before movement resumes.</li>
+            <li>Policy shown on HOS screen matches expected compliance mode.</li>
           </ul>
         </section>
 
         <section id="support" class="section">
           <h2>Quick support</h2>
           <ul>
-            <li>If timers look frozen, verify SDK/NET connection first.</li>
-            <li>If status does not switch, check engine/vehicle state and movement threshold.</li>
-            <li>If limits seem inconsistent, confirm active policy and recent rest events.</li>
+            <li>If timers look frozen, verify SDK/NET status and enter active driving context briefly.</li>
+            <li>If a rest button seems unavailable, verify stopped-state requirements and control context.</li>
+            <li>If menu actions seem missing, open the 3-dots menu and verify current status visibility conditions.</li>
+            <li>If HOS values look inconsistent after mode changes, save settings, restart SimDuty, and re-check policy status.</li>
+            <li>If Drive Left appears fine but trip still feels risky, check Shift Left and Cycle Left constraints.</li>
+            <li>If HOS Extension is refused immediately, compare requested minutes against current Shift Left envelope.</li>
+            <li>If Off Duty disables unexpectedly, verify movement speed and automatic safety behavior.</li>
+            <li>If Yard Move keeps disabling or warning frequently, tune Yard Move speed limit and auto-disable settings in <code>Settings</code>.</li>
+            <li>If confusion persists, capture HOS screen + policy label + active controls and share with support.</li>
           </ul>
         </section>
       </div>
@@ -94,6 +368,149 @@
       <span><a href="https://discord.gg/NATM3BEzbe" target="_blank" rel="noopener">Join Discord Support</a></span>
     </footer>
   </main>
+
+  <script>
+    (function () {
+      const stateButtons = Array.from(document.querySelectorAll('.hos-state-btn'));
+      const images = Array.from(document.querySelectorAll('[data-hos-image]'));
+      const hotspots = Array.from(document.querySelectorAll('.hos-hotspot'));
+      const panelTitle = document.querySelector('[data-hos-title]');
+      const panelDesc = document.querySelector('[data-hos-desc]');
+      const panelPoints = document.querySelector('[data-hos-points]');
+
+      const hotspotData = {
+        'short-break': {
+          title: 'Break (policy duration)',
+          desc: 'Applies break-oriented rest behavior used to satisfy short break requirements.',
+          points: [
+            'Use before break pressure reaches violation thresholds.',
+            'Expected effect: break-side compliance recovery.',
+            'Re-check Drive Left and Shift Left after completion.'
+          ]
+        },
+        'rest-10h': {
+          title: 'Rest (policy duration)',
+          desc: 'Applies required rest duration from the active policy.',
+          points: [
+            'Use when a full rest cycle is needed before continuing long operation.',
+            'Expected effect: drive/shift recovery according to policy reset rules.',
+            'Duration label varies if the active policy has different required rest time.'
+          ]
+        },
+        'reset-34h': {
+          title: 'Reset (policy duration)',
+          desc: 'Applies restart duration from policy when restart behavior is enabled.',
+          points: [
+            'Use for cycle restart workflows when policy supports restart windows.',
+            'Expected effect: cycle recovery after required restart duration is completed.',
+            'Label varies by policy; USA examples often show 34h.'
+          ]
+        },
+        'quick-reset': {
+          title: 'Quick Reset',
+          desc: 'Enables automatic HOS reset when a new quick job delivery starts.',
+          points: [
+            'Use when your operation relies on quick job start reset behavior.',
+            'Expected effect: HOS reset is applied when a new quick job delivery starts.',
+            'Always re-check Drive Left, Shift Left, and Cycle Left after trip start.'
+          ]
+        },
+        'custom-rest': {
+          title: 'Custom Rest',
+          desc: 'Lets you apply a custom rest duration for policy-aligned manual control.',
+          points: [
+            'Use when predefined rest options do not match your operation need.',
+            'Expected effect: timer impact according to selected custom duration.',
+            'Confirm post-action compliance state before departure.'
+          ]
+        },
+        'yard-move': {
+          title: 'Yard Move',
+          desc: 'Low-speed maneuver mode for yard operations. It is not a rest state.',
+          points: [
+            'Use for positioning and local maneuver tasks.',
+            'Do not treat as Off Duty or as a replacement for rest.',
+            'If auto-disabled, check speed threshold and safety behavior.'
+          ]
+        },
+        'off-duty': {
+          title: 'Off Duty',
+          desc: 'Out-of-duty state for rest and non-operational periods. It is not a yard movement mode.',
+          points: [
+            'Use when your goal is compliance-safe downtime.',
+            'Do not use as a maneuvering toggle while driving operations continue.',
+            'Re-check HOS state after transitions before restarting route.'
+          ]
+        }
+      };
+
+      let activeState = 'stopped';
+
+      function renderPanel(target) {
+        const data = hotspotData[target];
+        if (!data || !panelTitle || !panelDesc || !panelPoints) {
+          return;
+        }
+        panelTitle.textContent = data.title;
+        panelDesc.textContent = data.desc;
+        panelPoints.innerHTML = '';
+        data.points.forEach(function (point) {
+          const item = document.createElement('li');
+          item.textContent = point;
+          panelPoints.appendChild(item);
+        });
+      }
+
+      function setState(nextState) {
+        activeState = nextState;
+        stateButtons.forEach(function (button) {
+          const isActive = button.getAttribute('data-state') === nextState;
+          button.classList.toggle('is-active', isActive);
+          button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
+
+        images.forEach(function (image) {
+          image.hidden = image.getAttribute('data-state') !== nextState;
+        });
+
+        hotspots.forEach(function (hotspot) {
+          const visible = hotspot.getAttribute('data-state') === nextState;
+          hotspot.hidden = !visible;
+        });
+
+        const firstVisible = hotspots.find(function (hotspot) {
+          return hotspot.getAttribute('data-state') === nextState;
+        });
+
+        hotspots.forEach(function (hotspot) {
+          hotspot.classList.remove('is-active');
+        });
+
+        if (firstVisible) {
+          firstVisible.classList.add('is-active');
+          renderPanel(firstVisible.getAttribute('data-target'));
+        }
+      }
+
+      stateButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+          setState(button.getAttribute('data-state'));
+        });
+      });
+
+      hotspots.forEach(function (hotspot) {
+        hotspot.addEventListener('click', function () {
+          hotspots.forEach(function (item) {
+            item.classList.remove('is-active');
+          });
+          hotspot.classList.add('is-active');
+          renderPanel(hotspot.getAttribute('data-target'));
+        });
+      });
+
+      setState(activeState);
+    })();
+  </script>
 </body>
 
 </html>

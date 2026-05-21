@@ -22,7 +22,7 @@ docs/
 
 Current live flow:
 
-`index.html -> first-run.html -> setup.html -> troubleshooting.html -> index.html`
+`index.html -> first-run.html -> home.html -> hos.html -> setup.html -> troubleshooting.html -> index.html`
 
 ## 2) Page Structure Standard
 
@@ -67,13 +67,13 @@ Deliverable: users can navigate from the main site to a structured docs hub.
 
 Deliverable: complete first-use path with setup and troubleshooting guidance.
 
-### Phase 1.1 - Deferred Pages (Next Session)
+### Phase 1.1 - Deferred Pages (Completed)
 
-- Finalize and publish `docs/home.html`
-- Finalize and publish `docs/hos.html`
-- Reinsert both pages into the main navigation flow
+- Finalized and published `docs/home.html`
+- Finalized and published `docs/hos.html`
+- Reinserted both pages into the main navigation flow
 
-Deliverable: expanded operational guidance without blocking current release.
+Deliverable: expanded operational guidance integrated into the production docs flow.
 
 ### Phase 2 - Daily Operations Coverage (Planned)
 
@@ -163,6 +163,6 @@ A docs page is considered complete only when:
 
 ## 8) Immediate Next Steps
 
-1. Finalize content and visual assets in `docs/home.html` and `docs/hos.html`.
-2. Reintroduce `home` and `hos` to `docs/index.html` and page-to-page flow.
-3. Start `docs/compliance.html` and `docs/dispatch.html` using the same template system.
+1. Start `docs/compliance.html` and `docs/dispatch.html` using the same template system.
+2. Validate full responsive pass at 1200px, 768px, and 375px for all published pages.
+3. Expand support-oriented examples in `docs/troubleshooting.html` for HOS/Home cross-flow issues.

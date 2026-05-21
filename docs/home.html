@@ -5,6 +5,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SimDuty Docs | Home Dashboard</title>
+  <meta name="description" content="Understand the Home dashboard timer, safety score, profit indicators, trip status, and duty controls in SimDuty.">
+  <meta name="author" content="SimDuty Project">
+  <link rel="canonical" href="https://simduty.com/docs/home.html">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://simduty.com/docs/home.html">
+  <meta property="og:title" content="SimDuty Docs | Home Dashboard">
+  <meta property="og:description" content="Understand the Home dashboard timer, safety score, profit indicators, trip status, and duty controls in SimDuty.">
+  <meta property="og:image" content="https://simduty.com/assets/imgs/home_tablet.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SimDuty Docs | Home Dashboard">
+  <meta name="twitter:description" content="Understand the Home dashboard timer, safety score, profit indicators, trip status, and duty controls in SimDuty.">
+  <meta name="twitter:image" content="https://simduty.com/assets/imgs/home_tablet.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
@@ -28,8 +40,13 @@
       <aside class="doc-sidebar" aria-label="On this page">
         <h3>On this page</h3>
         <a href="#overview">Overview</a>
-        <a href="#indicators">Key indicators</a>
-        <a href="#workflow">Recommended workflow</a>
+        <a href="#timer">Center timer (HOS dial)</a>
+        <a href="#indicators">Key indicators and cards</a>
+        <a href="#limits">Drive Limit and Shift Left</a>
+        <a href="#yard-vs-off-duty">Yard Move vs Off Duty</a>
+        <a href="#mobile-shortcuts">Mobile custom shortcuts</a>
+        <a href="#workflow">Recommended pre-trip workflow</a>
+        <a href="#references">Path and reference</a>
         <a href="#checkpoint">Validation checkpoint</a>
         <a href="#support">Quick support</a>
       </aside>
@@ -37,50 +54,143 @@
       <div class="doc-content">
         <section id="overview" class="section section-step">
           <h2>Overview</h2>
-          <p>This page explains how to read core Home metrics before and during each trip.</p>
+          <p>This page explains how to read the Home dashboard before dispatch and during active operation.</p>
+          <p>The Home layout is the same in Full and Lite editions. What changes by edition is module availability outside Home, not these core cards.</p>
           <div class="quick-facts">
-            <span>Estimated time: 3 minutes</span>
-            <span>Purpose: operational visibility</span>
-            <span>Output: safer trip decisions</span>
+            <span>Estimated time: 5 minutes</span>
+            <span>Purpose: operational decision baseline</span>
+            <span>Output: safer and more predictable trips</span>
+          </div>
+          <div class="impact-matrix" aria-label="Home dashboard impact matrix">
+            <div class="impact-row"><span class="impact-tag">Required</span><p>Read center timer, effective status, and nearest HOS pressure point before departure</p></div>
+            <div class="impact-row"><span class="impact-tag">Required</span><p>Validate Active Trip, Cargo, and Time to Destination before route commitment</p></div>
+            <div class="impact-row"><span class="impact-tag">Required</span><p>Confirm Drive Limit and Shift Left match your trip plan</p></div>
+            <div class="impact-row"><span class="impact-tag">Recommended</span><p>Monitor Truck Health and fuel trend to avoid avoidable breakdown penalties</p></div>
+            <div class="impact-row"><span class="impact-tag">Recommended</span><p>Keep Yard Move and Off Duty usage intentional and clearly separated</p></div>
+            <div class="impact-row"><span class="impact-tag">Optional</span><p>Use mobile custom shortcuts for faster command access during compact layouts</p></div>
           </div>
         </section>
 
-        <section id="indicators" class="section">
-          <h2>Key indicators</h2>
+        <section id="timer" class="section">
+          <h2>Center timer (HOS dial)</h2>
+          <p>The center dial highlights the most critical HOS countdown at the current moment.</p>
           <ul>
-            <li>Safety & Performance Score</li>
-            <li>Net Profit and Trip Profit</li>
-            <li>Active Trip (cargo and ETA)</li>
-            <li>Truck Health</li>
-            <li>Drive Limit and Shift Left</li>
+            <li>The top label (for example, <code>Mandatory Break</code>) identifies which rule is currently in focus.</li>
+            <li>The large time value is the remaining time for that active focus.</li>
+            <li><code>Status</code> below the timer shows the effective operational state (<code>OFF DUTY</code>, <code>ON DUTY</code>, or <code>DRIVING</code>).</li>
+            <li>The small line under status can show the nearest significant HOS threshold time when available.</li>
+            <li>As context changes (rest, driving, policy behavior), the dial can switch focus between Drive, Break, Shift, or Cycle limits.</li>
+            <li>Timer interpretation depends on the active HOS policy, so validate policy mode before route decisions.</li>
           </ul>
-          <div class="callout">TODO: add an annotated screenshot that labels every dashboard card.</div>
+          <div class="callout"><strong>Operational rule:</strong> treat the center dial as your primary urgency signal. If it is close to zero, plan your stop immediately.</div>
+        </section>
+
+        <section id="indicators" class="section">
+          <h2>Key indicators and cards</h2>
+          <ul>
+            <li><strong>Safety Score:</strong> overall Safety and Performance score from <code>0</code> to <code>100</code>. Lower values indicate repeated operational issues or penalties.</li>
+            <li><strong>Net Profit:</strong> consolidated financial result from your current operating context.</li>
+            <li><strong>Trip Profit:</strong> net profit from the active trip only. It can be zero or negative depending on trip state and events.</li>
+            <li><strong>Active Trip:</strong> shows current route state (or <code>Ready</code> when no active cargo).</li>
+            <li><strong>Cargo:</strong> current cargo name; displays <code>No cargo</code> when no active delivery is loaded.</li>
+            <li><strong>Time to Destination:</strong> estimated navigation time left for the active route.</li>
+            <li><strong>Truck Health:</strong> fuel level plus damage bars for Engine, Transmission, and Chassis. Higher damage bars mean higher mechanical and financial risk.</li>
+          </ul>
+          <div class="path-list">
+            <p>Trip viability signal:</p>
+            <ul>
+              <li>If <code>Time to Destination</code> is high and <code>Drive Limit</code> is low, plan a legal rest stop now.</li>
+              <li>If Truck Health damage rises during trip, rebalance risk before extending distance.</li>
+              <li>If Safety Score drops repeatedly, investigate operational behavior before long-haul runs.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="limits" class="section">
+          <h2>Drive Limit and Shift Left</h2>
+          <ul>
+            <li><strong>Drive Limit:</strong> remaining legal driving time before the driving limit is exceeded.</li>
+            <li><strong>Shift Left:</strong> remaining time in the total duty shift window for the current cycle day.</li>
+            <li>Drive Limit is specific to driving allowance; Shift Left reflects broader shift window pressure.</li>
+            <li>You can still be constrained by Shift Left even if Drive Limit looks comfortable.</li>
+            <li>Both values follow the active policy profile and can change after rest or extension events.</li>
+            <li>Use both together for route decisions, especially before accepting longer deliveries.</li>
+          </ul>
+        </section>
+
+        <section id="yard-vs-off-duty" class="section">
+          <h2>Yard Move vs Off Duty</h2>
+          <p>These toggles are intentionally different and should not be treated as interchangeable.</p>
+          <ul>
+            <li><strong>Yard Move:</strong> controlled low-speed yard operation mode for maneuvering tasks.</li>
+            <li><strong>Off Duty:</strong> out-of-duty state used for rest/off-work periods.</li>
+            <li>Yard Move is an operational maneuver context; Off Duty is a rest-duty context.</li>
+            <li>Use Yard Move for yard positioning, not as a substitute for duty-state rest planning.</li>
+            <li>Use Off Duty when the goal is compliance-safe downtime, not vehicle movement tasks.</li>
+          </ul>
+          <div class="callout"><strong>Important:</strong> choosing the wrong toggle at the wrong time can produce misleading HOS expectations and bad dispatch decisions.</div>
+        </section>
+
+        <section id="mobile-shortcuts" class="section">
+          <h2>Mobile custom shortcuts</h2>
+          <p>On mobile layouts, Home keeps custom shortcuts available for faster command access.</p>
+          <ul>
+            <li>Use shortcuts for rapid actions when screen space is reduced.</li>
+            <li>Prioritize non-conflicting shortcuts for frequent navigation and HOS actions.</li>
+            <li>Validate shortcut visibility and touch usability before long driving sessions.</li>
+          </ul>
         </section>
 
         <section id="workflow" class="section">
-          <h2>Recommended workflow</h2>
+          <h2>Recommended pre-trip workflow</h2>
           <ol>
-            <li>Confirm current duty state (ON/OFF DUTY) before dispatch.</li>
-            <li>Review available driving and shift limits before departure.</li>
-            <li>Track profitability and vehicle condition throughout the trip.</li>
+            <li>Check center timer focus, remaining time, and effective status.</li>
+            <li>Confirm Active Trip, Cargo, and Time to Destination are coherent for your intended route.</li>
+            <li>Review Drive Limit and Shift Left before departure or route extension.</li>
+            <li>Verify Truck Health and fuel baseline before committing to distance.</li>
+            <li>Set Yard Move or Off Duty intentionally based on your immediate operational goal.</li>
+            <li>During the trip, monitor Trip Profit trend and safety indicators for early correction.</li>
           </ol>
+        </section>
+
+        <section id="references" class="section">
+          <h2>Path and reference</h2>
+          <div class="path-list">
+            <p><strong>Main path:</strong> <code>Home</code> tab</p>
+            <ul>
+              <li>Center dial: active HOS focus + status context</li>
+              <li>Score and financial cards: Safety Score, Net Profit, Trip Profit</li>
+              <li>Trip card: Active Trip, Cargo, Time to Destination</li>
+              <li>Vehicle card: Truck Health (fuel + damage bars)</li>
+              <li>Bottom cards: Drive Limit and Shift Left</li>
+              <li>Controls: Yard Move and Off Duty toggles</li>
+            </ul>
+          </div>
         </section>
 
         <section id="checkpoint" class="section">
           <h2>Validation checkpoint</h2>
           <ul>
-            <li>Duty status is correct before departure.</li>
-            <li>Drive and shift limits are reviewed.</li>
-            <li>Trip and profit indicators update during operation.</li>
+            <li>Center timer focus and status are understood before dispatch.</li>
+            <li>Safety Score, Net Profit, and Trip Profit are interpreted correctly for current context.</li>
+            <li>Active Trip, Cargo, and Time to Destination are coherent with route planning.</li>
+            <li>Truck Health baseline is acceptable for the intended distance.</li>
+            <li>Drive Limit and Shift Left are both reviewed before starting or extending a trip.</li>
+            <li>Yard Move and Off Duty are used with clear operational intent.</li>
+            <li>On mobile, custom shortcuts are visible and usable.</li>
           </ul>
         </section>
 
         <section id="support" class="section">
           <h2>Quick support</h2>
           <ul>
-            <li>If trip data looks stale, confirm SDK/NET status in the top bar.</li>
-            <li>If limits look wrong, confirm active policy and current duty state.</li>
-            <li>If cards do not refresh, restart SimDuty before reopening the game.</li>
+            <li>If timer behavior looks inconsistent, validate active policy mode and current duty status first.</li>
+            <li>If trip card remains at <code>Ready</code> after loading cargo, confirm telemetry state and route initialization.</li>
+            <li>If Time to Destination is missing or stale, verify active navigation route in game and SDK/NET connectivity.</li>
+            <li>If Drive Limit or Shift Left looks wrong, re-check policy selection and recent rest/off-duty transitions.</li>
+            <li>If Yard Move behaves unexpectedly, review Yard Move speed limit and auto-disable settings in <a href="setup.html">Setup Guide</a>.</li>
+            <li>If Yard Move or Off Duty toggles auto-disable, verify vehicle speed and stopped-state safety conditions.</li>
+            <li>If cards stop refreshing, restart SimDuty and re-enter cabin to force full telemetry refresh.</li>
           </ul>
         </section>
       </div>
