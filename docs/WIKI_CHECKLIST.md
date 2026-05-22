@@ -25,7 +25,9 @@ Use this checklist to track documentation delivery for GitHub Pages.
 - [x] `docs/index.html` -> `docs/first-run.html`
 - [x] `docs/first-run.html` -> `docs/home.html`
 - [x] `docs/home.html` -> `docs/hos.html`
-- [x] `docs/hos.html` -> `docs/setup.html`
+- [x] `docs/hos.html` -> `docs/compliance.html`
+- [x] `docs/compliance.html` -> `docs/dispatch.html`
+- [x] `docs/dispatch.html` -> `docs/setup.html`
 - [x] `docs/setup.html` -> `docs/dvir.html`
 - [x] `docs/dvir.html` -> `docs/troubleshooting.html`
 - [x] `docs/troubleshooting.html` -> `docs/index.html`
@@ -39,11 +41,38 @@ Use this checklist to track documentation delivery for GitHub Pages.
 
 ## Phase 2 - Daily Operations
 
-- [ ] Publish `docs/compliance.html`
-- [ ] Publish `docs/dispatch.html`
+- [x] Publish `docs/compliance.html`
+- [x] Publish `docs/dispatch.html`
 - [x] Publish `docs/dvir.html`
 - [ ] Publish `docs/econ.html`
 - [ ] Verify internal links across all published pages
+
+## Didactic Copy Pass (English)
+
+### P1 - Highest impact
+
+- [x] Revise `docs/index.html` for clearer flow framing (Onboarding / Operations / Support)
+- [x] Revise `docs/dispatch.html` persona-action mapping and FAQ de-duplication
+- [x] Revise `docs/setup.html` with "minimum safe setup" quick path
+- [x] Revise `docs/troubleshooting.html` with explicit stop/escalation conditions
+
+### P2 - Core operations
+
+- [x] Revise `docs/first-run.html` with launch-order anti-pattern warning
+- [x] Revise `docs/home.html` with more if/then decision examples
+- [x] Revise `docs/hos.html` by splitting core vs advanced guidance
+- [x] Revise `docs/compliance.html` with pre-trip / mid-trip / post-trip framing
+
+### P3 - Deep reference
+
+- [x] Revise `docs/dvir.html` with wrong-context submit examples
+- [x] Revise `docs/linux-setup.html` with fast path vs safe path framing
+
+### Copy consistency checks
+
+- [x] Standardize operator labels (`Drive Left`, `Shift Left`, `Cycle Left`, `DVIR Pending`, `Risk`)
+- [x] Ensure every image caption explains what to validate
+- [x] Remove duplicate or overlapping FAQ questions across pages
 
 ## Phase 2.1 - Linux and SEO
 

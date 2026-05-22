@@ -42,7 +42,7 @@
         <a href="#overview">Overview</a>
         <a href="#timer">Center timer (HOS dial)</a>
         <a href="#indicators">Key indicators and cards</a>
-        <a href="#limits">Drive Limit and Shift Left</a>
+        <a href="#limits">Drive Left (Drive Limit) and Shift Left</a>
         <a href="#yard-vs-off-duty">Yard Move vs Off Duty</a>
         <a href="#mobile-shortcuts">Mobile custom shortcuts</a>
         <a href="#workflow">Recommended pre-trip workflow</a>
@@ -64,7 +64,7 @@
           <div class="impact-matrix" aria-label="Home dashboard impact matrix">
             <div class="impact-row"><span class="impact-tag">Required</span><p>Read center timer, effective status, and nearest HOS pressure point before departure</p></div>
             <div class="impact-row"><span class="impact-tag">Required</span><p>Validate Active Trip, Cargo, and Time to Destination before route commitment</p></div>
-            <div class="impact-row"><span class="impact-tag">Required</span><p>Confirm Drive Limit and Shift Left match your trip plan</p></div>
+            <div class="impact-row"><span class="impact-tag">Required</span><p>Confirm Drive Left (Drive Limit) and Shift Left match your trip plan</p></div>
             <div class="impact-row"><span class="impact-tag">Recommended</span><p>Monitor Truck Health and fuel trend to avoid avoidable breakdown penalties</p></div>
             <div class="impact-row"><span class="impact-tag">Recommended</span><p>Keep Yard Move and Off Duty usage intentional and clearly separated</p></div>
             <div class="impact-row"><span class="impact-tag">Optional</span><p>Use mobile custom shortcuts for faster command access during compact layouts</p></div>
@@ -104,15 +104,23 @@
               <li>If Safety Score drops repeatedly, investigate operational behavior before long-haul runs.</li>
             </ul>
           </div>
+          <div class="path-list">
+            <p>If/then decision examples:</p>
+            <ul>
+              <li>If <code>Active Trip</code> shows <code>Ready</code> and <code>Cargo</code> is empty, then confirm dispatch state before assuming a route is loaded.</li>
+              <li>If <code>Trip Profit</code> trends negative while <code>Truck Health</code> damage increases, then reduce risk exposure before extending the run.</li>
+              <li>If <code>Safety Score</code> drops and timer pressure increases, then favor compliance recovery over schedule speed.</li>
+            </ul>
+          </div>
         </section>
 
         <section id="limits" class="section">
-          <h2>Drive Limit and Shift Left</h2>
+          <h2>Drive Left (Drive Limit) and Shift Left</h2>
           <ul>
-            <li><strong>Drive Limit:</strong> remaining legal driving time before the driving limit is exceeded.</li>
+            <li><strong>Drive Left (Drive Limit):</strong> remaining legal driving time before the driving limit is exceeded.</li>
             <li><strong>Shift Left:</strong> remaining time in the total duty shift window for the current cycle day.</li>
-            <li>Drive Limit is specific to driving allowance; Shift Left reflects broader shift window pressure.</li>
-            <li>You can still be constrained by Shift Left even if Drive Limit looks comfortable.</li>
+            <li>Drive Left controls immediate driving allowance; Shift Left reflects broader duty-window pressure.</li>
+            <li>You can still be constrained by Shift Left even if Drive Left looks comfortable.</li>
             <li>Both values follow the active policy profile and can change after rest or extension events.</li>
             <li>Use both together for route decisions, especially before accepting longer deliveries.</li>
           </ul>
@@ -143,10 +151,11 @@
 
         <section id="workflow" class="section">
           <h2>Recommended pre-trip workflow</h2>
+          <p>Use this sequence as a 30-second safety pass before every departure.</p>
           <ol>
             <li>Check center timer focus, remaining time, and effective status.</li>
             <li>Confirm Active Trip, Cargo, and Time to Destination are coherent for your intended route.</li>
-            <li>Review Drive Limit and Shift Left before departure or route extension.</li>
+            <li>Review Drive Left and Shift Left before departure or route extension.</li>
             <li>Verify Truck Health and fuel baseline before committing to distance.</li>
             <li>Set Yard Move or Off Duty intentionally based on your immediate operational goal.</li>
             <li>During the trip, monitor Trip Profit trend and safety indicators for early correction.</li>
@@ -162,7 +171,7 @@
               <li>Score and financial cards: Safety Score, Net Profit, Trip Profit</li>
               <li>Trip card: Active Trip, Cargo, Time to Destination</li>
               <li>Vehicle card: Truck Health (fuel + damage bars)</li>
-              <li>Bottom cards: Drive Limit and Shift Left</li>
+              <li>Bottom cards: Drive Left (Drive Limit) and Shift Left</li>
               <li>Controls: Yard Move and Off Duty toggles</li>
             </ul>
           </div>
@@ -175,7 +184,7 @@
             <li>Safety Score, Net Profit, and Trip Profit are interpreted correctly for current context.</li>
             <li>Active Trip, Cargo, and Time to Destination are coherent with route planning.</li>
             <li>Truck Health baseline is acceptable for the intended distance.</li>
-            <li>Drive Limit and Shift Left are both reviewed before starting or extending a trip.</li>
+            <li>Drive Left and Shift Left are both reviewed before starting or extending a trip.</li>
             <li>Yard Move and Off Duty are used with clear operational intent.</li>
             <li>On mobile, custom shortcuts are visible and usable.</li>
           </ul>
@@ -187,7 +196,7 @@
             <li>If timer behavior looks inconsistent, validate active policy mode and current duty status first.</li>
             <li>If trip card remains at <code>Ready</code> after loading cargo, confirm telemetry state and route initialization.</li>
             <li>If Time to Destination is missing or stale, verify active navigation route in game and SDK/NET connectivity.</li>
-            <li>If Drive Limit or Shift Left looks wrong, re-check policy selection and recent rest/off-duty transitions.</li>
+            <li>If Drive Left or Shift Left looks wrong, re-check policy selection and recent rest/off-duty transitions.</li>
             <li>If Yard Move behaves unexpectedly, review Yard Move speed limit and auto-disable settings in <a href="setup.html">Setup Guide</a>.</li>
             <li>If Yard Move or Off Duty toggles auto-disable, verify vehicle speed and stopped-state safety conditions.</li>
             <li>If cards stop refreshing, restart SimDuty and re-enter cabin to force full telemetry refresh.</li>

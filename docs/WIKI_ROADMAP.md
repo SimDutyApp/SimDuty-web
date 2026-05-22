@@ -13,8 +13,8 @@ docs/
   linux-setup.html           -> Linux/Proton setup guide (published)
   home.html                  -> Home tab reference (implemented, deferred)
   hos.html                   -> HOS tab reference (implemented, deferred)
-  compliance.html            -> Compliance tab reference (planned)
-  dispatch.html              -> Dispatch tab reference (planned)
+  compliance.html            -> Compliance tab reference (published)
+  dispatch.html              -> Dispatch tab reference (published)
   dvir.html                  -> DVIR tab reference (published)
   econ.html                  -> Economy tab reference (planned)
   faq.html                   -> Global FAQ (planned)
@@ -23,7 +23,7 @@ docs/
 
 Current live flow:
 
-`index.html -> first-run.html -> home.html -> hos.html -> setup.html -> dvir.html -> troubleshooting.html -> index.html`
+`index.html -> first-run.html -> home.html -> hos.html -> compliance.html -> dispatch.html -> setup.html -> dvir.html -> troubleshooting.html -> index.html`
 
 Optional support path:
 
@@ -80,10 +80,10 @@ Deliverable: complete first-use path with setup and troubleshooting guidance.
 
 Deliverable: expanded operational guidance integrated into the production docs flow.
 
-### Phase 2 - Daily Operations Coverage (Planned)
+### Phase 2 - Daily Operations Coverage (In Progress)
 
-- `docs/compliance.html`
-- `docs/dispatch.html`
+- `docs/compliance.html` (published)
+- `docs/dispatch.html` (published)
 - `docs/econ.html`
 
 Deliverable: complete operational documentation for recurring usage.
@@ -178,6 +178,50 @@ A docs page is considered complete only when:
 
 ## 8) Immediate Next Steps
 
-1. Start `docs/compliance.html` and `docs/dispatch.html` using the same template system.
-2. Validate full responsive pass at 1200px, 768px, and 375px for all published pages.
-3. Expand support-oriented examples in `docs/troubleshooting.html` for HOS/Home cross-flow issues.
+1. Run full responsive validation for all published docs pages at 1200px, 768px, and 375px.
+2. Verify internal links across all published pages and close checklist item.
+3. Start `docs/econ.html` with the same didactic structure used in Compliance and Dispatch.
+
+## 9) Didactic Copy Review Plan
+
+Goal: improve readability and operator decision quality without changing technical behavior.
+
+### P1 - Highest impact pages (next session)
+
+- `docs/index.html`
+  - Clarify "Start Here" into outcome-driven flow labels (Onboarding, Operations, Support).
+  - Make the main flow explicitly include Compliance -> Dispatch -> Setup -> DVIR.
+- `docs/dispatch.html`
+  - Tighten persona-to-action mapping with one explicit decision rule per persona.
+  - Remove redundant FAQ phrasing and keep one primary "who to open first" answer.
+- `docs/setup.html`
+  - Add a short "minimum safe setup" sequence for first-time operators.
+  - Prioritize high-risk settings (Edition, paths, policy) before optional personalization.
+- `docs/troubleshooting.html`
+  - Add stop/escalation conditions (when to stop retries and open support ticket).
+  - Surface top 3 deterministic checks above extended troubleshooting content.
+
+### P2 - Core operation pages
+
+- `docs/first-run.html`
+  - Add "common wrong order" warning block and expected launch sequence recap.
+- `docs/home.html`
+  - Expand quick decision examples (timer vs trip viability) using if/then style.
+- `docs/hos.html`
+  - Split dense sections into "Core" and "Advanced" guidance for easier scan.
+- `docs/compliance.html`
+  - Add moment-based framing (pre-trip, mid-trip, post-trip) at top of workflow.
+
+### P3 - Deep reference pages
+
+- `docs/dvir.html`
+  - Add a short "wrong context submit" section with 2 practical mismatch examples.
+- `docs/linux-setup.html`
+  - Add "fast path" vs "safe path" framing to reduce onboarding friction.
+
+### Quality rules for the copy pass
+
+- Keep existing structure template (overview, workflow, references, checkpoint, support).
+- Prefer short imperative instructions over descriptive-only paragraphs.
+- Use consistent operational labels (`Drive Left`, `Shift Left`, `Cycle Left`, `DVIR Pending`, `Risk`).
+- Ensure every screenshot caption explains what to validate, not only what is shown.

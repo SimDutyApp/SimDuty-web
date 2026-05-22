@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SimDuty Docs | Compliance / ELD</title>
+  <meta name="description" content="Operate SimDuty Compliance safely: monitor HOS and DVIR risk signals, certify daily logs, and review audit/contest records.">
+  <meta name="author" content="SimDuty Project">
+  <link rel="canonical" href="https://simduty.com/docs/compliance.html">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://simduty.com/docs/compliance.html">
+  <meta property="og:title" content="SimDuty Docs | Compliance / ELD">
+  <meta property="og:description" content="Operate SimDuty Compliance safely: monitor HOS and DVIR risk signals, certify daily logs, and review audit/contest records.">
+  <meta property="og:image" content="https://simduty.com/assets/imgs/simduty-home-tablet.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SimDuty Docs | Compliance / ELD">
+  <meta name="twitter:description" content="Operate SimDuty Compliance safely: monitor HOS and DVIR risk signals, certify daily logs, and review audit/contest records.">
+  <meta name="twitter:image" content="https://simduty.com/assets/imgs/simduty-home-tablet.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="docs.css">
+</head>
+
+<body>
+  <main class="docs-shell">
+    <header class="docs-topbar">
+      <div>
+        <h1 class="docs-title">Compliance / ELD</h1>
+        <p class="docs-subtitle">Monitor risk, certify daily logs, and keep audit-ready records for HOS and DVIR operations.</p>
+      </div>
+      <nav class="docs-links" aria-label="Docs navigation">
+        <a href="index.html">Wiki</a>
+        <a href="dispatch.html">Next: Dispatch</a>
+      </nav>
+    </header>
+
+    <div class="doc-layout">
+      <aside class="doc-sidebar" aria-label="On this page">
+        <h3>On this page</h3>
+        <a href="#overview">Overview</a>
+        <a href="#quick-path">Operational quick path</a>
+        <a href="#workflow">Operational workflow</a>
+        <a href="#field-guide">Field guide</a>
+        <a href="#decision-matrix">Decision matrix</a>
+        <a href="#status-card">Compliance status card</a>
+        <a href="#panel">Compliance panel</a>
+        <a href="#records">Records and audit</a>
+        <a href="#contests">Contests and decisions</a>
+        <a href="#references">Path and reference</a>
+        <a href="#checkpoint">Validation checkpoint</a>
+        <a href="#support">Quick support</a>
+        <a href="#faq">FAQ</a>
+      </aside>
+
+      <div class="doc-content">
+        <section id="overview" class="section section-step">
+          <h2>Overview</h2>
+          <p>This page explains how SimDuty Compliance works in daily operations and which actions are mandatory before continuing duty.</p>
+          <p>Use this guide to keep logs certifiable, prevent unresolved pending states, and preserve traceable records for support or audit review.</p>
+          <p>The workflow here is intentionally practical: what to check first, how to decide quickly, and when to open Timeline versus Records.</p>
+          <div class="quick-facts">
+            <span>Estimated time: 7 minutes</span>
+            <span>Result: certified daily log + clear audit trail</span>
+            <span>Scope: HOS, DVIR, audit, contest lifecycle</span>
+          </div>
+          <div class="impact-matrix" aria-label="Compliance impact matrix">
+            <div class="impact-row"><span class="impact-tag">Required</span><p>Certify pending daily logs before extended operation or pre-trip transitions</p></div>
+            <div class="impact-row"><span class="impact-tag">Required</span><p>Track Drive, Shift, and Cycle remaining together with DVIR and risk indicators</p></div>
+            <div class="impact-row"><span class="impact-tag">Required</span><p>Review records tab and audit events for day-level traceability</p></div>
+            <div class="impact-row"><span class="impact-tag">Recommended</span><p>Use day timeline to identify status transitions and critical windows early</p></div>
+            <div class="impact-row"><span class="impact-tag">Recommended</span><p>Use contest flow only with clear reason and evidence context</p></div>
+            <div class="impact-row"><span class="impact-tag">Optional</span><p>Open local audit file for deeper historical checks outside the UI</p></div>
+          </div>
+        </section>
+
+        <section id="quick-path" class="section">
+          <h2>Operational quick path</h2>
+          <ol>
+            <li>Start in Dispatch and read the <code>Compliance Status</code> card before accepting route pressure.</li>
+            <li>If you see <code>Log pending</code> or <code>DVIR Pending</code>, open <code>Compliance Panel &gt; Records</code> immediately.</li>
+            <li>Certify the daily log first, then resolve DVIR requirements for the active unit and context.</li>
+            <li>Open <code>Timeline</code> and verify the critical window (Drive/Shift/Break) before resuming long driving segments.</li>
+            <li>Use Audit Log when a decision must be reviewed, contested, or shared with support.</li>
+          </ol>
+          <div class="callout"><strong>Why this order matters:</strong> certification and inspection state directly affect compliance continuity, while timeline analysis improves route safety decisions after compliance is restored.</div>
+        </section>
+
+        <section id="workflow" class="section">
+          <h2>Operational workflow</h2>
+          <div class="path-list">
+            <p><strong>Pre-trip / mid-trip / post-trip framing:</strong></p>
+            <ul>
+              <li><strong>Pre-trip:</strong> clear pending certification and DVIR requirements before committing to route pressure.</li>
+              <li><strong>Mid-trip:</strong> monitor Timeline critical window and risk state, then correct deviations before escalation.</li>
+              <li><strong>Post-trip:</strong> validate records, certification status, and audit entries for day closure traceability.</li>
+            </ul>
+          </div>
+          <ol>
+            <li>Open Dispatch and review the fixed <code>Compliance Status</code> card before route decisions.</li>
+            <li>If any pending certification appears, open <code>Compliance Panel</code> and certify the daily log first.</li>
+            <li>Use <code>Timeline</code> to inspect day status transitions and remaining critical windows.</li>
+            <li>Use <code>Records</code> to validate DVIR status, audit events, and certification history.</li>
+            <li>If a penalized event is incorrect, submit a contest with a short reason and track decision state.</li>
+          </ol>
+          <figure class="doc-image">
+            <div class="img-frame ratio-4x3 img-contain">
+              <img src="../assets/imgs/docs/docs-hos-dispatch-compliance.png" alt="Dispatch view showing the Compliance and ELD card with HOS remaining, DVIR pending status, risk level, and Compliance Panel action">
+            </div>
+            <figcaption>Dispatch entry point: read HOS remaining, DVIR status, and risk level before opening the full Compliance Panel.</figcaption>
+          </figure>
+          <div class="callout"><strong>Operational rule:</strong> unresolved daily log certification should be treated as top-priority before normal trip progression.</div>
+        </section>
+
+        <section id="field-guide" class="section">
+          <h2>Field guide</h2>
+          <ul>
+            <li><strong>Drive / Shift / Cycle remaining:</strong> these three values define immediate and extended legal room. Drive alone is never enough for route commitment.</li>
+            <li><strong>Risk level:</strong> <code>Normal</code> is stable, <code>Warning</code> needs planning, and <code>Critical</code> requires immediate corrective action before prolonged movement.</li>
+            <li><strong>DVIR status:</strong> <code>OK</code> means inspection continuity, <code>Pending</code> means required action still open, and <code>Unsafe</code> means operational risk remains unresolved.</li>
+            <li><strong>Log status:</strong> <code>Pending</code> means daily certification is due; <code>Certified</code> means the current day record is acknowledged.</li>
+            <li><strong>Timeline events:</strong> show status transitions and timing pattern; use these to understand behavior over the full day, not only current status.</li>
+            <li><strong>Audit events:</strong> formal history for requests, signatures, violations, and contest decisions with timestamp and origin.</li>
+          </ul>
+        </section>
+
+        <section id="decision-matrix" class="section">
+          <h2>Decision matrix</h2>
+          <p>Use this matrix when status signals conflict and you need one clear next action.</p>
+          <div class="path-list">
+            <p><strong>State:</strong> <code>Log pending</code> + pre-trip context</p>
+            <ul>
+              <li><strong>Interpretation:</strong> daily certification is open and can escalate into compliance friction.</li>
+              <li><strong>Action:</strong> open Records and run <code>Certify log</code> before normal duty progression.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>State:</strong> <code>DVIR Pending</code> + risk warning</p>
+            <ul>
+              <li><strong>Interpretation:</strong> safety and inspection continuity are both unstable.</li>
+              <li><strong>Action:</strong> complete the required DVIR context, then re-check critical window in Timeline.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>State:</strong> contested event under review</p>
+            <ul>
+              <li><strong>Interpretation:</strong> event remains tracked but decision is pending.</li>
+              <li><strong>Action:</strong> continue operation, monitor decision status in Audit Log, and verify score/finance updates after resolution.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>State:</strong> timeline looks clean but risk still elevated</p>
+            <ul>
+              <li><strong>Interpretation:</strong> a non-timeline factor (DVIR, unresolved request, or recent event) may still drive risk.</li>
+              <li><strong>Action:</strong> inspect Records and latest audit entries before assuming compliance is fully restored.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="status-card" class="section">
+          <h2>Compliance status card</h2>
+          <p>In Dispatch, the card summarizes immediate compliance posture without opening the full panel.</p>
+          <ul>
+            <li><strong>Vehicle:</strong> unit model and plate context.</li>
+            <li><strong>HOS compact:</strong> Drive, Shift, and Cycle remaining in one line.</li>
+            <li><strong>DVIR status:</strong> typically <code>OK</code>, <code>Pending</code>, or <code>Unsafe</code>.</li>
+            <li><strong>Risk level:</strong> <code>Normal</code>, <code>Warning</code>, or <code>Critical</code>.</li>
+            <li><strong>History:</strong> last extension and last DVIR report summary.</li>
+            <li><strong>Action:</strong> <code>Compliance Panel</code> opens detailed timeline and records tabs.</li>
+          </ul>
+        </section>
+
+        <section id="panel" class="section">
+          <h2>Compliance panel</h2>
+          <div class="path-list">
+            <p><strong>Tab 1: Timeline</strong></p>
+            <ul>
+              <li>Day selector strip with current day highlight.</li>
+              <li>Timeline graph for OFF/SB/D/ON transitions through the selected operational day.</li>
+              <li>Day summary chips and total duration for each main status.</li>
+              <li>Critical window block: Drive remaining, Shift remaining, and Time to break.</li>
+              <li>Day events list with timestamp and transition labels.</li>
+            </ul>
+          </div>
+          <figure class="doc-image">
+            <div class="img-frame ratio-4x3 img-contain">
+              <img src="../assets/imgs/docs/docs-hos-timeline-compliance.png" alt="Compliance and ELD Timeline tab showing day selector, timeline chart, day summary, day events, and critical HOS window">
+            </div>
+            <figcaption>Timeline tab: validate the selected day sequence first, then read day summary and critical HOS window before continuing operation.</figcaption>
+          </figure>
+          <div class="path-list">
+            <p><strong>Tab 2: Records</strong></p>
+            <ul>
+              <li>Daily log certification card with status and certify action.</li>
+              <li>DVIR summary card with last report and start-DVIR action.</li>
+              <li>Audit log list showing timestamp, event, origin, and notes.</li>
+              <li>Open-audit-file action to view local stored records.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="records" class="section">
+          <h2>Records and audit</h2>
+          <p>Records is the control center for closing pending requirements and validating what happened in the operational day.</p>
+          <ul>
+            <li>Daily certification may be requested at day close, post-trip contexts, or pre-trip checks.</li>
+            <li>When pending, a clear status message is shown and certification should be completed as soon as safe.</li>
+            <li>Audit events can include log requests/signatures, HOS extension lifecycle, DVIR events, and finance-related compliance events.</li>
+            <li>Use day filtering to keep review scoped and easier to validate.</li>
+          </ul>
+          <div class="compare-grid">
+            <figure class="doc-image">
+              <div class="img-frame ratio-4x3 img-contain">
+                <img src="../assets/imgs/docs/docs-hos-record-1-compliance.png" alt="Compliance Records tab showing pending daily log certification, daily summary metrics, and DVIR action card">
+              </div>
+              <figcaption>Records overview: resolve log pending first, then validate daily summary and DVIR status.</figcaption>
+            </figure>
+            <figure class="doc-image">
+              <div class="img-frame ratio-4x3 img-contain">
+                <img src="../assets/imgs/docs/docs-hos-record-2-compliance.png" alt="Compliance Audit Log table showing timestamped events, origins, notes, and contest action">
+              </div>
+              <figcaption>Audit Log detail: verify event chronology, origin, and notes before filing or reviewing a contest.</figcaption>
+            </figure>
+          </div>
+          <div class="path-list">
+            <p><strong>Pre-trip routine:</strong></p>
+            <ul>
+              <li>Confirm no pending log certification.</li>
+              <li>Confirm DVIR state for active truck/trailer context.</li>
+              <li>Check critical window and route feasibility in Timeline.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Post-trip routine:</strong></p>
+            <ul>
+              <li>Review day summary and compliance badge state.</li>
+              <li>Certify the daily log when requested.</li>
+              <li>Validate that expected audit entries were written.</li>
+            </ul>
+          </div>
+          <div class="callout"><strong>Traceability note:</strong> audit records are saved locally and are intended to reconstruct day decisions, not only UI notifications.</div>
+        </section>
+
+        <section id="contests" class="section">
+          <h2>Contests and decisions</h2>
+          <p>Contests are available for events such as fines, tolls, penalties, safety items, and DVIR-related entries.</p>
+          <ul>
+            <li>Submit contest with category-appropriate reason (or write-in when needed) and keep the note concise and factual.</li>
+            <li>Event enters <code>Under review</code> status and remains visible in audit context.</li>
+            <li>Decision can become <code>Approved</code> or <code>Denied</code>.</li>
+            <li>Approved decisions can trigger score-impact removal and financial refund lifecycle when applicable.</li>
+            <li>Denied decisions preserve the original event impact in records.</li>
+          </ul>
+          <div class="callout"><strong>Best practice:</strong> contest only when the event context is clearly inconsistent with operation history, and validate the decision outcome in Audit Log after processing.</div>
+        </section>
+
+        <section id="references" class="section">
+          <h2>Path and reference</h2>
+          <div class="path-list">
+            <p><strong>Main paths:</strong></p>
+            <ul>
+              <li><code>Dispatch &gt; Compliance Status</code> card</li>
+              <li><code>Compliance Panel &gt; Timeline</code></li>
+              <li><code>Compliance Panel &gt; Records</code></li>
+              <li><code>Records &gt; Certify log</code></li>
+              <li><code>Records &gt; Open audit log</code></li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="checkpoint" class="section">
+          <h2>Validation checkpoint</h2>
+          <ul>
+            <li>No unresolved daily log pending warning for active day operation.</li>
+            <li>Timeline and day events reflect expected status transitions.</li>
+            <li>DVIR summary in records matches current operational inspection state.</li>
+            <li>Audit entries include recent compliance actions with coherent origin/notes.</li>
+            <li>Any contested event shows explicit and current decision status.</li>
+          </ul>
+        </section>
+
+        <section id="support" class="section">
+          <h2>Quick support</h2>
+          <p>Apply checks in order and confirm each fix before moving to the next symptom block.</p>
+          <div class="path-list">
+            <p><strong>Symptom:</strong> daily log remains pending.</p>
+            <ul>
+              <li><strong>Check:</strong> open Records and confirm current day certification card state.</li>
+              <li><strong>Fix:</strong> use <code>Certify log</code>, then re-open panel and verify status refresh.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Symptom:</strong> risk level stays high after rest or DVIR actions.</p>
+            <ul>
+              <li><strong>Check:</strong> timeline critical window + unresolved DVIR pending states.</li>
+              <li><strong>Fix:</strong> complete missing DVIR context and re-validate Drive/Shift/Cycle envelope.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Symptom:</strong> log was certified but panel still shows stale pending state.</p>
+            <ul>
+              <li><strong>Check:</strong> selected day in Records and whether the request refers to previous day context.</li>
+              <li><strong>Fix:</strong> switch day, reopen Records, and confirm latest certification event appears in Audit Log.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Symptom:</strong> event cannot be contested.</p>
+            <ul>
+              <li><strong>Check:</strong> whether the selected event type supports contest flow and if an existing decision is already final.</li>
+              <li><strong>Fix:</strong> pick a contest-eligible event and submit a short reason; monitor decision status in records.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Symptom:</strong> cannot find expected event in panel.</p>
+            <ul>
+              <li><strong>Check:</strong> selected day context and Records tab filter scope.</li>
+              <li><strong>Fix:</strong> switch day and use <code>Open audit log</code> for full local history review.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="faq" class="section">
+          <h2>FAQ</h2>
+          <ul>
+            <li><strong>Do I need to certify logs every day?</strong> Yes. Daily certification is part of normal compliance cycle and should be completed whenever requested.</li>
+            <li><strong>Can I keep driving with a pending certification?</strong> You may continue briefly in some contexts, but pending logs should be resolved immediately to avoid escalations and pre-trip restrictions.</li>
+            <li><strong>What is the difference between Timeline events and Audit Log?</strong> Timeline events explain duty-status transitions across the day; Audit Log records compliance actions and decisions with origin and notes.</li>
+            <li><strong>When does pending become operationally critical?</strong> Pending is critical when tied to pre-trip certification, unresolved DVIR context, or a warning/critical risk state that reduces safe decision margin.</li>
+            <li><strong>Where can I see what changed during the day?</strong> Use Timeline day events for transitions and Records audit log for event-by-event traceability.</li>
+            <li><strong>What happens if a contest is approved?</strong> The event is updated with decision status and related score/financial impact can be adjusted according to policy.</li>
+          </ul>
+        </section>
+      </div>
+    </div>
+
+    <nav class="page-nav" aria-label="Page navigation">
+      <a href="hos.html">Previous page</a>
+      <a href="dispatch.html">Next page</a>
+    </nav>
+
+    <footer class="wiki-footer">
+      <span>Last updated: May 2026</span>
+      <span><a href="https://discord.gg/NATM3BEzbe" target="_blank" rel="noopener">Join Discord Support</a></span>
+    </footer>
+  </main>
+</body>
+
+</html>

@@ -108,6 +108,7 @@
       <aside class="doc-sidebar" aria-label="On this page">
         <h3>On this page</h3>
         <a href="#overview">Overview</a>
+        <a href="#top-checks">Top 3 checks first</a>
         <a href="#triage">Triage order</a>
         <a href="#plugin">Plugin and SDK/NET recovery</a>
         <a href="#connection">No truck connection</a>
@@ -135,6 +136,16 @@
             <div class="impact-row"><span class="impact-tag">Recommended</span><p>Review Setup options (paths, Yard Move speed, mode toggles) for recurring issues</p></div>
             <div class="impact-row"><span class="impact-tag">Optional</span><p>Generate support bundle before escalation for faster support turnaround</p></div>
           </div>
+        </section>
+
+        <section id="top-checks" class="section">
+          <h2>Top 3 checks first</h2>
+          <ol>
+            <li>Confirm launch order: SimDuty first, ATS/ETS2 second.</li>
+            <li>Confirm both DLL files are in the exact <code>bin/win_x64/plugins</code> folder of the active game.</li>
+            <li>Enter cabin and move briefly so telemetry can initialize and update SDK/NET state.</li>
+          </ol>
+          <div class="callout"><strong>Expected immediate result:</strong> both SDK and NET stabilize in OK after telemetry initialization.</div>
         </section>
 
         <section id="triage" class="section">
@@ -230,7 +241,15 @@
 
         <section id="escalation" class="section">
           <h2>Escalation</h2>
-          <div class="callout">If all checks pass and SDK/NET still fail, collect screenshots, plugin paths, and app status, then open a support request in Discord.</div>
+          <div class="path-list">
+            <p><strong>Stop retrying and escalate when:</strong></p>
+            <ul>
+              <li>SDK/NET still fail after two full deterministic passes (order, path, cabin movement).</li>
+              <li>Paths are confirmed correct but status never changes across clean restarts.</li>
+              <li>Cross-flow values (Home/HOS) remain stale after connection appears restored.</li>
+            </ul>
+          </div>
+          <div class="callout"><strong>Support package:</strong> share screenshots, plugin paths, launch order used, SDK/NET status, and generated support bundle when available.</div>
         </section>
       </div>
     </div>

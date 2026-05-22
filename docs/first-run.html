@@ -119,13 +119,13 @@
               <div class="img-frame ratio-16x10">
                 <img src="../assets/imgs/docs/docs-first-run-sdk-net-ok.png" alt="SDK and NET indicators in normal connected state">
               </div>
-              <figcaption>OK state: SDK and NET are working.</figcaption>
+              <figcaption>Validate this state before operation: both SDK and NET stay in OK after entering cabin and moving briefly.</figcaption>
             </figure>
             <figure class="doc-image">
               <div class="img-frame ratio-16x10">
                 <img src="../assets/imgs/docs/docs-first-run-sdk-net-fail.png" alt="SDK and NET indicators in yellow failure state">
               </div>
-              <figcaption>Failure state: SDK and NET are yellow with no active connection.</figcaption>
+              <figcaption>Validate failure pattern: if either indicator remains yellow, stop and re-check DLL path and launch order.</figcaption>
             </figure>
           </div>
           <ul>
@@ -141,6 +141,13 @@
               <li><strong>SDK FAIL:</strong> check <code>scs-telemetry.dll</code>, plugin path, and game startup mode.</li>
               <li><strong>NET OK:</strong> SimDuty communication channel is active.</li>
               <li><strong>NET FAIL:</strong> check <code>simduty.dll</code> and restart sequence.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p>Common wrong launch order:</p>
+            <ul>
+              <li><strong>Wrong:</strong> game first -> SimDuty later -> no cabin initialization check.</li>
+              <li><strong>Correct:</strong> SimDuty first -> game second (x64) -> enter cabin -> move briefly -> verify SDK/NET.</li>
             </ul>
           </div>
           <div class="callout">If SDK/NET remain yellow or blinking, close both applications, verify DLL placement, then relaunch in this order: SimDuty first, game second.</div>

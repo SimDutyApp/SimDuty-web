@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SimDuty Docs | Dispatch Hub</title>
+  <meta name="description" content="Use SimDuty Dispatch Hub with confidence: understand personas, thread actions, HOS extension flow, and daily operational messaging.">
+  <meta name="author" content="SimDuty Project">
+  <link rel="canonical" href="https://simduty.com/docs/dispatch.html">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://simduty.com/docs/dispatch.html">
+  <meta property="og:title" content="SimDuty Docs | Dispatch Hub">
+  <meta property="og:description" content="Use SimDuty Dispatch Hub with confidence: understand personas, thread actions, HOS extension flow, and daily operational messaging.">
+  <meta property="og:image" content="https://simduty.com/assets/imgs/simduty-home-tablet.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SimDuty Docs | Dispatch Hub">
+  <meta name="twitter:description" content="Use SimDuty Dispatch Hub with confidence: understand personas, thread actions, HOS extension flow, and daily operational messaging.">
+  <meta name="twitter:image" content="https://simduty.com/assets/imgs/simduty-home-tablet.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="docs.css">
+</head>
+
+<body>
+  <main class="docs-shell">
+    <header class="docs-topbar">
+      <div>
+        <h1 class="docs-title">Dispatch Hub</h1>
+        <p class="docs-subtitle">Coordinate operations through personas, context actions, and message-driven workflows in a single operational thread system.</p>
+      </div>
+      <nav class="docs-links" aria-label="Docs navigation">
+        <a href="index.html">Wiki</a>
+        <a href="setup.html">Next: Setup</a>
+      </nav>
+    </header>
+
+    <div class="doc-layout">
+      <aside class="doc-sidebar" aria-label="On this page">
+        <h3>On this page</h3>
+        <a href="#overview">Overview</a>
+        <a href="#quick-path">Operational quick path</a>
+        <a href="#architecture">Dispatch architecture</a>
+        <a href="#personas">Persona flows</a>
+        <a href="#actions">Action matrix</a>
+        <a href="#references">Path and reference</a>
+        <a href="#checkpoint">Validation checkpoint</a>
+        <a href="#support">Quick support</a>
+        <a href="#faq">FAQ</a>
+      </aside>
+
+      <div class="doc-content">
+        <section id="overview" class="section section-step">
+          <h2>Overview</h2>
+          <p>Dispatch is SimDuty's operational communication center. It replaces passive inbox behavior with persona-based threads and actionable messages.</p>
+          <p>Use Dispatch to react faster to HOS pressure, DVIR requests, financial notices, and routine check-ins without losing operational context.</p>
+          <div class="quick-facts">
+            <span>Estimated time: 8 minutes</span>
+            <span>Result: faster message-to-action decisions</span>
+            <span>Scope: personas, thread actions, HOS extension, quick replies</span>
+          </div>
+          <div class="impact-matrix" aria-label="Dispatch impact matrix">
+            <div class="impact-row"><span class="impact-tag">Required</span><p>Select the correct persona before reading or answering a message thread</p></div>
+            <div class="impact-row"><span class="impact-tag">Required</span><p>Use action buttons in thread bubbles when compliance or safety actions are requested</p></div>
+            <div class="impact-row"><span class="impact-tag">Required</span><p>Treat HOS extension requests as structured workflow, not free-text chat</p></div>
+            <div class="impact-row"><span class="impact-tag">Recommended</span><p>Use Compliance and Finance summary cards for faster risk and cost awareness</p></div>
+            <div class="impact-row"><span class="impact-tag">Recommended</span><p>Keep quick replies short and contextual to preserve clean thread history</p></div>
+            <div class="impact-row"><span class="impact-tag">Optional</span><p>Use Debug persona triggers for controlled UI validation and training</p></div>
+          </div>
+        </section>
+
+        <section id="quick-path" class="section">
+          <h2>Operational quick path</h2>
+          <p>Use this path whenever you need to go from message intake to safe action with minimal delay.</p>
+          <ol>
+            <li>Open <code>Dispatch</code> and select the persona that matches the current operational issue.</li>
+            <li>Read the latest thread bubble first, then execute primary action buttons when present.</li>
+            <li>If HOS extension is needed, open the message panel and submit structured request options.</li>
+            <li>For compliance-sensitive operations, open Compliance summary and verify risk + DVIR state.</li>
+            <li>For cost-impact events, open Finance summary and reconcile statement context.</li>
+          </ol>
+          <div class="callout"><strong>Operator rule:</strong> in Dispatch, actions are part of the workflow contract; ignoring the action path and using only free-text increases risk of unresolved states.</div>
+        </section>
+
+        <section id="architecture" class="section">
+          <h2>Dispatch architecture</h2>
+          <p>Dispatch is organized in two functional zones: persona roster and active thread.</p>
+          <ul>
+            <li><strong>Left panel (desktop/tablet):</strong> persona cards with icon, latest preview, timestamp, and unread badge.</li>
+            <li><strong>Right panel:</strong> thread history with bubble style by severity and sender type.</li>
+            <li><strong>Bubble actions:</strong> contextual buttons such as <code>Acknowledge</code>, <code>Plan Rest Stop</code>, <code>Start DVIR</code>, and <code>Contest</code>.</li>
+            <li><strong>Message panel:</strong> opens from <code>Sending your message</code> for quick replies or HOS extension options.</li>
+            <li><strong>Mobile mode:</strong> personas appear in a compact 3-column grid; selecting a persona opens full chat focus.</li>
+          </ul>
+          <figure class="doc-image">
+            <div class="img-frame ratio-4x3 img-contain">
+              <img src="../assets/imgs/docs/docs-hos-friend-dispatch.png" alt="Dispatch hub showing persona roster on the left, active Brother thread on the right, and message input at the bottom">
+            </div>
+            <figcaption>Dispatch architecture baseline: persona roster, active thread, and message input are always visible in one operational surface.</figcaption>
+          </figure>
+        </section>
+
+        <section id="personas" class="section">
+          <h2>Persona flows</h2>
+          <p>Personas are listed below in the same order as displayed in the Dispatch roster.</p>
+          <div class="path-list">
+            <p><strong>Friend (Brother)</strong></p>
+            <ul>
+              <li>Focus: telemetry-driven check-ins and lightweight roleplay continuity.</li>
+              <li>Primary action: use quick replies to acknowledge context without changing operational state.</li>
+              <li>Operational rule: Friend messages support immersion, but they do not replace compliance or safety actions.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Central Dispatch</strong></p>
+            <ul>
+              <li>Focus: HOS timing, route pressure, and immediate operational coordination.</li>
+              <li>Primary actions: <code>Acknowledge</code>, <code>Plan Rest Stop</code>, and <code>Request Extension</code> when limits are near critical.</li>
+              <li>Use this persona first when decisions are time-critical and route-dependent.</li>
+            </ul>
+          </div>
+          <figure class="doc-image">
+            <div class="img-frame ratio-4x3 img-contain">
+              <img src="../assets/imgs/docs/docs-hos-central-morehours-dispatch.png" alt="Dispatch central thread showing more-hours request context and extension-related actions">
+            </div>
+            <figcaption>Central Dispatch extension context: request additional drive time through structured extension flow when needed.</figcaption>
+          </figure>
+
+          <div class="path-list">
+            <p><strong>Compliance / ELD</strong></p>
+            <ul>
+              <li>Focus: HOS remaining, DVIR status, risk level, and certification continuity.</li>
+              <li>Primary actions: review risk chips, open <code>Compliance Panel</code>, then clear certification or DVIR pending states.</li>
+              <li>Use the Compliance summary card to decide whether to open the full Compliance Panel.</li>
+            </ul>
+          </div>
+          <div class="compare-grid">
+            <figure class="doc-image">
+              <div class="img-frame ratio-4x3 img-contain">
+                <img src="../assets/imgs/docs/docs-hos-compliance-dispatch.png" alt="Dispatch compliance card showing HOS compact values, DVIR status, risk level, and compliance panel link">
+              </div>
+              <figcaption>Compliance summary in Dispatch: use this card as your first risk checkpoint before trip continuation.</figcaption>
+            </figure>
+            <figure class="doc-image">
+              <div class="img-frame ratio-4x3 img-contain">
+                <img src="../assets/imgs/docs/docs-hos-compliance-afterhoursapproved-dispatch.png" alt="Dispatch thread showing compliance decision outcome after extension request approval context">
+              </div>
+              <figcaption>Compliance decision feedback: verify post-decision status in thread before assuming limits were updated.</figcaption>
+            </figure>
+          </div>
+
+          <div class="path-list">
+            <p><strong>Insurance</strong></p>
+            <ul>
+              <li>Focus: incidents, unsafe conditions, and follow-up inspection posture.</li>
+              <li>Primary actions: acknowledge incident context and move to DVIR/inspection flow when requested.</li>
+              <li>Use this persona when damage, out-of-service context, or incident messaging appears.</li>
+            </ul>
+          </div>
+
+          <div class="path-list">
+            <p><strong>Finance</strong></p>
+            <ul>
+              <li>Focus: period summary and actionable financial context tied to operation events.</li>
+              <li>Primary actions: <code>View Trip</code>, <code>Contest</code>, and statement review when values look inconsistent.</li>
+              <li>Use the statement CTA to confirm gross, fines, pending, and available balance coherence.</li>
+            </ul>
+          </div>
+          <figure class="doc-image">
+            <div class="img-frame ratio-4x3 img-contain">
+              <img src="../assets/imgs/docs/docs-hos-finance-dispatch.png" alt="Dispatch finance summary card showing gross, fines, pending values and statement action">
+            </div>
+            <figcaption>Finance summary in Dispatch: validate cost impact quickly without leaving the operational thread context.</figcaption>
+          </figure>
+        </section>
+
+        <section id="actions" class="section">
+          <h2>Action matrix</h2>
+          <p>Treat these as default response patterns for consistent thread handling across personas.</p>
+          <div class="path-list">
+            <p><strong>Central Dispatch HOS warning/alert</strong></p>
+            <ul>
+              <li><strong>Preferred actions:</strong> <code>Plan Rest Stop</code> or <code>Request Extension</code> when route context justifies it.</li>
+              <li><strong>Expected result:</strong> clear next step in timeline and reduced violation risk.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Compliance or Vehicle DVIR request</strong></p>
+            <ul>
+              <li><strong>Preferred action:</strong> <code>Start DVIR</code> immediately when safe.</li>
+              <li><strong>Expected result:</strong> inspection continuity restored and pending context reduced.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Finance event (fine/toll/trip reconciliation)</strong></p>
+            <ul>
+              <li><strong>Preferred actions:</strong> <code>View Trip</code> or <code>Contest</code> when event context is inconsistent.</li>
+              <li><strong>Expected result:</strong> reconciled financial traceability and clear decision history.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Insurance or System notice</strong></p>
+            <ul>
+              <li><strong>Preferred actions:</strong> acknowledge and follow requested inspection/safety path; use <code>Dismiss</code> only when notice is already resolved.</li>
+              <li><strong>Expected result:</strong> clean thread focus with no unresolved safety escalation.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Friend check-in message</strong></p>
+            <ul>
+              <li><strong>Preferred action:</strong> send quick reply to keep conversational continuity without interrupting operational actions.</li>
+              <li><strong>Expected result:</strong> roleplay continuity stays active while professional threads remain prioritized for safety/compliance decisions.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="references" class="section">
+          <h2>Path and reference</h2>
+          <div class="path-list">
+            <p><strong>Main paths:</strong></p>
+            <ul>
+              <li><code>Dispatch &gt; Persona roster</code></li>
+              <li><code>Dispatch &gt; Active thread</code></li>
+              <li><code>Dispatch &gt; Sending your message</code> (quick replies / HOS extension)</li>
+              <li><code>Dispatch &gt; Compliance summary card</code></li>
+              <li><code>Dispatch &gt; Finance summary card</code></li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="checkpoint" class="section">
+          <h2>Validation checkpoint</h2>
+          <ul>
+            <li>Selecting personas correctly switches to the expected thread context.</li>
+            <li>Unread badges and latest preview data remain coherent after reading messages.</li>
+            <li>Context actions trigger expected operational navigation or status behavior.</li>
+            <li>HOS extension and quick reply panel open/close correctly from message input area.</li>
+            <li>Compliance and Finance summaries appear only in their related personas with valid values.</li>
+            <li>Mobile mode shows persona grid and full chat focus without layout break.</li>
+          </ul>
+        </section>
+
+        <section id="support" class="section">
+          <h2>Quick support</h2>
+          <div class="path-list">
+            <p><strong>Symptom:</strong> action buttons do not appear on a message.</p>
+            <ul>
+              <li><strong>Check:</strong> whether the message category supports contextual actions.</li>
+              <li><strong>Fix:</strong> switch to the correct persona/thread and trigger a supported operational message context.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Symptom:</strong> sending panel opens but no useful options appear.</p>
+            <ul>
+              <li><strong>Check:</strong> active persona and current flow (HOS extension vs quick reply mode).</li>
+              <li><strong>Fix:</strong> change persona, reopen panel, and confirm selected context is operationally valid.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Symptom:</strong> compliance/finance summaries not visible.</p>
+            <ul>
+              <li><strong>Check:</strong> selected persona is Compliance or Finance.</li>
+              <li><strong>Fix:</strong> switch persona and expand summary card if collapsed.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Symptom:</strong> mobile chat feels stuck on one view.</p>
+            <ul>
+              <li><strong>Check:</strong> persona menu state and current grid/chat toggle action.</li>
+              <li><strong>Fix:</strong> use the mobile persona menu button to return to grid, then reselect persona.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="faq" class="section">
+          <h2>FAQ</h2>
+          <ul>
+            <li><strong>Is Dispatch only a chat?</strong> No. Dispatch is an operational action surface with persona-driven workflows and contextual controls.</li>
+            <li><strong>Which persona should be checked first in a normal shift?</strong> Start from the first relevant thread in roster order (Friend, Central, Compliance, Insurance, Finance), then prioritize Central/Compliance if there is active operational risk.</li>
+            <li><strong>When should I use quick replies?</strong> Use quick replies for concise acknowledgments after processing required operational actions.</li>
+            <li><strong>Can Friend messages replace operational updates?</strong> No. Friend messages are roleplay-oriented and do not replace compliance or safety workflows.</li>
+          </ul>
+        </section>
+      </div>
+    </div>
+
+    <nav class="page-nav" aria-label="Page navigation">
+      <a href="compliance.html">Previous page</a>
+      <a href="setup.html">Next page</a>
+    </nav>
+
+    <footer class="wiki-footer">
+      <span>Last updated: May 2026</span>
+      <span><a href="https://discord.gg/NATM3BEzbe" target="_blank" rel="noopener">Join Discord Support</a></span>
+    </footer>
+  </main>
+</body>
+
+</html>

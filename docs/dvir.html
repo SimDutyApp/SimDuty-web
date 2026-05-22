@@ -119,6 +119,7 @@
         <a href="#workflow">Inspection workflow</a>
         <a href="#triggers">Requirement triggers</a>
         <a href="#submission">Submission rules</a>
+        <a href="#wrong-context">Wrong-context submit examples</a>
         <a href="#references">Path and reference</a>
         <a href="#checkpoint">Validation checkpoint</a>
         <a href="#support">Quick support</a>
@@ -188,6 +189,26 @@
             <li>History records include time, status, unit, type, defects, truck/trailer identity, and session context for traceability.</li>
           </ul>
           <div class="callout"><strong>Important:</strong> if you submit the wrong combination (for example, Trailer PreTrip when Truck PostTrip is pending), the requirement can remain active even after a successful submit.</div>
+        </section>
+
+        <section id="wrong-context" class="section">
+          <h2>Wrong-context submit examples</h2>
+          <div class="path-list">
+            <p><strong>Example 1: Truck PostTrip pending, Trailer PreTrip submitted</strong></p>
+            <ul>
+              <li><strong>What happened:</strong> submit succeeded technically, but pending state did not clear.</li>
+              <li><strong>Why:</strong> the requested context was Truck PostTrip, but a different unit/type was sent.</li>
+              <li><strong>Fix:</strong> switch to Truck + PostTrip, complete checklist/signature, then submit again.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Example 2: Trailer swap flow without previous trailer PostTrip</strong></p>
+            <ul>
+              <li><strong>What happened:</strong> trailer requests keep returning even after new trailer PreTrip.</li>
+              <li><strong>Why:</strong> previous trailer PostTrip was still expected in swap closure sequence.</li>
+              <li><strong>Fix:</strong> complete old trailer PostTrip first, then new trailer PreTrip, and validate both records in History.</li>
+            </ul>
+          </div>
         </section>
 
         <section id="references" class="section">

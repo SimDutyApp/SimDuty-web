@@ -32,7 +32,7 @@
       </div>
       <nav class="docs-links" aria-label="Docs navigation">
         <a href="index.html">Wiki</a>
-        <a href="setup.html">Next: Setup</a>
+        <a href="compliance.html">Next: Compliance</a>
       </nav>
     </header>
 
@@ -104,6 +104,14 @@
 
         <section id="timers" class="section">
           <h2>Core timers explained</h2>
+          <div class="path-list">
+            <p><strong>Core guidance (use every trip):</strong></p>
+            <ul>
+              <li>Read <code>Drive Left</code>, <code>Shift Left</code>, and <code>Cycle Left</code> together before route commitment.</li>
+              <li>If any one timer is near critical, treat the route as constrained even when the other timers look healthy.</li>
+              <li>Re-check all three after every rest, extension decision, and dispatch context change.</li>
+            </ul>
+          </div>
           <ul>
             <li><strong>Drive Left:</strong> remaining legal driving time before a required stop or violation state.</li>
             <li><strong>Shift Left:</strong> remaining time in your duty-shift window for the current operational day.</li>
@@ -117,6 +125,13 @@
 
         <section id="timer-logic" class="section">
           <h2>How timer logic works</h2>
+          <div class="path-list">
+            <p><strong>Advanced logic (for deeper diagnosis):</strong></p>
+            <ul>
+              <li>Use this section when timer behavior looks unexpected after policy switches, rest events, or extension decisions.</li>
+              <li>Validate the active policy label first, then inspect which reset envelope (break, rest, restart) is currently authoritative.</li>
+            </ul>
+          </div>
           <ul>
             <li><strong>Drive Left:</strong> remaining drive allowance from policy max drive, including approved extension minutes when granted.</li>
             <li><strong>Shift Left:</strong> remaining shift window using the strictest applicable policy envelope (elapsed vs on-duty model where applicable).</li>
@@ -143,7 +158,7 @@
 
         <section id="controls-map" class="section">
           <h2>Interactive controls map</h2>
-          <p>Use this map to understand what is available when the vehicle is stopped versus moving.</p>
+          <p>Use this map to learn which actions are safe and valid for the current vehicle state.</p>
 
           <div class="hos-map-head">
             <button type="button" class="hos-state-btn is-active" data-state="stopped" aria-pressed="true">Vehicle stopped</button>
@@ -242,6 +257,7 @@
 
         <section id="hos-extension-rules" class="section">
           <h2>HOS Extension rules</h2>
+          <p>Read these rules before sending requests so denied outcomes are predictable, not surprising.</p>
           <ul>
             <li>Before sending, SimDuty checks whether requested extra drive time still fits your current shift envelope.</li>
             <li>If it does not fit, the request is refused immediately and you should plan rest first.</li>
@@ -360,7 +376,7 @@
 
     <nav class="page-nav" aria-label="Page navigation">
       <a href="home.html">Previous page</a>
-      <a href="setup.html">Next page</a>
+      <a href="compliance.html">Next page</a>
     </nav>
 
     <footer class="wiki-footer">
