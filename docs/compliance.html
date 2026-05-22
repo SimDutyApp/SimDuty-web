@@ -17,6 +17,82 @@
   <meta name="twitter:title" content="SimDuty Docs | Compliance / ELD">
   <meta name="twitter:description" content="Operate SimDuty Compliance safely: monitor HOS and DVIR risk signals, certify daily logs, and review audit/contest records.">
   <meta name="twitter:image" content="https://simduty.com/assets/imgs/simduty-home-tablet.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to run daily Compliance and ELD workflow in SimDuty",
+    "description": "Use Dispatch compliance status, certify daily logs, validate DVIR/risk state, and review audit records with a deterministic operator sequence.",
+    "totalTime": "PT7M",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "name": "Check compliance status in Dispatch",
+        "text": "Open Dispatch and review Compliance Status for HOS remaining, DVIR state, and current risk before route decisions."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Resolve pending certification first",
+        "text": "If log pending is shown, open Compliance Panel Records and certify the daily log before extended operation."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Validate Timeline critical window",
+        "text": "Use Timeline to inspect day transitions and confirm Drive, Shift, and Break windows are operationally safe."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Review Records and Audit Log",
+        "text": "Confirm DVIR state, certification status, and audit events for traceability and day closure consistency."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Handle contest decisions when needed",
+        "text": "Submit a concise contest reason for inconsistent events and monitor under-review, approved, or denied outcomes in records."
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Do I need to certify logs every day?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Daily certification is part of the normal compliance cycle and should be completed whenever requested."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I keep driving with a pending certification?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You may continue briefly in some contexts, but pending logs should be resolved immediately to avoid escalations and pre-trip restrictions."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between Timeline events and Audit Log?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Timeline events show duty-status transitions across the day, while Audit Log records compliance actions and decisions with origin and notes."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "When does pending become operationally critical?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Pending becomes critical when tied to pre-trip certification, unresolved DVIR context, or warning/critical risk that reduces safe operating margin."
+        }
+      }
+    ]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
