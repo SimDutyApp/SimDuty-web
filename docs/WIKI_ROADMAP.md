@@ -10,11 +10,12 @@ docs/
   first-run.html             -> First run onboarding (published)
   setup.html                 -> Setup tab guide (published)
   troubleshooting.html       -> Common issues and fixes (published)
+  linux-setup.html           -> Linux/Proton setup guide (published)
   home.html                  -> Home tab reference (implemented, deferred)
   hos.html                   -> HOS tab reference (implemented, deferred)
   compliance.html            -> Compliance tab reference (planned)
   dispatch.html              -> Dispatch tab reference (planned)
-  dvir.html                  -> DVIR tab reference (planned)
+  dvir.html                  -> DVIR tab reference (published)
   econ.html                  -> Economy tab reference (planned)
   faq.html                   -> Global FAQ (planned)
   changelog.html             -> Release notes for docs users (planned)
@@ -22,7 +23,11 @@ docs/
 
 Current live flow:
 
-`index.html -> first-run.html -> home.html -> hos.html -> setup.html -> troubleshooting.html -> index.html`
+`index.html -> first-run.html -> home.html -> hos.html -> setup.html -> dvir.html -> troubleshooting.html -> index.html`
+
+Optional support path:
+
+`index.html -> linux-setup.html`
 
 ## 2) Page Structure Standard
 
@@ -79,10 +84,18 @@ Deliverable: expanded operational guidance integrated into the production docs f
 
 - `docs/compliance.html`
 - `docs/dispatch.html`
-- `docs/dvir.html`
 - `docs/econ.html`
 
 Deliverable: complete operational documentation for recurring usage.
+
+### Phase 2.1 - Cross-platform and SEO Hardening (Completed)
+
+- Published `docs/dvir.html` in production flow
+- Published `docs/linux-setup.html` with community workflow attribution
+- Added structured data (HowTo/FAQPage) for key operational docs pages
+- Completed docs image naming normalization and reference migration
+
+Deliverable: stronger discoverability, cleaner asset taxonomy, and Linux onboarding coverage.
 
 ### Phase 3 - Scale and Support (Planned)
 
@@ -136,14 +149,16 @@ Recommended naming:
 assets/imgs/docs/docs-<page>-<context>.webp
 ```
 
-Current real files already used:
+Current real files already used (normalized naming):
 
-- `assets/imgs/docs/img1_instalacao.png`
-- `assets/imgs/docs/img2_instalacao.png`
-- `assets/imgs/docs/img3_instalacao.png`
-- `assets/imgs/docs/img1_setup.png`
-- `assets/imgs/docs/img1_tablet.png`
-- `assets/imgs/docs/img2_mobile.png`
+- `assets/imgs/docs/docs-first-run-plugins-folder.png`
+- `assets/imgs/docs/docs-first-run-sdk-net-ok.png`
+- `assets/imgs/docs/docs-first-run-sdk-net-fail.png`
+- `assets/imgs/docs/docs-setup-edition-switch.png`
+- `assets/imgs/docs/docs-setup-tablet-layout.png`
+- `assets/imgs/docs/docs-setup-mobile-layout.png`
+- `assets/imgs/docs/docs-linux-step-01-steam-library.png`
+- `assets/imgs/docs/docs-linux-step-12-dotnet-installer.gif`
 
 ## 6) Language Strategy
 

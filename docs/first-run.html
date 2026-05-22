@@ -5,18 +5,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SimDuty Docs | First Run Guide</title>
-  <meta name="description" content="Install SimDuty, deploy ATS/ETS2 telemetry DLLs, and verify your first successful connection.">
+  <meta name="description" content="Install SimDuty, deploy ATS/ETS2 telemetry DLLs, and verify your first successful connection on Windows. For Linux/Proton, use the dedicated Linux setup guide.">
   <meta name="author" content="SimDuty Project">
   <link rel="canonical" href="https://simduty.com/docs/first-run.html">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://simduty.com/docs/first-run.html">
   <meta property="og:title" content="SimDuty Docs | First Run Guide">
-  <meta property="og:description" content="Install SimDuty, deploy ATS/ETS2 telemetry DLLs, and verify your first successful connection.">
-  <meta property="og:image" content="https://simduty.com/assets/imgs/home_tablet.png">
+  <meta property="og:description" content="Install SimDuty, deploy ATS/ETS2 telemetry DLLs, and verify your first successful connection on Windows. For Linux/Proton, use the dedicated Linux setup guide.">
+  <meta property="og:image" content="https://simduty.com/assets/imgs/simduty-home-tablet.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="SimDuty Docs | First Run Guide">
-  <meta name="twitter:description" content="Install SimDuty, deploy ATS/ETS2 telemetry DLLs, and verify your first successful connection.">
-  <meta name="twitter:image" content="https://simduty.com/assets/imgs/home_tablet.png">
+  <meta name="twitter:description" content="Install SimDuty, deploy ATS/ETS2 telemetry DLLs, and verify your first successful connection on Windows. For Linux/Proton, use the dedicated Linux setup guide.">
+  <meta name="twitter:image" content="https://simduty.com/assets/imgs/simduty-home-tablet.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
@@ -32,6 +32,7 @@
       </div>
       <nav class="docs-links" aria-label="Docs navigation">
         <a href="index.html">Wiki</a>
+        <a href="linux-setup.html">Linux Guide</a>
         <a href="home.html">Next: Home</a>
       </nav>
     </header>
@@ -43,6 +44,7 @@
         <a href="#step-1">Step 1 - Download</a>
         <a href="#step-2">Step 2 - Install DLLs</a>
         <a href="#step-3">Step 3 - Validate SDK/NET</a>
+        <a href="#linux-path">Linux (Proton) path</a>
         <a href="#checkpoint">Validation checkpoint</a>
         <a href="#support">Quick support</a>
       </aside>
@@ -52,6 +54,7 @@
           <h2>Overview</h2>
           <p>Use this guide to prepare your ATS/ETS2 environment for a reliable first run.</p>
           <p>SimDuty runs in the background and captures telemetry directly from the game engine without manual data entry.</p>
+          <p><strong>Platform scope:</strong> this page is the primary Windows-first flow. If you use Linux/Proton, follow the dedicated <a href="linux-setup.html">Linux Setup (Proton)</a> guide.</p>
           <div class="quick-facts">
             <span>Estimated time: 4 minutes</span>
             <span>Target result: SDK OK + NET OK</span>
@@ -97,7 +100,7 @@
 
           <figure class="doc-image">
             <div class="img-frame ratio-4x3 img-contain">
-              <img src="../assets/imgs/docs/img1_instalacao.png" alt="Windows Explorer showing DLL files inside the simulator plugins folder">
+              <img src="../assets/imgs/docs/docs-first-run-plugins-folder.png" alt="Windows Explorer showing DLL files inside the simulator plugins folder">
             </div>
             <figcaption>Expected folder structure after copying `simduty.dll` and `scs-telemetry.dll`.</figcaption>
           </figure>
@@ -114,13 +117,13 @@
           <div class="compare-grid">
             <figure class="doc-image">
               <div class="img-frame ratio-16x10">
-                <img src="../assets/imgs/docs/img3_instalacao.png" alt="SDK and NET indicators in normal connected state">
+                <img src="../assets/imgs/docs/docs-first-run-sdk-net-ok.png" alt="SDK and NET indicators in normal connected state">
               </div>
               <figcaption>OK state: SDK and NET are working.</figcaption>
             </figure>
             <figure class="doc-image">
               <div class="img-frame ratio-16x10">
-                <img src="../assets/imgs/docs/img2_instalacao.png" alt="SDK and NET indicators in yellow failure state">
+                <img src="../assets/imgs/docs/docs-first-run-sdk-net-fail.png" alt="SDK and NET indicators in yellow failure state">
               </div>
               <figcaption>Failure state: SDK and NET are yellow with no active connection.</figcaption>
             </figure>
@@ -142,6 +145,12 @@
           </div>
           <div class="callout">If SDK/NET remain yellow or blinking, close both applications, verify DLL placement, then relaunch in this order: SimDuty first, game second.</div>
           <div class="callout"><strong>Expected state:</strong> after entering cabin and moving briefly, both SDK and NET remain in OK state.</div>
+        </section>
+
+        <section id="linux-path" class="section">
+          <h2>Linux (Proton) path</h2>
+          <p>If you are running ATS/ETS2 on Linux, use the dedicated Linux guide for Proton prefix setup, DLL overrides, and .NET runtime steps.</p>
+          <div class="callout"><strong>Use this guide:</strong> <a href="linux-setup.html">Linux Setup (Proton)</a> (community workflow by StupidDog).</div>
         </section>
 
         <section id="checkpoint" class="section">
@@ -166,6 +175,7 @@
             <li>Copy both DLL files again to the target plugins folder.</li>
             <li>Check whether antivirus or Windows blocked the DLL files.</li>
             <li>If the app does not launch, install .NET Desktop Runtime (x64) and VC++ 2015-2022 (x64), then restart Windows.</li>
+            <li>If you are on Linux/Proton, follow <a href="linux-setup.html">Linux Setup (Proton)</a> for prefix and runtime configuration.</li>
             <li>If modules appear missing after first startup, confirm App Edition in <a href="setup.html">Setup Guide</a> (Lite vs Full).</li>
             <li>If tabs are not visible on small layouts, confirm display mode and check the <code>More</code> menu.</li>
           </ul>

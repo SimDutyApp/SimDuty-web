@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SimDuty Docs | Linux (Proton) Setup</title>
+  <meta name="description" content="Run SimDuty on Linux with ATS/ETS2 using Proton Experimental and Protontricks, including DLL overrides, .NET install, launch order, and the community workflow by StupidDog.">
+  <meta name="author" content="SimDuty Project">
+  <link rel="canonical" href="https://simduty.com/docs/linux-setup.html">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://simduty.com/docs/linux-setup.html">
+  <meta property="og:title" content="SimDuty Docs | Linux (Proton) Setup">
+  <meta property="og:description" content="Run SimDuty on Linux with ATS/ETS2 using Proton Experimental and Protontricks, including DLL overrides, .NET install, launch order, and the community workflow by StupidDog.">
+  <meta property="og:image" content="https://simduty.com/assets/imgs/simduty-home-tablet.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SimDuty Docs | Linux (Proton) Setup">
+  <meta name="twitter:description" content="Run SimDuty on Linux with ATS/ETS2 using Proton Experimental and Protontricks, including DLL overrides, .NET install, launch order, and the community workflow by StupidDog.">
+  <meta name="twitter:image" content="https://simduty.com/assets/imgs/simduty-home-tablet.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to run SimDuty on Linux with Proton",
+    "description": "Install and run SimDuty on Linux with ATS/ETS2 using Proton Experimental, Protontricks/Winetricks DLL overrides, and .NET runtime setup in the correct prefix.",
+    "totalTime": "PT15M",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "name": "Force Proton Experimental",
+        "text": "In Steam game properties, open Compatibility, enable the Steam Play compatibility tool override, and select Proton Experimental."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Install SimDuty DLL files",
+        "text": "Copy simduty.dll and scs-telemetry.dll into the game plugins folder at bin/win_x64/plugins for ATS or ETS2."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Install Protontricks",
+        "text": "Install Protontricks using your distribution package manager or Flathub."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Configure Wine library overrides",
+        "text": "Open the game prefix in Protontricks/Winetricks, run winecfg, and add Libraries overrides for simduty and scs-telemetry."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Install .NET runtime in same prefix",
+        "text": "Open SimDuty in the same ATS/ETS2 Proton prefix, accept the .NET Desktop Runtime x64 prompt, and complete installation."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Follow launch order",
+        "text": "Launch ATS/ETS2 first, accept SDK/plugin permission, then launch SimDuty in the same prefix and validate SDK OK and NET OK."
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Can I use the same Linux steps for ETS2 and ATS?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. The same Proton/prefix workflow applies to both games. Only paths and selected app prefix change."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why are DLL overrides required in winecfg?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Without proper override behavior in the selected prefix, ATS/ETS2 may not load the SimDuty integration DLLs as expected."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What if SimDuty does not launch after setup?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Open SimDuty through the same ATS/ETS2 Proton prefix and complete the .NET Desktop Runtime x64 installation when prompted."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What launch order should I follow on Linux?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Launch ATS/ETS2 first and accept SDK/plugin permission, then launch SimDuty in the same Proton prefix and validate connection indicators."
+        }
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="docs.css">
+</head>
+
+<body>
+  <main class="docs-shell">
+    <header class="docs-topbar">
+      <div>
+        <h1 class="docs-title">Linux Setup (Proton)</h1>
+        <p class="docs-subtitle">Install and run SimDuty with ATS/ETS2 on Linux through Proton Experimental and Protontricks.</p>
+      </div>
+      <nav class="docs-links" aria-label="Docs navigation">
+        <a href="index.html">Wiki</a>
+        <a href="troubleshooting.html">Troubleshooting</a>
+      </nav>
+    </header>
+
+    <div class="doc-layout">
+      <aside class="doc-sidebar" aria-label="On this page">
+        <h3>On this page</h3>
+        <a href="#overview">Overview</a>
+        <a href="#requirements">Requirements</a>
+        <a href="#step-1">Step 1 - Force Proton Windows build</a>
+        <a href="#step-2">Step 2 - Install SimDuty DLL files</a>
+        <a href="#step-3">Step 3 - Install Protontricks</a>
+        <a href="#step-4">Step 4 - Configure DLL overrides in winecfg</a>
+        <a href="#step-5">Step 5 - Install .NET in prefix</a>
+        <a href="#step-6">Step 6 - Launch order and SDK permission</a>
+        <a href="#references">Path and command reference</a>
+        <a href="#checkpoint">Validation checkpoint</a>
+        <a href="#support">Quick support</a>
+        <a href="#credits">Credits</a>
+      </aside>
+
+      <div class="doc-content">
+        <section id="overview" class="section section-step">
+          <h2>Overview</h2>
+          <p>This guide explains how to run SimDuty on Linux with ATS or ETS2 using Proton.</p>
+          <p>The same logic applies to both games. This page uses ATS examples for path naming and menu wording.</p>
+          <p>This Linux workflow is community-validated and documented from real-world use. Full credit goes to <strong>StupidDog</strong> for creating and sharing the original tutorial sequence.</p>
+          <div class="quick-facts">
+            <span>Estimated time: 10-15 minutes</span>
+            <span>Target result: SDK OK + NET OK on Linux</span>
+            <span>Scope: Steam + Proton Experimental + Protontricks</span>
+          </div>
+          <div class="callout"><strong>Important:</strong> SimDuty needs the Windows game build running through Proton and the plugin DLL overrides configured in the same Proton prefix.</div>
+          <div class="callout"><strong>Cross-reference:</strong> for the baseline Windows-first flow, see the <a href="first-run.html">First Run Guide</a>.</div>
+        </section>
+
+        <section id="requirements" class="section">
+          <h2>Requirements</h2>
+          <ul>
+            <li>Steam installed on Linux with ATS or ETS2 owned and installed.</li>
+            <li>Proton Experimental available in Steam compatibility tools.</li>
+            <li>SimDuty package extracted with access to <code>simduty.dll</code> and <code>scs-telemetry.dll</code>.</li>
+            <li>Protontricks installed (package manager or Flathub).</li>
+          </ul>
+        </section>
+
+        <section id="step-1" class="section">
+          <h2>Step 1: Force Proton Windows build</h2>
+          <ol>
+            <li>In Steam, open ATS (or ETS2) properties.</li>
+            <li>Go to <code>Compatibility</code>.</li>
+            <li>Enable <code>Force the use of a specific Steam Play compatibility tool</code>.</li>
+            <li>Select <code>Proton Experimental</code>.</li>
+            <li>Allow Steam to update/reinstall the game files to the Windows-compatible build.</li>
+          </ol>
+          <div class="callout"><strong>Expected state:</strong> the game now runs as the Windows build inside Proton, which is required for SimDuty DLL integration.</div>
+          <figure class="doc-image">
+            <div class="img-frame ratio-16x10">
+              <img src="../assets/imgs/docs/docs-linux-step-01-steam-library.png" alt="Steam Library open on American Truck Simulator before enabling Proton compatibility">
+            </div>
+            <figcaption>Start from the Steam Library page for ATS or ETS2.</figcaption>
+          </figure>
+          <figure class="doc-image">
+            <div class="img-frame ratio-16x10">
+              <img src="../assets/imgs/docs/docs-linux-step-02-compatibility-tab.png" alt="ATS properties compatibility tab with Steam Play compatibility checkbox not selected">
+            </div>
+            <figcaption>Open the Compatibility tab in game properties.</figcaption>
+          </figure>
+          <figure class="doc-image">
+            <div class="img-frame ratio-16x10">
+              <img src="../assets/imgs/docs/docs-linux-step-03-proton-experimental.png" alt="ATS compatibility tab with Force Steam Play tool enabled and Proton Experimental selected">
+            </div>
+            <figcaption>Enable compatibility override and select Proton Experimental.</figcaption>
+          </figure>
+          <figure class="doc-image">
+            <div class="img-frame ratio-16x10">
+              <img src="../assets/imgs/docs/docs-linux-step-04-steam-update-queued.png" alt="Steam library showing ATS update queued after enabling Proton Experimental">
+            </div>
+            <figcaption>Steam queues an update to switch to the Windows-compatible Proton build.</figcaption>
+          </figure>
+        </section>
+
+        <section id="step-2" class="section">
+          <h2>Step 2: Install SimDuty DLL files</h2>
+          <ol>
+            <li>Open your extracted SimDuty folder.</li>
+            <li>Copy <code>simduty.dll</code> and <code>scs-telemetry.dll</code>.</li>
+            <li>Paste both files into the game plugins folder:</li>
+          </ol>
+          <div class="path-list">
+            <p>Target folders:</p>
+            <ul>
+              <li>ATS: <code>.../American Truck Simulator/bin/win_x64/plugins</code></li>
+              <li>ETS2: <code>.../Euro Truck Simulator 2/bin/win_x64/plugins</code></li>
+            </ul>
+          </div>
+          <div class="callout"><strong>Expected state:</strong> both DLL files exist in <code>bin/win_x64/plugins</code> for the game you are launching.</div>
+          <figure class="doc-image">
+            <div class="img-frame ratio-16x10">
+              <img src="../assets/imgs/docs/docs-linux-step-05-plugins-folder.png" alt="Linux file manager open at ATS bin win_x64 plugins with scs-telemetry.dll and simduty.dll">
+            </div>
+            <figcaption>Both plugin DLL files must be present in the <code>bin/win_x64/plugins</code> folder.</figcaption>
+          </figure>
+        </section>
+
+        <section id="step-3" class="section">
+          <h2>Step 3: Install Protontricks</h2>
+          <p>Install Protontricks with the method that matches your distribution.</p>
+          <div class="path-list">
+            <p>Command reference:</p>
+            <ul>
+              <li>Arch/Arch-based: <code>sudo pacman -S protontricks</code></li>
+              <li>Mint/Debian/Ubuntu-based: <code>sudo apt install protontricks</code></li>
+              <li>Alternative: install from Flathub</li>
+            </ul>
+          </div>
+          <div class="callout"><strong>Why this matters:</strong> Protontricks/Winetricks simplify prefix-level configuration for ATS/ETS2 and avoid manual Wine prefix command mistakes.</div>
+          <figure class="doc-image">
+            <div class="img-frame ratio-4x3 img-contain">
+              <img src="../assets/imgs/docs/docs-linux-step-06-protontricks-app-select.png" alt="Protontricks app selection window with American Truck Simulator prefix selected">
+            </div>
+            <figcaption>Open Protontricks and select the ATS (or ETS2) Steam app prefix.</figcaption>
+          </figure>
+        </section>
+
+        <section id="step-4" class="section">
+          <h2>Step 4: Configure DLL overrides in winecfg</h2>
+          <ol>
+            <li>Open Protontricks and select the ATS (or ETS2) prefix.</li>
+            <li>Choose <code>Select the default wineprefix</code>.</li>
+            <li>Choose <code>Run winecfg</code>.</li>
+            <li>Open the <code>Libraries</code> tab.</li>
+            <li>Add DLL override entries for <code>simduty</code> and <code>scs-telemetry</code> in the <code>Libraries</code> tab.</li>
+            <li>Click <code>Apply</code>, then <code>OK</code>.</li>
+          </ol>
+          <div class="callout"><strong>Important:</strong> without DLL overrides, ATS/ETS2 may ignore non-native plugin DLL behavior for this integration path.</div>
+          <figure class="doc-image">
+            <div class="img-frame ratio-16x10">
+              <img src="../assets/imgs/docs/docs-linux-step-07-default-wineprefix.png" alt="Winetricks prefix options with Select the default wineprefix enabled">
+            </div>
+            <figcaption>In Winetricks, choose <code>Select the default wineprefix</code> before opening <code>winecfg</code>.</figcaption>
+          </figure>
+          <figure class="doc-image">
+            <div class="img-frame ratio-16x10">
+              <img src="../assets/imgs/docs/docs-linux-step-08-run-winecfg.png" alt="Winetricks current prefix window with Run winecfg selected for ATS Proton prefix">
+            </div>
+            <figcaption>In the current prefix actions, choose <code>Run winecfg</code>.</figcaption>
+          </figure>
+          <figure class="doc-image">
+            <div class="img-frame ratio-4x3 img-contain">
+              <img src="../assets/imgs/docs/docs-linux-step-09-override-simduty.png" alt="Wine configuration Libraries tab adding simduty as a new DLL override">
+            </div>
+            <figcaption>On <code>Libraries</code>, add <code>simduty</code> in <code>New override for library</code>, then click <code>Add</code>.</figcaption>
+          </figure>
+          <figure class="doc-image">
+            <div class="img-frame ratio-4x3 img-contain">
+              <img src="../assets/imgs/docs/docs-linux-step-10-override-scs-telemetry.png" alt="Wine configuration Libraries tab adding scs-telemetry as a new DLL override">
+            </div>
+            <figcaption>Add <code>scs-telemetry</code> the same way, then click <code>Apply</code> and <code>OK</code>.</figcaption>
+          </figure>
+        </section>
+
+        <section id="step-5" class="section">
+          <h2>Step 5: Install .NET in the same prefix</h2>
+          <ol>
+            <li>Open SimDuty through Protontricks in the ATS/ETS2 Proton prefix.</li>
+            <li>If prompted to download .NET Desktop Runtime (x64), allow the download.</li>
+            <li>Run the installer and complete setup normally.</li>
+          </ol>
+          <div class="callout"><strong>Expected state:</strong> SimDuty launches in the same prefix and no longer asks for missing .NET runtime after successful install.</div>
+          <figure class="doc-image">
+            <div class="img-frame ratio-4x3 img-contain">
+              <img src="../assets/imgs/docs/docs-linux-step-11-dotnet-prompt.png" alt="SimDuty executable prompt asking to install .NET Desktop Runtime for x64">
+            </div>
+            <figcaption>Accept the prompt to download and install the required .NET Desktop Runtime for x64.</figcaption>
+          </figure>
+          <figure class="doc-image">
+            <div class="img-frame ratio-16x10 img-contain">
+              <img src="../assets/imgs/docs/docs-linux-step-12-dotnet-installer.gif" alt="Linux desktop showing downloaded .NET runtime installer and SimDuty executable in preparation for installation">
+            </div>
+            <figcaption>After download, run the runtime installer inside the same Proton environment and complete setup.</figcaption>
+          </figure>
+        </section>
+
+        <section id="step-6" class="section">
+          <h2>Step 6: Launch order and SDK permission</h2>
+          <ol>
+            <li>Launch ATS/ETS2 first inside Proton and enter gameplay.</li>
+            <li>Accept the SDK/plugin permission prompt when the game asks.</li>
+            <li>Launch SimDuty in the same ATS/ETS2 Proton prefix.</li>
+            <li>Enter cabin and drive briefly to initialize telemetry.</li>
+          </ol>
+          <div class="callout"><strong>Expected state:</strong> SimDuty indicators stabilize at SDK OK and NET OK during active in-cabin driving.</div>
+        </section>
+
+        <section id="references" class="section">
+          <h2>Path and command reference</h2>
+          <div class="path-list">
+            <p><strong>Core commands:</strong></p>
+            <ul>
+              <li><code>sudo pacman -S protontricks</code></li>
+              <li><code>sudo apt install protontricks</code></li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Core folders:</strong></p>
+            <ul>
+              <li><code>bin/win_x64/plugins</code> inside ATS/ETS2 game install</li>
+              <li>ATS/ETS2 Proton prefix selected in Protontricks</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="checkpoint" class="section">
+          <h2>Validation checkpoint</h2>
+          <ul>
+            <li>Game runs with Proton Experimental (Windows build path active).</li>
+            <li>Both SimDuty DLL files are present in <code>bin/win_x64/plugins</code>.</li>
+            <li>DLL overrides are configured in the correct ATS/ETS2 prefix.</li>
+            <li>SimDuty and .NET run in the same game prefix.</li>
+            <li>SDK permission accepted in game and telemetry initialized in-cabin.</li>
+            <li>SDK and NET show stable OK state.</li>
+          </ul>
+        </section>
+
+        <section id="support" class="section">
+          <h2>Quick support</h2>
+          <div class="path-list">
+            <p><strong>Symptom:</strong> SDK/NET stays disconnected.</p>
+            <ul>
+              <li><strong>Check:</strong> Proton build mode, DLL path, override entries, and launch order.</li>
+              <li><strong>Fix:</strong> re-apply Proton Experimental, re-copy DLL files, re-check winecfg libraries, then relaunch game first and SimDuty second.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Symptom:</strong> SimDuty does not start in Linux.</p>
+            <ul>
+              <li><strong>Check:</strong> whether SimDuty is opened inside the ATS/ETS2 prefix and whether .NET completed installation.</li>
+              <li><strong>Fix:</strong> re-open via Protontricks, install .NET when prompted, and test again.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Symptom:</strong> Plugin prompt never appears in game.</p>
+            <ul>
+              <li><strong>Check:</strong> correct game folder and file names in <code>win_x64/plugins</code>.</li>
+              <li><strong>Fix:</strong> recopy both DLLs and fully restart Steam + game.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="credits" class="section">
+          <h2>Credits</h2>
+          <p>This Linux setup workflow and media reference are based on the community tutorial created by <strong>StupidDog</strong>. Full credit to StupidDog for documenting and validating this Proton path.</p>
+        </section>
+      </div>
+    </div>
+
+    <nav class="page-nav" aria-label="Page navigation">
+      <a href="index.html">Back to Wiki</a>
+      <a href="troubleshooting.html">Go to Troubleshooting</a>
+    </nav>
+
+    <footer class="wiki-footer">
+      <span>Last updated: May 2026</span>
+      <span><a href="https://discord.gg/NATM3BEzbe" target="_blank" rel="noopener">Join Discord Support</a></span>
+    </footer>
+  </main>
+</body>
+
+</html>

@@ -26,7 +26,8 @@ Use this checklist to track documentation delivery for GitHub Pages.
 - [x] `docs/first-run.html` -> `docs/home.html`
 - [x] `docs/home.html` -> `docs/hos.html`
 - [x] `docs/hos.html` -> `docs/setup.html`
-- [x] `docs/setup.html` -> `docs/troubleshooting.html`
+- [x] `docs/setup.html` -> `docs/dvir.html`
+- [x] `docs/dvir.html` -> `docs/troubleshooting.html`
 - [x] `docs/troubleshooting.html` -> `docs/index.html`
 
 ## Phase 1.1 - Deferred for Next Session
@@ -40,9 +41,24 @@ Use this checklist to track documentation delivery for GitHub Pages.
 
 - [ ] Publish `docs/compliance.html`
 - [ ] Publish `docs/dispatch.html`
-- [ ] Publish `docs/dvir.html`
+- [x] Publish `docs/dvir.html`
 - [ ] Publish `docs/econ.html`
 - [ ] Verify internal links across all published pages
+
+## Phase 2.1 - Linux and SEO
+
+- [x] Publish `docs/linux-setup.html`
+- [x] Add Linux cross-reference in `docs/first-run.html`
+- [x] Add community attribution for StupidDog in Linux docs
+- [x] Add structured data (HowTo/FAQPage) in `docs/dvir.html`
+- [x] Add structured data (HowTo/FAQPage) in `docs/linux-setup.html`
+- [x] Add structured data (HowTo + existing FAQPage) in `docs/troubleshooting.html`
+
+## Asset Naming Migration
+
+- [x] Rename legacy image filenames in `assets/imgs/` to professional naming
+- [x] Rename legacy image filenames in `assets/imgs/docs/` to professional naming
+- [x] Update all `.html` image references to new filenames
 
 ## Phase 3 - Scale
 

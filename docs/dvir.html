@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SimDuty Docs | DVIR Operations</title>
+  <meta name="description" content="Run DVIR pre-trip and post-trip inspections correctly in SimDuty, understand daily and swap triggers, and resolve common submission issues.">
+  <meta name="author" content="SimDuty Project">
+  <link rel="canonical" href="https://simduty.com/docs/dvir.html">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://simduty.com/docs/dvir.html">
+  <meta property="og:title" content="SimDuty Docs | DVIR Operations">
+  <meta property="og:description" content="Run DVIR pre-trip and post-trip inspections correctly in SimDuty, understand daily and swap triggers, and resolve common submission issues.">
+  <meta property="og:image" content="https://simduty.com/assets/imgs/simduty-home-tablet.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SimDuty Docs | DVIR Operations">
+  <meta name="twitter:description" content="Run DVIR pre-trip and post-trip inspections correctly in SimDuty, understand daily and swap triggers, and resolve common submission issues.">
+  <meta name="twitter:image" content="https://simduty.com/assets/imgs/simduty-home-tablet.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to complete DVIR operations in SimDuty",
+    "description": "Run DVIR pre-trip and post-trip inspections, clear pending requirements, and validate safe submission state in SimDuty.",
+    "totalTime": "PT6M",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "name": "Select inspection type and unit",
+        "text": "Open the DVIR tab and select the required inspection type (PreTrip or PostTrip) and unit (Truck or Trailer)."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Review checklist and signature",
+        "text": "Review checklist items, register pass/fail accurately, and confirm signature state for the active inspection context."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Respect submit gate",
+        "text": "Wait for the minimum inspection time gate (5 seconds) and submit only when all required states are valid."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Clear pending scenarios",
+        "text": "For day-change and truck/trailer swap scenarios, submit the exact required unit and type to clear sticky pending states."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Validate in history",
+        "text": "Confirm submitted records in DVIR History using unit, type, and status filters."
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Does delivery completion force PostTrip DVIR?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. In the current flow, delivery completion alone does not force a PostTrip DVIR request."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does DVIR pending remain after submit?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Pending usually remains when the submitted context does not match the required unit and type, such as Trailer PreTrip when Truck PostTrip is required."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do telemetry warnings automatically fail inspection?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Telemetry warnings are advisory. The final inspection status still depends on the operator's explicit checklist decision."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How can I verify what was submitted?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Open DVIR History and use filters by unit, inspection type, and status to verify records for the active session."
+        }
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="docs.css">
+</head>
+
+<body>
+  <main class="docs-shell">
+    <header class="docs-topbar">
+      <div>
+        <h1 class="docs-title">DVIR Operations</h1>
+        <p class="docs-subtitle">Execute DVIR with confidence: pre-trip, post-trip, daily requirement, and trailer/truck swap scenarios.</p>
+      </div>
+      <nav class="docs-links" aria-label="Docs navigation">
+        <a href="index.html">Wiki</a>
+        <a href="troubleshooting.html">Next: Troubleshooting</a>
+      </nav>
+    </header>
+
+    <div class="doc-layout">
+      <aside class="doc-sidebar" aria-label="On this page">
+        <h3>On this page</h3>
+        <a href="#overview">Overview</a>
+        <a href="#workflow">Inspection workflow</a>
+        <a href="#triggers">Requirement triggers</a>
+        <a href="#submission">Submission rules</a>
+        <a href="#references">Path and reference</a>
+        <a href="#checkpoint">Validation checkpoint</a>
+        <a href="#support">Quick support</a>
+        <a href="#faq">FAQ</a>
+      </aside>
+
+      <div class="doc-content">
+        <section id="overview" class="section section-step">
+          <h2>Overview</h2>
+          <p>This page documents the current DVIR behavior in SimDuty and the practical operator flow for daily use.</p>
+          <p>Use it whenever inspection state looks unclear, submit is blocked, or post-trip/pre-trip requirements appear after identity or day changes.</p>
+          <div class="quick-facts">
+            <span>Estimated time: 6 minutes</span>
+            <span>Result: clean DVIR status with valid records</span>
+            <span>Scope: Truck + Trailer, PreTrip + PostTrip</span>
+          </div>
+          <div class="impact-matrix" aria-label="DVIR impact matrix">
+            <div class="impact-row"><span class="impact-tag">Required</span><p>Use the correct inspection type and unit before submitting (Truck/Trailer and PreTrip/PostTrip)</p></div>
+            <div class="impact-row"><span class="impact-tag">Required</span><p>Complete checklist review, signature, and minimum inspection time before submit</p></div>
+            <div class="impact-row"><span class="impact-tag">Required</span><p>Handle day-change and swap pending requests in order to clear sticky requirements</p></div>
+            <div class="impact-row"><span class="impact-tag">Recommended</span><p>Treat telemetry and advisory findings as risk guidance, then record your final inspection decision</p></div>
+            <div class="impact-row"><span class="impact-tag">Recommended</span><p>Use DVIR History filters to validate what was submitted and for which unit/session</p></div>
+            <div class="impact-row"><span class="impact-tag">Optional</span><p>Use PostTrip notes to leave context for follow-up maintenance or support reviews</p></div>
+          </div>
+          <div class="callout"><strong>Current behavior note:</strong> DVIR is enforced through pending status, overlays, and dispatch guidance. It is not a speed lock gate in current production behavior.</div>
+        </section>
+
+        <section id="workflow" class="section">
+          <h2>Inspection workflow</h2>
+          <ol>
+            <li>Open the <code>DVIR</code> tab and choose the required inspection type: <code>PreTrip</code> or <code>PostTrip</code>.</li>
+            <li>Select the correct unit: <code>Truck</code> or <code>Trailer</code>.</li>
+            <li>Review checklist items and mark each condition as pass/fail with accurate notes when defects exist.</li>
+            <li>Confirm signature and wait until inspection time gate is complete.</li>
+            <li>Submit and re-check pending indicators in header/overlay and the DVIR status area.</li>
+          </ol>
+          <div class="path-list">
+            <p>Practical order for common operations:</p>
+            <ul>
+              <li><strong>Start of duty period:</strong> Truck PreTrip, then Trailer PreTrip (if trailer is attached).</li>
+              <li><strong>Truck swap:</strong> complete Truck PostTrip for previous truck, then Truck PreTrip for new truck context.</li>
+              <li><strong>Trailer drop/hook:</strong> complete Trailer PostTrip for previous trailer, then Trailer PreTrip for new trailer.</li>
+              <li><strong>Daily rollover (new game day):</strong> complete pending DVIR requests triggered by day-change before normal operation resumes.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="triggers" class="section">
+          <h2>Requirement triggers</h2>
+          <ul>
+            <li><strong>Day change:</strong> a new game day can require fresh PreTrip inspections (midnight game-day boundary).</li>
+            <li><strong>Truck identity change:</strong> changing to another truck can create sticky DVIR requirements until expected inspection is submitted.</li>
+            <li><strong>Trailer identity change:</strong> drop/hook or trailer swap can trigger trailer-specific pending workflow.</li>
+            <li><strong>PostTrip swap workflow:</strong> after drop/swap contexts, post-trip confirmation may remain pending until correct unit/type is submitted.</li>
+            <li><strong>Delivery completion:</strong> delivery alone does not automatically create a mandatory PostTrip request in current behavior.</li>
+            <li><strong>Unsafe/advisory context:</strong> dispatch and UI can escalate warnings when operation remains unsafe without completed inspection follow-up.</li>
+          </ul>
+        </section>
+
+        <section id="submission" class="section">
+          <h2>Submission rules</h2>
+          <ul>
+            <li>Submit is blocked until the minimum inspection timer is reached (5-second gate).</li>
+            <li>Checklist progress and signature state must be valid for the selected inspection context.</li>
+            <li>PreTrip and PostTrip states are context-isolated per unit/session; complete the one actually requested.</li>
+            <li>Telemetry advisories help identify risk but do not hard-force fail all items; operator judgment is still required.</li>
+            <li>History records include time, status, unit, type, defects, truck/trailer identity, and session context for traceability.</li>
+          </ul>
+          <div class="callout"><strong>Important:</strong> if you submit the wrong combination (for example, Trailer PreTrip when Truck PostTrip is pending), the requirement can remain active even after a successful submit.</div>
+        </section>
+
+        <section id="references" class="section">
+          <h2>Path and reference</h2>
+          <div class="path-list">
+            <p><strong>Main path:</strong> <code>DVIR</code> tab</p>
+            <ul>
+              <li>Inspection type selector: PreTrip or PostTrip</li>
+              <li>Unit selector: Truck or Trailer</li>
+              <li>Checklist panel: review and mark inspection items</li>
+              <li>Submit area: signature + submit state + block reason</li>
+              <li>History tab: filter by Unit, Type, and Status</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="checkpoint" class="section">
+          <h2>Validation checkpoint</h2>
+          <ul>
+            <li>All pending DVIR requests are resolved for the expected unit and inspection type.</li>
+            <li>Minimum inspection time gate is respected before each submit.</li>
+            <li>Submitted records appear in History with coherent unit/type/status data.</li>
+            <li>After swap or day-change scenarios, no stale pending indicator remains.</li>
+            <li>Unsafe or warning contexts are reviewed and documented with practical defect notes.</li>
+          </ul>
+        </section>
+
+        <section id="support" class="section">
+          <h2>Quick support</h2>
+          <div class="path-list">
+            <p><strong>Symptom:</strong> Submit button stays blocked.</p>
+            <ul>
+              <li><strong>Check:</strong> timer gate, signature field, and remaining unchecked items.</li>
+              <li><strong>Fix:</strong> wait for timer completion, validate checklist progress, and re-submit.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Symptom:</strong> DVIR pending did not clear after submit.</p>
+            <ul>
+              <li><strong>Check:</strong> whether you submitted the exact required unit/type (Truck vs Trailer, PreTrip vs PostTrip).</li>
+              <li><strong>Fix:</strong> run the missing inspection context and verify status again.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Symptom:</strong> New DVIR request appeared after midnight while driving.</p>
+            <ul>
+              <li><strong>Check:</strong> day-change event and pending indicators.</li>
+              <li><strong>Fix:</strong> stop safely, complete required inspection(s), then continue operation.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Symptom:</strong> Trailer-related requests keep returning after trailer operations.</p>
+            <ul>
+              <li><strong>Check:</strong> whether both trailer PostTrip (old trailer) and trailer PreTrip (new trailer) were completed in swap flow.</li>
+              <li><strong>Fix:</strong> complete missing step in sequence and validate History entries.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Symptom:</strong> Warning/unsafe indicator appears even after checklist review.</p>
+            <ul>
+              <li><strong>Check:</strong> defect marks, notes, and current telemetry risk state.</li>
+              <li><strong>Fix:</strong> register accurate item state, apply maintenance when needed, then re-run required inspection.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="faq" class="section">
+          <h2>FAQ</h2>
+          <ul>
+            <li><strong>Does delivery completion force PostTrip DVIR?</strong> No, delivery alone does not force PostTrip in current flow.</li>
+            <li><strong>Why does pending remain after I clicked submit?</strong> Usually because the submitted context did not match the required unit/type.</li>
+            <li><strong>What is the fastest safe routine before starting a trip?</strong> Run Truck PreTrip first, then Trailer PreTrip if a trailer is attached.</li>
+            <li><strong>Do telemetry warnings automatically fail inspection?</strong> No, advisories are guidance; final inspection status is still your explicit record.</li>
+            <li><strong>Where can I confirm exactly what was submitted?</strong> Open DVIR History and filter by unit, type, and status for the active session.</li>
+          </ul>
+        </section>
+      </div>
+    </div>
+
+    <nav class="page-nav" aria-label="Page navigation">
+      <a href="setup.html">Previous page</a>
+      <a href="troubleshooting.html">Next page</a>
+    </nav>
+
+    <footer class="wiki-footer">
+      <span>Last updated: May 2026</span>
+      <span><a href="https://discord.gg/NATM3BEzbe" target="_blank" rel="noopener">Join Discord Support</a></span>
+    </footer>
+  </main>
+</body>
+
+</html>

@@ -12,11 +12,47 @@
   <meta property="og:url" content="https://simduty.com/docs/troubleshooting.html">
   <meta property="og:title" content="SimDuty Docs | Troubleshooting">
   <meta property="og:description" content="Resolve startup, plugin, telemetry, and cross-flow Home/HOS/Setup issues in SimDuty with a deterministic recovery path.">
-  <meta property="og:image" content="https://simduty.com/assets/imgs/home_tablet.png">
+  <meta property="og:image" content="https://simduty.com/assets/imgs/simduty-home-tablet.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="SimDuty Docs | Troubleshooting">
   <meta name="twitter:description" content="Resolve startup, plugin, telemetry, and cross-flow Home/HOS/Setup issues in SimDuty with a deterministic recovery path.">
-  <meta name="twitter:image" content="https://simduty.com/assets/imgs/home_tablet.png">
+  <meta name="twitter:image" content="https://simduty.com/assets/imgs/simduty-home-tablet.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to troubleshoot SimDuty connection issues",
+    "description": "Use a deterministic triage flow to restore SDK/NET connectivity and recover Home/HOS/Setup behavior in SimDuty.",
+    "totalTime": "PT5M",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "name": "Check SDK and NET status",
+        "text": "Validate SDK and NET indicators and confirm launch order: SimDuty first, then ATS/ETS2."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Verify plugin DLL placement",
+        "text": "Confirm scs-telemetry.dll and simduty.dll are in the correct bin/win_x64/plugins folder for the active game."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Initialize telemetry in cabin",
+        "text": "Enter cabin and move briefly so telemetry starts updating across Home and HOS."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Validate Setup and policy",
+        "text": "If values still look wrong, re-check HOS policy mode and key Setup options such as paths and Yard Move behavior."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Escalate with diagnostics",
+        "text": "If unresolved, collect paths, status evidence, and support bundle data before opening a Discord support request."
+      }
+    ]
+  }
+  </script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -200,7 +236,7 @@
     </div>
 
     <nav class="page-nav" aria-label="Page navigation">
-      <a href="setup.html">Previous page</a>
+      <a href="dvir.html">Previous page</a>
       <a href="index.html">Next page</a>
     </nav>
 
