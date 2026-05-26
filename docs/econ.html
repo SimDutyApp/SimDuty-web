@@ -124,6 +124,7 @@
           <ul>
             <li><strong>Validate:</strong> summary values are coherent with recent trip events and no accidental rule toggle is active.</li>
             <li><strong>Common failure:</strong> changing rule toggles without intent and misreading later statement deltas.</li>
+            <li><strong>Gameplay impact:</strong> active rule toggles change how future economy events affect your balance.</li>
           </ul>
         </section>
 
@@ -139,6 +140,7 @@
           <ul>
             <li><strong>Validate:</strong> action buttons are enabled by state, not forced by retries.</li>
             <li><strong>Common failure:</strong> attempting return before settlement conditions are met.</li>
+            <li><strong>Gameplay impact:</strong> rental start/return decisions directly change medium-term cash flow and payable totals.</li>
           </ul>
         </section>
 
@@ -155,6 +157,7 @@
           <ul>
             <li><strong>Validate:</strong> contest count and status chips align with your latest actions.</li>
             <li><strong>Common failure:</strong> contesting non-eligible entries or reading grouped totals without filter awareness.</li>
+            <li><strong>Gameplay impact:</strong> approved contests reduce effective losses, while denied contests preserve original charges.</li>
           </ul>
         </section>
 
@@ -169,6 +172,7 @@
           <ul>
             <li><strong>Validate:</strong> correction appears once with expected amount and rationale.</li>
             <li><strong>Common failure:</strong> repeated correction attempts without re-validating current balance context.</li>
+            <li><strong>Gameplay impact:</strong> audit correction writes immediate balance adjustment and must match evidence.</li>
           </ul>
         </section>
 
@@ -180,11 +184,12 @@
             <li>Confirm telemetry details (fuel, infractions, fines, tolls, revenue, net) are coherent.</li>
             <li>Fill RP expenses (reference, lodging, meal, notes) with clear operational reason.</li>
             <li>Review preview block for final net impact.</li>
-            <li>Submit with <code>SUBMIT</code> only after telemetry and RP fields are consistent.</li>
+            <li>Submit with <code>DECLARE</code> only after telemetry and RP fields are consistent.</li>
           </ol>
           <ul>
             <li><strong>Validate:</strong> telemetry section is available and submit result matches expected declaration intent.</li>
             <li><strong>Common failure:</strong> submitting with incomplete reference/notes and losing audit clarity later.</li>
+            <li><strong>Gameplay impact:</strong> declaration outcome can credit or debit driver balance based on telemetry and RP entries.</li>
           </ul>
         </section>
 
@@ -455,7 +460,7 @@
             <ol>
               <li>Open <code>Learning Preview</code>, select source saves, run preview, then click <code>Apply Learning</code>.</li>
               <li>Open <code>Learned Data</code> and confirm entries match your current profile context.</li>
-              <li>Open <code>Share with Team</code> and use <code>cargo + trailer</code> as default handoff intent.</li>
+              <li>Open <code>Share with Team</code> and use <code>Cargo + Trailer (Recommended)</code> as default handoff intent.</li>
               <li>Open <code>Import from Discord</code>, validate preview context, then route to the matching Offer/Active flow.</li>
               <li>Open <code>Share and Import Audit</code> to verify traceability; if <code>scan_required</code> appears, run <code>Rescan</code> before Clone Preview expectations.</li>
             </ol>
@@ -490,9 +495,9 @@
             <p><strong>Step 3 - Share intent selection</strong></p>
             <ol>
               <li>Open <code>Share with Team</code>.</li>
-              <li>Use <code>cargo + trailer</code> as default team handoff intent.</li>
-              <li>Use <code>route only</code> when destination guidance is needed without full combo payload.</li>
-              <li>Use <code>full bundle</code> for advanced team sync and audit-heavy operations (available directly in the current UI).</li>
+              <li>Use <code>Cargo + Trailer (Recommended)</code> as default team handoff intent.</li>
+              <li>Use <code>Active Data only</code> when destination guidance is needed without full combo payload.</li>
+              <li>Use <code>Full bundle (Advanced)</code> for audit-heavy team sync when broader context packaging is required.</li>
             </ol>
             <ul>
               <li><strong>Validate:</strong> selected intent matches operational goal before publish.</li>
@@ -541,7 +546,7 @@
               <li><code>Economy &gt; BANKING</code> (<code>SIMULATE</code>, <code>START RENTAL</code>, <code>CONFIRM RETURN</code>)</li>
               <li><code>Economy &gt; STATEMENT</code> (<code>4H</code>, <code>24H</code>, <code>7D</code>, <code>Contestable</code>, <code>Pending</code>, <code>CLEAR</code>)</li>
               <li><code>Economy &gt; AUDIT</code> (<code>APPLY CORRECTION</code>)</li>
-              <li><code>Economy &gt; DECLARATIONS</code> (<code>SUBMIT</code>)</li>
+              <li><code>Economy &gt; DECLARATIONS</code> (<code>DECLARE</code>)</li>
               <li><code>Economy &gt; Custom Delivery</code></li>
               <li><code>Custom Delivery &gt; Dispatch Offer</code></li>
               <li><code>Custom Delivery &gt; Dispatch Active</code></li>
@@ -580,7 +585,7 @@
             <li>Clone preview reflects expected route/action context.</li>
             <li>Execution produces a new slot and keeps Base Save intact.</li>
             <li>SimDuty Loads share/import actions produce traceable audit records.</li>
-            <li>Selected share intent matches operational goal (cargo + trailer, route only, or full bundle).</li>
+            <li>Selected share intent matches operational goal (Cargo + Trailer, Active Data only, or Full bundle (Advanced)).</li>
             <li>Imported payload context matches the selected Offer/Active flow before clone execution.</li>
             <li>Import confirmation is enabled only after valid save context is present for the payload type.</li>
             <li>All SimDuty Loads sections are validated in sequence: <code>Learning Preview</code>, <code>Learned Data</code>, <code>Share with Team</code>, <code>Import from Discord</code>, and <code>Share and Import Audit</code>.</li>
@@ -664,7 +669,7 @@
             <p><strong>Symptom:</strong> team received share but cannot reuse it correctly.</p>
             <ul>
               <li><strong>Check:</strong> share intent type and whether payload context matches Offer/Active target flow.</li>
-              <li><strong>Fix:</strong> republish from <code>Share with Team</code> using the correct intent (<code>cargo + trailer</code> by default), then confirm success in <code>Share and Import Audit</code>.</li>
+              <li><strong>Fix:</strong> republish from <code>Share with Team</code> using the correct intent (<code>Cargo + Trailer (Recommended)</code> by default), then confirm success in <code>Share and Import Audit</code>.</li>
             </ul>
           </div>
           <div class="path-list">
@@ -725,8 +730,8 @@
             <li><strong>What is the core difference between Offer and Active?</strong> Dispatch Offer edits observed Freight Market offers; Dispatch Active redirects a delivery already in progress.</li>
             <li><strong>What do cargo preset colors mean?</strong> Green means same trailer family, Blue means observed cross-family overlap, Yellow means heuristic compatibility fallback.</li>
             <li><strong>How do I avoid invisible cargo after preset apply?</strong> Keep Cargo Visual Policy on <code>Safe (Recommended)</code> for normal operations and prioritize Green candidates.</li>
-            <li><strong>Which share intent should I use first?</strong> Use <code>cargo + trailer</code> as default. Use <code>route only</code> or <code>full bundle</code> for specific advanced scenarios.</li>
-            <li><strong>Is full bundle behind an advanced mode?</strong> No. In the current UI, it is directly available when learned-data share conditions are met.</li>
+            <li><strong>Which share intent should I use first?</strong> Use <code>Cargo + Trailer (Recommended)</code> as default. Use <code>Active Data only</code> for route guidance and <code>Full bundle (Advanced)</code> for broader sync.</li>
+            <li><strong>Is Full bundle (Advanced) behind an advanced mode?</strong> No. In the current UI, it is directly available when learned-data share conditions are met.</li>
             <li><strong>Why can import look successful but still require action?</strong> Import may still require <code>Rescan</code> and context validation before clone stages become ready.</li>
             <li><strong>Why is Import now disabled in confirmation?</strong> Some payload types require valid save context first (selected SimDuty save slot or loaded Base Save).</li>
             <li><strong>How do I verify share/import actually completed?</strong> Use <code>Share and Import Audit</code> and confirm a successful event with the expected direction and source.</li>

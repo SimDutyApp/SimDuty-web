@@ -12,8 +12,8 @@ docs/
   setup.html                 -> Setup tab guide (published)
   troubleshooting.html       -> Common issues and fixes (published)
   linux-setup.html           -> Linux/Proton setup guide (published)
-  home.html                  -> Home tab reference (implemented, deferred)
-  hos.html                   -> HOS tab reference (implemented, deferred)
+  home.html                  -> Home tab reference (published)
+  hos.html                   -> HOS tab reference (published)
   compliance.html            -> Compliance tab reference (published)
   dispatch.html              -> Dispatch tab reference (published)
   dvir.html                  -> DVIR tab reference (published)
@@ -85,11 +85,19 @@ Deliverable: complete first-use path with setup and troubleshooting guidance.
 
 Deliverable: expanded operational guidance integrated into the production docs flow.
 
-### Phase 2 - Daily Operations Coverage (In Progress)
+### Phase 2 - Daily Operations Coverage (Completed)
 
 - `docs/compliance.html` (published)
 - `docs/dispatch.html` (published)
 - `docs/econ.html` (published)
+
+- Economy page expanded to full tab coverage:
+  - Overview
+  - Banking
+  - Statement
+  - Audit
+  - Declarations
+  - Custom Delivery
 
 Deliverable: complete operational documentation for recurring usage.
 
@@ -138,6 +146,7 @@ Deliverable: self-service knowledge base with lower support load.
 ### Economy
 - Deepen Offer vs Active decision examples for edge contexts.
 - Expand SimDuty Loads collaboration scenarios and audit interpretation.
+- Continue incremental gameplay-impact examples per subtab as app evolves.
 
 ## 5) Asset Requirements
 

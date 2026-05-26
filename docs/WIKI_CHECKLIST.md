@@ -51,6 +51,7 @@ Use this checklist to track documentation delivery for GitHub Pages.
 - [x] Publish `docs/dispatch.html`
 - [x] Publish `docs/dvir.html`
 - [x] Publish `docs/econ.html`
+- [x] Expand `docs/econ.html` to full Economy tab coverage (Overview/Banking/Statement/Audit/Declarations/Custom Delivery)
 - [x] Publish `docs/offline-save.html` (Custom Jobs prerequisite)
 - [x] Update flow to `dispatch -> econ -> setup`
 - [ ] Verify internal links across all published pages
@@ -121,4 +122,5 @@ Use this checklist to track documentation delivery for GitHub Pages.
 - [x] Docs scope set to English-only on `/docs`
 - [x] Runtime i18n removed from docs pages
 - [x] Technical copy consistency review (all pages)
+- [x] Align docs labels with current Economy UI naming (`DECLARE`, share intents, Economy tab labels)
 - [ ] Manual verification on desktop and mobile
