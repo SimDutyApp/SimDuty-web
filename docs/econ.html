@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SimDuty Docs | Economy Custom Delivery</title>
+  <meta name="description" content="Operate Economy Custom Delivery safely with Dispatch Offer, Dispatch Active, and SimDuty Loads workflows.">
+  <meta name="author" content="SimDuty Project">
+  <link rel="canonical" href="https://simduty.com/docs/econ.html">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://simduty.com/docs/econ.html">
+  <meta property="og:title" content="SimDuty Docs | Economy Custom Delivery">
+  <meta property="og:description" content="Operate Economy Custom Delivery safely with Dispatch Offer, Dispatch Active, and SimDuty Loads workflows.">
+  <meta property="og:image" content="https://simduty.com/assets/imgs/simduty-home-tablet.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SimDuty Docs | Economy Custom Delivery">
+  <meta name="twitter:description" content="Operate Economy Custom Delivery safely with Dispatch Offer, Dispatch Active, and SimDuty Loads workflows.">
+  <meta name="twitter:image" content="https://simduty.com/assets/imgs/simduty-home-tablet.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to use Economy Custom Delivery",
+    "description": "Choose Dispatch Offer or Dispatch Active correctly, complete clone workflow, and use SimDuty Loads for team collaboration.",
+    "totalTime": "PT10M",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "name": "Pick the correct flow",
+        "text": "Use Dispatch Offer when there is no active delivery context and Dispatch Active when a valid active delivery is already loaded in Base Save."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Prepare Base Save and scan",
+        "text": "Select Base Save, run Rescan when required, and validate context before applying route values."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Apply and clone",
+        "text": "Apply route/context values and generate clone preview. Execution creates a new slot and does not overwrite Base Save."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Use SimDuty Loads when collaborating",
+        "text": "Use SimDuty Loads to preview learned data, share valid payloads with the team, import shared context, and inspect audit history."
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="docs.css">
+</head>
+
+<body>
+  <main class="docs-shell">
+    <header class="docs-topbar">
+      <div>
+        <h1 class="docs-title">Economy Custom Delivery</h1>
+        <p class="docs-subtitle">Execute dispatch route retarget flows safely with Dispatch Offer, Dispatch Active, and SimDuty Loads collaboration tools.</p>
+      </div>
+      <nav class="docs-links" aria-label="Docs navigation">
+        <a href="index.html">Wiki</a>
+        <a href="setup.html">Next: Setup</a>
+      </nav>
+    </header>
+
+    <div class="doc-layout">
+      <aside class="doc-sidebar" aria-label="On this page">
+        <h3>On this page</h3>
+        <a href="#overview">Overview</a>
+        <a href="#prerequisite">Required prerequisite</a>
+        <a href="#quick-path">Operational quick path</a>
+        <a href="#base-save-selection">How to choose Base Save</a>
+        <a href="#decision-rule">Decision checklist</a>
+        <a href="#dispatch-offer">Dispatch Offer flow</a>
+        <a href="#dispatch-active">Dispatch Active flow</a>
+        <a href="#active-cargo-presets">Active cargo presets guide</a>
+        <a href="#anti-patterns">Operator anti-patterns</a>
+        <a href="#simduty-loads">SimDuty Loads workflow</a>
+        <a href="#references">Path and reference</a>
+        <a href="#checkpoint">Validation checkpoint</a>
+        <a href="#support">Quick support</a>
+        <a href="#faq">FAQ</a>
+      </aside>
+
+      <div class="doc-content">
+        <section id="overview" class="section section-step">
+          <h2>Overview</h2>
+          <p>Economy Custom Delivery is the operational bridge between dispatch requests and safe save-slot cloning.</p>
+          <p>Use this page to decide the correct flow, avoid context mismatch, and complete clone operations with predictable outcomes.</p>
+          <div class="quick-facts">
+            <span>Estimated time: 10 minutes</span>
+            <span>Result: correct flow choice and safe clone execution</span>
+            <span>Scope: Dispatch Offer, Dispatch Active, SimDuty Loads</span>
+          </div>
+          <div class="impact-matrix" aria-label="Custom Delivery impact matrix">
+            <div class="impact-row"><span class="impact-tag">Required</span><p>Use an offline profile (Steam Cloud disabled) before Custom Jobs operations.</p></div>
+            <div class="impact-row"><span class="impact-tag">Required</span><p>Select a valid Base Save before route actions.</p></div>
+            <div class="impact-row"><span class="impact-tag">Required</span><p>Choose Dispatch Active only when active delivery context exists in Base Save.</p></div>
+            <div class="impact-row"><span class="impact-tag">Required</span><p>Run <code>Rescan</code> whenever flow status indicates <code>scan_required</code>.</p></div>
+            <div class="impact-row"><span class="impact-tag">Required</span><p>Execution creates clone in new slot; Base Save is never overwritten.</p></div>
+            <div class="impact-row"><span class="impact-tag">Recommended</span><p>Use SimDuty Loads share/import for team-coordinated route and combo handling.</p></div>
+          </div>
+        </section>
+
+        <section id="prerequisite" class="section">
+          <h2>Required prerequisite</h2>
+          <p>Custom Jobs depends on stable local profile context. Keep your ATS/ETS2 operational profile in offline mode before cloning flows.</p>
+          <div class="callout"><strong>Complete first:</strong> <a href="offline-save.html">Offline Save Setup (ATS/ETS2)</a>.</div>
+        </section>
+
+        <section id="quick-path" class="section">
+          <h2>Operational quick path</h2>
+          <ol>
+            <li>Confirm offline profile prerequisite is complete and local profile root is selected in Setup.</li>
+            <li>Open <code>Economy &gt; Custom Delivery</code> and select Base Save context.</li>
+            <li>Pick <code>Dispatch Offer</code> or <code>Dispatch Active</code> based on active delivery availability.</li>
+            <li>If flow status requires scan, run <code>Rescan</code> before apply/clone.</li>
+            <li>Apply route/context values and review <code>Clone Preview</code>.</li>
+            <li>Execute clone and verify result in new slot.</li>
+          </ol>
+          <div class="callout"><strong>Operator rule:</strong> choosing the wrong flow creates avoidable blockers; context check first, then route actions.</div>
+        </section>
+
+        <section id="base-save-selection" class="section">
+          <h2>How to choose Base Save</h2>
+          <p>Custom Jobs requires selecting the correct save slot folder from your ATS/ETS2 profile path.</p>
+          <ol>
+            <li>Open your profile path in Windows Explorer (example: <code>%USERPROFILE%\Documents\American Truck Simulator\profiles\&lt;profile-id&gt;\save\</code> or <code>%USERPROFILE%\Documents\Euro Truck Simulator 2\profiles\&lt;profile-id&gt;\save\</code>).</li>
+            <li>Inside <code>save</code>, pick a slot folder named with numbers only (for example <code>1</code>, <code>12</code>, <code>74</code>).</li>
+            <li>Open that slot folder and confirm <code>game.sii</code> exists inside it.</li>
+            <li>In SimDuty, select this slot as Base Save and run <code>Rescan</code>.</li>
+          </ol>
+          <div class="callout"><strong>Validation rule:</strong> if the selected folder does not contain <code>game.sii</code>, it is not a valid Base Save slot.</div>
+        </section>
+
+        <section id="decision-rule" class="section">
+          <h2>Decision checklist</h2>
+          <ol>
+            <li>Confirm <a href="offline-save.html">Offline Save Setup</a> is complete and Base Save is selected.</li>
+            <li>If the loaded Base Save already has an active Cargo delivery (cargo + trailer), choose <code>Dispatch Active</code>.</li>
+            <li>If there is no active delivery in Base Save, choose <code>Dispatch Offer</code> to retarget observed Freight Market offers.</li>
+            <li>If Dispatch thread gives CTA <code>Open Dispatch Offer</code> or <code>Open Dispatch Active</code>, follow that CTA unless context check proves mismatch.</li>
+            <li>If <code>Flow Status</code> reports <code>scan_required</code>, run <code>Rescan</code> before apply/clone in either flow.</li>
+          </ol>
+          <div class="path-list">
+            <p><strong>SimDuty Loads usage rule:</strong></p>
+            <ul>
+              <li>Use SimDuty Loads to learn/share/import route knowledge and then continue in Offer or Active clone flow.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="dispatch-offer" class="section">
+          <h2>Dispatch Offer flow</h2>
+          <p>Dispatch Offer edits the observed Freight Market offer flow. Use it when you want to retarget a freight offer template, not a delivery already in progress.</p>
+          <div class="path-list">
+            <p><strong>Step 1 - Base Save</strong></p>
+            <ol>
+              <li>Select Base Save in <code>Economy &gt; Custom Delivery</code>.</li>
+              <li>Confirm save context is valid (game/profile/slot recognized).</li>
+              <li>If status asks for scan, run <code>Rescan</code> before continuing.</li>
+            </ol>
+            <ul>
+              <li><strong>Validate:</strong> Base Save stage is unlocked and route stages are available.</li>
+              <li><strong>Common failure:</strong> missing or stale save context; reselect save and scan again.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Step 2 - Context</strong></p>
+            <ol>
+              <li>Open <code>Dispatch Offer</code> flow.</li>
+              <li>Select an observed Freight offer template from the loaded save.</li>
+              <li>Confirm source and current destination match the offer you intend to retarget.</li>
+            </ol>
+            <ul>
+              <li><strong>Validate:</strong> you are working on an observed offer, not active-delivery context.</li>
+              <li><strong>Common failure:</strong> no observed offers listed; run <code>Rescan</code> or load the correct Base Save.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Step 3 - Freight Combos</strong></p>
+            <ol>
+              <li>Review Freight combo options for cargo + trailer compatibility.</li>
+              <li>Keep current combo when it already matches your target operation.</li>
+              <li>Apply a Freight combo preset only when you need a controlled override.</li>
+            </ol>
+            <ul>
+              <li><strong>Validate:</strong> selected combo is coherent with offer template and route target.</li>
+              <li><strong>Common failure:</strong> applying incompatible combo preset; return to observed-compatible combo.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Step 4 - Route Action</strong></p>
+            <ol>
+              <li>Choose destination city and destination company for retarget.</li>
+              <li>Apply route values.</li>
+              <li>If <code>scan_required</code> appears after changes/import, run <code>Rescan</code> and reapply.</li>
+            </ol>
+            <ul>
+              <li><strong>Validate:</strong> proposed destination reflects the intended freight market change.</li>
+              <li><strong>Common failure:</strong> route mismatch after import; reopen Offer flow and apply route again.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Step 5 - Clone Preview</strong></p>
+            <ol>
+              <li>Open <code>Clone Preview</code>.</li>
+              <li>Compare current-in-save summary vs selected-for-clone summary.</li>
+              <li>Confirm route before/after text matches your offer retarget decision.</li>
+            </ol>
+            <ul>
+              <li><strong>Validate:</strong> preview shows Freight offer retarget, not active-delivery redirect.</li>
+              <li><strong>Common failure:</strong> divergence warning ignored; stop and correct route/context before cloning.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Step 6 - Result</strong></p>
+            <ol>
+              <li>Create clone.</li>
+              <li>Read result message and confirm successful clone creation in new slot.</li>
+              <li>Open the cloned slot in-game for final operation validation.</li>
+              <li>Go to Freight Market and verify the expected offer route/origin/destination appears according to your retarget settings.</li>
+            </ol>
+            <ul>
+              <li><strong>Validate:</strong> new slot exists and Base Save remains unchanged.</li>
+              <li><strong>Validate:</strong> market content reflects the offer retarget in the cloned slot.</li>
+              <li><strong>Common failure:</strong> expecting Base Save overwrite; this flow always writes to a clone slot.</li>
+            </ul>
+          </div>
+          <div class="callout"><strong>Expected outcome:</strong> new cloned slot with offer retarget applied; original Base Save remains untouched.</div>
+        </section>
+
+        <section id="dispatch-active" class="section">
+          <h2>Dispatch Active flow</h2>
+          <p>Dispatch Active redirects a delivery already in progress. It only works when Base Save already contains active-delivery context with current cargo and trailer.</p>
+          <div class="path-list">
+            <p><strong>Step 1 - Base Save</strong></p>
+            <ol>
+              <li>Select Base Save in <code>Economy &gt; Custom Delivery</code>.</li>
+              <li>Confirm this save has an active delivery in progress at save time.</li>
+              <li>Run <code>Rescan</code> when requested by flow status.</li>
+            </ol>
+            <ul>
+              <li><strong>Validate:</strong> Base Save stage is unlocked and Active context is available.</li>
+              <li><strong>Common failure:</strong> save has no active job; load a save with active cargo + trailer or switch to Offer flow.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Step 2 - Context</strong></p>
+            <ol>
+              <li>Open <code>Dispatch Active</code> flow.</li>
+              <li>Read active context summary (current route/cargo/trailer context).</li>
+              <li>Confirm context belongs to the delivery you intend to redirect.</li>
+            </ol>
+            <ul>
+              <li><strong>Validate:</strong> active context is loaded and coherent before any route change.</li>
+              <li><strong>Common failure:</strong> stale or wrong active context; change Base Save and rescan.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Step 3 - Cargo Combos</strong></p>
+            <ol>
+              <li>Review Cargo combo compatibility summary for active delivery payload + trailer.</li>
+              <li>Keep current active combo when no override is required.</li>
+              <li>Apply compatible Cargo combo preset only when operation requires it.</li>
+            </ol>
+            <ul>
+              <li><strong>Validate:</strong> combo remains valid for active delivery redirect.</li>
+              <li><strong>Common failure:</strong> forcing invalid combo override; revert to compatible/current combo.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Step 4 - Route Action</strong></p>
+            <ol>
+              <li>Select destination city and destination company for the in-progress delivery redirect.</li>
+              <li>Apply active route values.</li>
+              <li>If <code>scan_required</code> appears, run <code>Rescan</code> and apply again.</li>
+            </ol>
+            <ul>
+              <li><strong>Validate:</strong> route action reflects active-delivery redirect behavior.</li>
+              <li><strong>Common failure:</strong> trying to use this step as offer-market edit; use Dispatch Offer for that case.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Step 5 - Clone Preview</strong></p>
+            <ol>
+              <li>Open <code>Clone Preview</code>.</li>
+              <li>Compare current-in-save vs selected-for-clone summaries.</li>
+              <li>Validate active route before/after summary lines.</li>
+            </ol>
+            <ul>
+              <li><strong>Validate:</strong> preview shows active-delivery redirect, not Freight offer retarget.</li>
+              <li><strong>Common failure:</strong> proceeding with unresolved warning text; fix context/route first.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Step 6 - Result</strong></p>
+            <ol>
+              <li>Create clone.</li>
+              <li>Confirm Result indicates successful clone creation.</li>
+              <li>Open cloned slot in-game to validate redirected active delivery behavior.</li>
+            </ol>
+            <ul>
+              <li><strong>Validate:</strong> new slot exists and Base Save remains unchanged.</li>
+              <li><strong>Common failure:</strong> interpreting expected block as bug when no active delivery exists in Base Save.</li>
+            </ul>
+          </div>
+          <div class="callout"><strong>Blocking rule:</strong> if no active delivery exists, execution is expected to block; switch to Dispatch Offer or load a valid active-delivery Base Save.</div>
+        </section>
+
+        <section id="active-cargo-presets" class="section">
+          <h2>Dispatch Active cargo presets guide</h2>
+          <p>Use this guide when you cannot find the expected cargo preset, cannot apply it, or the applied cargo is not visible in-game.</p>
+          <div class="path-list">
+            <p><strong>Why a cargo preset may not be visible</strong></p>
+            <ol>
+              <li>Confirm <code>Dispatch Active</code> context is loaded from a Base Save with active cargo + trailer in progress.</li>
+              <li>Check <code>Flow Status</code> and run <code>Rescan</code> if <code>scan_required</code> is present.</li>
+              <li>Review compatibility summary counts (compatible templates/presets may be lower than total saved presets).</li>
+              <li>If <code>Keep current active cargo and continue</code> is enabled, disable it to reveal cargo selection list and apply actions.</li>
+            </ol>
+          </div>
+          <div class="path-list">
+            <p><strong>Cargo color legend and priority</strong></p>
+            <ul>
+              <li><strong>Green:</strong> same trailer family (highest confidence).</li>
+              <li><strong>Blue:</strong> cross-family overlap observed in save data (medium confidence).</li>
+              <li><strong>Yellow:</strong> heuristic compatible (fallback confidence).</li>
+            </ul>
+            <p><strong>Operator order:</strong> prefer Green first, then Blue, then Yellow only when required.</p>
+          </div>
+          <div class="path-list">
+            <p><strong>Cargo Visual Policy (invisible cargo prevention)</strong></p>
+            <ol>
+              <li><strong>Safe (Recommended):</strong> applies only visual-ready presets; blocks missing visual metadata.</li>
+              <li><strong>Flexible (May break visuals):</strong> allows derived fallback when metadata is incomplete.</li>
+              <li><strong>Balanced:</strong> tries Flexible first, then retries with Safe if write fails.</li>
+            </ol>
+            <p><strong>Operational rule:</strong> use Safe for regular operations. Use Flexible only for controlled testing.</p>
+          </div>
+          <div class="path-list">
+            <p><strong>Quick recovery checklist</strong></p>
+            <ol>
+              <li>Run <code>Rescan</code> and re-open Dispatch Active.</li>
+              <li>Verify active delivery context still matches the intended job.</li>
+              <li>Switch policy to <code>Safe</code> and apply a Green candidate first.</li>
+              <li>If still blocked, test one Blue candidate and validate in clone slot result.</li>
+              <li>If visuals fail after apply, revert to previous stable preset and retry with Safe-only candidates.</li>
+            </ol>
+          </div>
+        </section>
+
+        <section id="anti-patterns" class="section">
+          <h2>Operator anti-patterns</h2>
+          <ul>
+            <li>Starting <code>Dispatch Active</code> without an active delivery in progress (cargo + trailer) in Base Save.</li>
+            <li>Using <code>Dispatch Active</code> to change Freight Market offers instead of using <code>Dispatch Offer</code>.</li>
+            <li>Ignoring <code>scan_required</code> and trying to clone without <code>Rescan</code>.</li>
+            <li>Running Custom Jobs with cloud-synced profile context instead of offline profile context.</li>
+            <li>Expecting Base Save to change directly after clone execution.</li>
+          </ul>
+        </section>
+
+        <section id="simduty-loads" class="section">
+          <h2>SimDuty Loads workflow</h2>
+          <p>SimDuty Loads is the collaboration layer for learning, sharing, importing, and auditing Offer/Active route context.</p>
+          <div class="path-list">
+            <p><strong>Operator quick-start (5 steps)</strong></p>
+            <ol>
+              <li>Open <code>Learning Preview</code>, select source saves, run preview, then click <code>Apply Learning</code>.</li>
+              <li>Open <code>Learned Data</code> and confirm entries match your current profile context.</li>
+              <li>Open <code>Share with Team</code> and use <code>cargo + trailer</code> as default handoff intent.</li>
+              <li>Open <code>Import from Discord</code>, validate preview context, then route to the matching Offer/Active flow.</li>
+              <li>Open <code>Share and Import Audit</code> to verify traceability; if <code>scan_required</code> appears, run <code>Rescan</code> before Clone Preview expectations.</li>
+            </ol>
+          </div>
+          <div class="path-list">
+            <p><strong>Step 1 - Learning Preview and Apply Learning</strong></p>
+            <ol>
+              <li>Open <code>Learning Preview</code> in SimDuty Loads.</li>
+              <li>Select source saves for learning.</li>
+              <li>Run preview and review coverage of learned Offer/Active data.</li>
+              <li>Click <code>Apply Learning</code> to persist reusable knowledge.</li>
+            </ol>
+            <ul>
+              <li><strong>Validate:</strong> preview and apply results show learned data counts without errors.</li>
+              <li><strong>Common failure:</strong> weak or empty learned output; recheck save selection and rerun preview.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Step 2 - Review Learned Data quality</strong></p>
+            <ol>
+              <li>Open <code>Learned Data</code> in SimDuty Loads.</li>
+              <li>Open learned sections for Offer and Active.</li>
+              <li>Verify combos/placements match expected cargo and trailer context.</li>
+              <li>Prefer stable candidates before publishing to team workflow.</li>
+            </ol>
+            <ul>
+              <li><strong>Validate:</strong> learned entries are coherent for the active ATS/ETS2 profile context.</li>
+              <li><strong>Common failure:</strong> mixing incompatible profile context; regenerate learning from the correct profile/save set.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Step 3 - Share intent selection</strong></p>
+            <ol>
+              <li>Open <code>Share with Team</code>.</li>
+              <li>Use <code>cargo + trailer</code> as default team handoff intent.</li>
+              <li>Use <code>route only</code> when destination guidance is needed without full combo payload.</li>
+              <li>Use <code>full bundle</code> for advanced team sync and audit-heavy operations (available directly in the current UI).</li>
+            </ol>
+            <ul>
+              <li><strong>Validate:</strong> selected intent matches operational goal before publish.</li>
+              <li><strong>Common failure:</strong> wrong intent for scenario; republish with the correct intent and verify audit status.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Step 4 - Import flow</strong></p>
+            <ol>
+              <li>Open <code>Import from Discord</code>.</li>
+              <li>Import using deep-link, Discord message/link, or JSON payload.</li>
+              <li>Review import preview (type/scope/context) before confirming.</li>
+              <li>Confirm import only when save context is valid for the payload type (SimDuty selected save slot or loaded Base Save, depending on type).</li>
+              <li>After import, continue in the correct flow (Dispatch Offer or Dispatch Active).</li>
+              <li>If flow indicates <code>scan_required</code>, run <code>Rescan</code> before expecting clone-ready state.</li>
+            </ol>
+            <ul>
+              <li><strong>Validate:</strong> import context maps to the intended Offer/Active flow and clone stages.</li>
+              <li><strong>Validate:</strong> import confirmation button is enabled before proceeding.</li>
+              <li><strong>Common failure:</strong> importing Active context without active-delivery Base Save; switch save or use Offer as appropriate.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Step 5 - Audit and traceability</strong></p>
+            <ol>
+              <li>Open <code>Share and Import Audit</code> after each publish/import operation.</li>
+              <li>Use audit filters (All / Publish / Import / Fail) to isolate the event type you need.</li>
+              <li>Check direction, status, source, and retry/latency details.</li>
+              <li>Use latest audit event as first evidence for troubleshooting.</li>
+            </ol>
+            <ul>
+              <li><strong>Validate:</strong> every critical share/import action has a traceable audit record.</li>
+              <li><strong>Validate:</strong> each event card shows summary plus detail text.</li>
+              <li><strong>Common failure:</strong> no clear traceability; rerun action with stable context and capture audit output.</li>
+            </ul>
+          </div>
+          <div class="callout"><strong>Operational rule:</strong> SimDuty Loads prepares and distributes context, but final safety validation happens in Offer/Active Route Action and Clone Preview.</div>
+        </section>
+
+        <section id="references" class="section">
+          <h2>Path and reference</h2>
+          <div class="path-list">
+            <p><strong>Main paths:</strong></p>
+            <ul>
+              <li><code>Economy &gt; Custom Delivery</code></li>
+              <li><code>Custom Delivery &gt; Dispatch Offer</code></li>
+              <li><code>Custom Delivery &gt; Dispatch Active</code></li>
+              <li><code>Custom Delivery &gt; SimDuty Loads</code></li>
+              <li><code>SimDuty Loads &gt; Share with Team</code></li>
+              <li><code>SimDuty Loads &gt; Import from Discord</code></li>
+              <li><code>SimDuty Loads &gt; Share and Import Audit</code></li>
+              <li><code>SimDuty Loads &gt; Learning Preview</code></li>
+              <li><code>SimDuty Loads &gt; Learned Data</code></li>
+              <li><code>Custom Delivery &gt; Flow Status</code></li>
+              <li><code>Custom Delivery &gt; Rescan</code></li>
+              <li><code>Custom Delivery &gt; Clone Preview</code></li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Related Dispatch actions:</strong></p>
+            <ul>
+              <li><code>Open Dispatch Offer</code></li>
+              <li><code>Open Dispatch Active</code></li>
+              <li><code>Select Base Save</code></li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="checkpoint" class="section">
+          <h2>Validation checkpoint</h2>
+          <ul>
+            <li>Flow selection matches context (Offer without active delivery, Active with active delivery).</li>
+            <li>Base Save is selected and recognized before route actions.</li>
+            <li><code>scan_required</code> is resolved with Rescan before apply/clone.</li>
+            <li>Clone preview reflects expected route/action context.</li>
+            <li>Execution produces a new slot and keeps Base Save intact.</li>
+            <li>SimDuty Loads share/import actions produce traceable audit records.</li>
+            <li>Selected share intent matches operational goal (cargo + trailer, route only, or full bundle).</li>
+            <li>Imported payload context matches the selected Offer/Active flow before clone execution.</li>
+            <li>Import confirmation is enabled only after valid save context is present for the payload type.</li>
+            <li>All SimDuty Loads sections are validated in sequence: <code>Learning Preview</code>, <code>Learned Data</code>, <code>Share with Team</code>, <code>Import from Discord</code>, and <code>Share and Import Audit</code>.</li>
+          </ul>
+        </section>
+
+        <section id="support" class="section">
+          <h2>Quick support</h2>
+          <div class="path-list">
+            <p><strong>Symptom:</strong> Dispatch Active flow is blocked.</p>
+            <ul>
+              <li><strong>Check:</strong> whether Base Save has an in-progress active delivery with cargo + trailer context.</li>
+              <li><strong>Fix:</strong> load a valid active-delivery save or switch to Dispatch Offer path.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Symptom:</strong> Dispatch Offer opens but expected market offer is missing.</p>
+            <ul>
+              <li><strong>Check:</strong> whether observed Freight offers were loaded/scanned from the selected Base Save.</li>
+              <li><strong>Fix:</strong> run <code>Rescan</code>, then re-open Dispatch Offer and select an observed offer template.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Symptom:</strong> Offer clone succeeds but expected offer is not visible in Freight Market.</p>
+            <ul>
+              <li><strong>Check:</strong> whether the exact cloned slot is loaded and whether an owned trailer is filtering/hiding Freight offers.</li>
+              <li><strong>Fix:</strong> load the cloned slot, detach owned trailer when testing Freight Market visibility, reopen market, and filter by expected origin/destination.</li>
+              <li><strong>Fix:</strong> if still missing, confirm Base Save slot was valid (numeric folder with <code>game.sii</code>) and rerun Offer flow from scan stage.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Symptom:</strong> expected cargo preset is not visible in Dispatch Active.</p>
+            <ul>
+              <li><strong>Check:</strong> compatibility summary counts, active trailer context, and whether <code>Keep current active cargo and continue</code> is enabled.</li>
+              <li><strong>Fix:</strong> disable keep-current mode, run <code>Rescan</code>, and choose a compatible candidate by color priority (Green -> Blue -> Yellow).</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Symptom:</strong> cargo preset applies but cargo visuals look broken or invisible.</p>
+            <ul>
+              <li><strong>Check:</strong> active <code>Cargo Visual Policy</code> and candidate compatibility tier.</li>
+              <li><strong>Fix:</strong> switch to <code>Safe (Recommended)</code>, reapply a Green visual-ready preset, and validate result in clone slot.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Symptom:</strong> team received share but cannot reuse it correctly.</p>
+            <ul>
+              <li><strong>Check:</strong> share intent type and whether payload context matches Offer/Active target flow.</li>
+              <li><strong>Fix:</strong> republish from <code>Share with Team</code> using the correct intent (<code>cargo + trailer</code> by default), then confirm success in <code>Share and Import Audit</code>.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Symptom:</strong> import succeeds but clone stages do not become ready.</p>
+            <ul>
+              <li><strong>Check:</strong> Flow Status for <code>scan_required</code> and Base Save context alignment.</li>
+              <li><strong>Fix:</strong> run <code>Rescan</code>, reopen target flow, and revalidate route/context before Clone Preview.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Symptom:</strong> import preview is shown, but <code>Import now</code> stays disabled.</p>
+            <ul>
+              <li><strong>Check:</strong> whether payload type requires save context and whether a SimDuty selected save slot or Base Save is currently loaded.</li>
+              <li><strong>Fix:</strong> select a valid save context, then reopen <code>Import from Discord</code> confirmation and proceed.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Symptom:</strong> audit shows failed publish/import.</p>
+            <ul>
+              <li><strong>Check:</strong> latest <code>Share and Import Audit</code> detail (direction, source, retry status, reason text).</li>
+              <li><strong>Fix:</strong> correct failing context/input, rerun once, and confirm a successful event in audit.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Symptom:</strong> clone action is disabled after selecting values.</p>
+            <ul>
+              <li><strong>Check:</strong> Flow Status for <code>scan_required</code> or incomplete context.</li>
+              <li><strong>Fix:</strong> run <code>Rescan</code>, reapply values, then reopen clone preview.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Symptom:</strong> import appears successful but values are not applicable.</p>
+            <ul>
+              <li><strong>Check:</strong> imported intent/type versus selected Offer/Active flow.</li>
+              <li><strong>Fix:</strong> re-open with matching flow mode and confirm import context before apply.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Symptom:</strong> team cannot reuse shared data.</p>
+            <ul>
+              <li><strong>Check:</strong> share intent (combo/route/bundle) and payload quality.</li>
+              <li><strong>Fix:</strong> preview learned data first, then share the appropriate artifact and verify audit status.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="faq" class="section">
+          <h2>FAQ</h2>
+          <ul>
+            <li><strong>Can Custom Delivery overwrite my Base Save?</strong> No. Execution creates a clone in a new slot; Base Save is preserved.</li>
+            <li><strong>Why does Dispatch Active block sometimes?</strong> It needs active delivery context in the loaded Base Save. Without it, the flow is intentionally blocked.</li>
+            <li><strong>What is the core difference between Offer and Active?</strong> Dispatch Offer edits observed Freight Market offers; Dispatch Active redirects a delivery already in progress.</li>
+            <li><strong>What do cargo preset colors mean?</strong> Green means same trailer family, Blue means observed cross-family overlap, Yellow means heuristic compatibility fallback.</li>
+            <li><strong>How do I avoid invisible cargo after preset apply?</strong> Keep Cargo Visual Policy on <code>Safe (Recommended)</code> for normal operations and prioritize Green candidates.</li>
+            <li><strong>Which share intent should I use first?</strong> Use <code>cargo + trailer</code> as default. Use <code>route only</code> or <code>full bundle</code> for specific advanced scenarios.</li>
+            <li><strong>Is full bundle behind an advanced mode?</strong> No. In the current UI, it is directly available when learned-data share conditions are met.</li>
+            <li><strong>Why can import look successful but still require action?</strong> Import may still require <code>Rescan</code> and context validation before clone stages become ready.</li>
+            <li><strong>Why is Import now disabled in confirmation?</strong> Some payload types require valid save context first (selected SimDuty save slot or loaded Base Save).</li>
+            <li><strong>How do I verify share/import actually completed?</strong> Use <code>Share and Import Audit</code> and confirm a successful event with the expected direction and source.</li>
+            <li><strong>When should I run Rescan?</strong> Run it whenever Flow Status indicates <code>scan_required</code> or after context/import changes.</li>
+            <li><strong>Is SimDuty Loads required for every clone?</strong> No. Use it when you need learning/share/import collaboration or audit traceability.</li>
+          </ul>
+        </section>
+      </div>
+    </div>
+
+    <nav class="page-nav" aria-label="Page navigation">
+      <a href="dispatch.html">Previous page</a>
+      <a href="setup.html">Next page</a>
+    </nav>
+
+    <footer class="wiki-footer">
+      <span>Last updated: May 2026</span>
+      <span><a href="https://discord.gg/NATM3BEzbe" target="_blank" rel="noopener">Join Discord Support</a></span>
+    </footer>
+  </main>
+</body>
+
+</html>

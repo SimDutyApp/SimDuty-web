@@ -214,6 +214,8 @@
             <li>Adjust <code>Yard Move speed limit</code> and <code>Yard Move auto disable</code> if required.</li>
           </ol>
           <div class="callout">Select the profile root location used by your game installation. Do not point to random subfolders that do not contain active save data.</div>
+          <div class="callout"><strong>Critical prerequisite:</strong> Custom Jobs requires an offline profile (Steam Cloud disabled). Complete <a href="offline-save.html">Offline Save Setup (ATS/ETS2)</a> and then set these roots to the local Documents profile path.</div>
+          <div class="callout"><strong>Base Save selection:</strong> after setting roots, choose a numeric save slot folder that contains <code>game.sii</code>. Use the step guide in <a href="econ.html#base-save-selection">Economy - How to choose Base Save</a>.</div>
         </section>
 
         <section id="appearance" class="section">
@@ -279,7 +281,8 @@
           <ul>
             <li>If a feature appears missing, check App Edition first (Lite hides non-HOS modules by design).</li>
             <li>If navigation looks incomplete on small screens, check layout mode and open the <code>More</code> menu.</li>
-            <li>If Custom Jobs or active delivery data does not update, re-check ATS/ETS2 root paths and click <code>Save changes</code>.</li>
+            <li>If Custom Jobs or active-delivery data does not update, re-check ATS/ETS2 root paths and click <code>Save changes</code>.</li>
+            <li>If Custom Jobs still fails after path check, verify profile cloud sync is disabled using <a href="offline-save.html">Offline Save Setup</a>.</li>
             <li>If HOS metrics look inconsistent, verify <code>HOS policy mode</code> and the current active policy first.</li>
             <li>If you recently switched Auto/Manual, save settings, restart SimDuty, and re-validate limits on Home/HOS.</li>
             <li>If overlays do not stay visible, switch the game to borderless mode and verify topmost options.</li>
@@ -291,7 +294,7 @@
     </div>
 
     <nav class="page-nav" aria-label="Page navigation">
-      <a href="dispatch.html">Previous page</a>
+      <a href="econ.html">Previous page</a>
       <a href="dvir.html">Next page</a>
     </nav>
 

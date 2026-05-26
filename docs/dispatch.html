@@ -108,7 +108,7 @@
       </div>
       <nav class="docs-links" aria-label="Docs navigation">
         <a href="index.html">Wiki</a>
-        <a href="setup.html">Next: Setup</a>
+        <a href="econ.html">Next: Economy</a>
       </nav>
     </header>
 
@@ -262,6 +262,14 @@
             </ul>
           </div>
           <div class="path-list">
+            <p><strong>Central Dispatch Custom Jobs CTA</strong></p>
+            <ul>
+              <li><strong>Preferred actions:</strong> follow CTA button intent exactly: <code>Open Dispatch Offer</code> for Freight Market offer retarget, <code>Open Dispatch Active</code> for in-progress active delivery redirect.</li>
+              <li><strong>Expected result:</strong> user lands in the correct Custom Delivery flow with lower context mismatch risk.</li>
+              <li><strong>Flow guidance:</strong> see <a href="econ.html#dispatch-offer">Dispatch Offer checklist</a>, <a href="econ.html#dispatch-active">Dispatch Active checklist</a>, and <a href="econ.html#active-cargo-presets">Active cargo preset visibility and color guide</a>.</li>
+            </ul>
+          </div>
+          <div class="path-list">
             <p><strong>Compliance or Vehicle DVIR request</strong></p>
             <ul>
               <li><strong>Preferred action:</strong> <code>Start DVIR</code> immediately when safe.</li>
@@ -301,6 +309,8 @@
               <li><code>Dispatch &gt; Sending your message</code> (quick replies / HOS extension)</li>
               <li><code>Dispatch &gt; Compliance summary card</code></li>
               <li><code>Dispatch &gt; Finance summary card</code></li>
+              <li><code>Economy &gt; Custom Delivery &gt; Dispatch Offer</code> (via CTA handoff)</li>
+              <li><code>Economy &gt; Custom Delivery &gt; Dispatch Active</code> (via CTA handoff)</li>
             </ul>
           </div>
         </section>
@@ -341,6 +351,13 @@
             </ul>
           </div>
           <div class="path-list">
+            <p><strong>Symptom:</strong> Dispatch Active opens but cargo preset choices are missing or unclear.</p>
+            <ul>
+              <li><strong>Check:</strong> active delivery context, Base Save status, and cargo compatibility filters.</li>
+              <li><strong>Fix:</strong> follow the dedicated guide at <a href="econ.html#active-cargo-presets">Economy Custom Delivery - Active cargo presets</a> for color tiers, visibility rules, and recovery checklist.</li>
+            </ul>
+          </div>
+          <div class="path-list">
             <p><strong>Symptom:</strong> mobile chat feels stuck on one view.</p>
             <ul>
               <li><strong>Check:</strong> persona menu state and current grid/chat toggle action.</li>
@@ -356,6 +373,7 @@
             <li><strong>Which persona should be checked first in a normal shift?</strong> Start from the first relevant thread in roster order (Friend, Central, Compliance, Insurance, Finance), then prioritize Central/Compliance if there is active operational risk.</li>
             <li><strong>When should I use quick replies?</strong> Use quick replies for concise acknowledgments after processing required operational actions.</li>
             <li><strong>Can Friend messages replace operational updates?</strong> No. Friend messages are roleplay-oriented and do not replace compliance or safety workflows.</li>
+            <li><strong>Where do I check missing Active cargo preset options?</strong> Open <a href="econ.html#active-cargo-presets">Economy Custom Delivery - Active cargo presets guide</a> and follow the visibility and color-tier checklist.</li>
           </ul>
         </section>
       </div>
@@ -363,7 +381,7 @@
 
     <nav class="page-nav" aria-label="Page navigation">
       <a href="compliance.html">Previous page</a>
-      <a href="setup.html">Next page</a>
+      <a href="econ.html">Next page</a>
     </nav>
 
     <footer class="wiki-footer">

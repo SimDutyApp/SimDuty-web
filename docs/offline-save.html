@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SimDuty Docs | Offline Save Setup</title>
+  <meta name="description" content="Set ATS/ETS2 profile saves to local offline mode before using SimDuty Custom Jobs flows.">
+  <meta name="author" content="SimDuty Project">
+  <link rel="canonical" href="https://simduty.com/docs/offline-save.html">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://simduty.com/docs/offline-save.html">
+  <meta property="og:title" content="SimDuty Docs | Offline Save Setup">
+  <meta property="og:description" content="Set ATS/ETS2 profile saves to local offline mode before using SimDuty Custom Jobs flows.">
+  <meta property="og:image" content="https://simduty.com/assets/imgs/simduty-home-tablet.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SimDuty Docs | Offline Save Setup">
+  <meta name="twitter:description" content="Set ATS/ETS2 profile saves to local offline mode before using SimDuty Custom Jobs flows.">
+  <meta name="twitter:image" content="https://simduty.com/assets/imgs/simduty-home-tablet.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to set ATS/ETS2 profile to offline save",
+    "description": "Disable Steam Cloud sync for the profile and validate local profiles folder before using Custom Jobs.",
+    "totalTime": "PT4M",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "name": "Open profile selection",
+        "text": "In ATS or ETS2, open career/profile selection from the main menu."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Edit the target profile",
+        "text": "Select the profile you use with SimDuty, then click Edit Profile."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Disable Steam Cloud sync",
+        "text": "Set profile cloud synchronization to disabled and confirm changes."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Validate local profiles folder",
+        "text": "Open Documents ATS/ETS2 profiles folder and confirm there is an alphanumeric profile folder."
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="docs.css">
+</head>
+
+<body>
+  <main class="docs-shell">
+    <header class="docs-topbar">
+      <div>
+        <h1 class="docs-title">Offline Save Setup (ATS/ETS2)</h1>
+        <p class="docs-subtitle">Disable profile cloud sync and validate local profile folders before using Custom Jobs.</p>
+      </div>
+      <nav class="docs-links" aria-label="Docs navigation">
+        <a href="index.html">Wiki</a>
+        <a href="econ.html">Custom Jobs</a>
+      </nav>
+    </header>
+
+    <div class="doc-layout">
+      <aside class="doc-sidebar" aria-label="On this page">
+        <h3>On this page</h3>
+        <a href="#overview">Overview</a>
+        <a href="#step-1">Step 1 - Profile selection</a>
+        <a href="#step-2">Step 2 - Edit profile</a>
+        <a href="#step-3">Step 3 - Disable Steam Cloud</a>
+        <a href="#step-4">Step 4 - Validate profiles folder</a>
+        <a href="#references">Path and reference</a>
+        <a href="#checkpoint">Validation checkpoint</a>
+        <a href="#support">Quick support</a>
+        <a href="#faq">FAQ</a>
+      </aside>
+
+      <div class="doc-content">
+        <section id="overview" class="section section-step">
+          <h2>Overview</h2>
+          <p>This is the primary prerequisite for SimDuty Custom Jobs (Dispatch Offer, Dispatch Active, and SimDuty Loads).</p>
+          <p>If Steam Cloud remains active on the profile, Custom Jobs may read inconsistent profile state and route context.</p>
+          <div class="quick-facts">
+            <span>Estimated time: 4 minutes</span>
+            <span>Result: local offline profile ready</span>
+            <span>Required before: Economy &gt; Custom Delivery</span>
+          </div>
+          <div class="impact-matrix" aria-label="Offline save impact matrix">
+            <div class="impact-row"><span class="impact-tag">Required</span><p>Use a profile with Steam Cloud sync disabled.</p></div>
+            <div class="impact-row"><span class="impact-tag">Required</span><p>Validate local <code>profiles</code> folder in Documents.</p></div>
+            <div class="impact-row"><span class="impact-tag">Required</span><p>Point SimDuty Custom Delivery root to local profile path.</p></div>
+            <div class="impact-row"><span class="impact-tag">Recommended</span><p>Keep one dedicated offline profile for Custom Jobs operations.</p></div>
+          </div>
+          <div class="callout"><strong>Custom Jobs requirement:</strong> complete this guide before running Dispatch Offer or Dispatch Active clone workflows.</div>
+        </section>
+
+        <section id="step-1" class="section section-step">
+          <h2>Step 1: Open profile selection</h2>
+          <ol>
+            <li>Open ATS or ETS2.</li>
+            <li>From main menu, open the profile/career selection screen.</li>
+            <li>Confirm the target profile is visible in the profile list.</li>
+          </ol>
+          <figure class="doc-image">
+            <div class="img-frame ratio-16x10 img-contain">
+              <img src="../assets/imgs/docs/docs-custom-jobs-screenprofile-1.png" alt="ATS main menu with profile access path highlighted">
+            </div>
+            <figcaption>Start from the main menu and open the career/profile selection screen.</figcaption>
+          </figure>
+        </section>
+
+        <section id="step-2" class="section section-step">
+          <h2>Step 2: Select profile and open Edit</h2>
+          <ol>
+            <li>Select the profile you will use with SimDuty.</li>
+            <li>Click <code>Edit Profile</code> (or equivalent label in your game language).</li>
+            <li>Open the profile connectivity options area.</li>
+          </ol>
+          <figure class="doc-image">
+            <div class="img-frame ratio-16x10 img-contain">
+              <img src="../assets/imgs/docs/docs-custom-jobs-screenprofile-2.png" alt="Profile selection screen with Edit Profile button">
+            </div>
+            <figcaption>Select the profile used by SimDuty, then click Edit Profile.</figcaption>
+          </figure>
+        </section>
+
+        <section id="step-3" class="section section-step">
+          <h2>Step 3: Disable Steam Cloud synchronization</h2>
+          <ol>
+            <li>In profile edit screen, find cloud sync or World of Trucks connectivity row.</li>
+            <li>Set Steam Cloud sync to <code>Disabled</code>.</li>
+            <li>Confirm and save profile changes.</li>
+            <li>Return to profile summary and verify sync status remains disabled.</li>
+          </ol>
+          <div class="callout"><strong>Expected state:</strong> profile shows cloud synchronization disabled before launch.</div>
+          <figure class="doc-image">
+            <div class="img-frame ratio-16x10 img-contain">
+              <img src="../assets/imgs/docs/docs-custom-jobs-screenprofile-3.png" alt="Edit profile screen showing Steam Cloud synchronization disabled">
+            </div>
+            <figcaption>Disable Steam Cloud sync in profile settings and confirm the change.</figcaption>
+          </figure>
+        </section>
+
+        <section id="step-4" class="section section-step">
+          <h2>Step 4: Validate local profiles folder</h2>
+          <ol>
+            <li>Close the game or keep it in menu.</li>
+            <li>Open Windows Explorer and go to the game Documents folder.</li>
+            <li>Open the <code>profiles</code> folder.</li>
+            <li>Confirm at least one folder exists with letters/numbers (profile ID format).</li>
+          </ol>
+          <div class="path-list">
+            <p><strong>Windows local paths:</strong></p>
+            <ul>
+              <li>ETS2: <code>%USERPROFILE%\Documents\Euro Truck Simulator 2\profiles\</code></li>
+              <li>ATS: <code>%USERPROFILE%\Documents\American Truck Simulator\profiles\</code></li>
+            </ul>
+          </div>
+          <figure class="doc-image">
+            <div class="img-frame ratio-16x10 img-contain">
+              <img src="../assets/imgs/docs/docs-custom-jobs-screenprofile-4.png" alt="Windows Explorer showing ATS or ETS2 profiles folder with alphanumeric profile directory">
+            </div>
+            <figcaption>Validate that profiles contains at least one alphanumeric profile ID folder.</figcaption>
+          </figure>
+        </section>
+
+        <section id="references" class="section">
+          <h2>Path and reference</h2>
+          <div class="path-list">
+            <p><strong>SimDuty side:</strong></p>
+            <ul>
+              <li><code>Setup &gt; Custom Delivery &gt; ATS profiles folder</code></li>
+              <li><code>Setup &gt; Custom Delivery &gt; ETS2 profiles folder</code></li>
+              <li><code>Economy &gt; Custom Delivery</code> (Dispatch Offer / Dispatch Active)</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Reference note:</strong></p>
+            <ul>
+              <li>PCGamingWiki documents local save locations and Steam Cloud support for ETS2/ATS.</li>
+              <li>Steam Cloud may also mirror files under Steam userdata app IDs: ETS2 <code>227300</code>, ATS <code>270880</code>.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="checkpoint" class="section">
+          <h2>Validation checkpoint</h2>
+          <ul>
+            <li>Profile opens in ATS/ETS2 with cloud sync disabled.</li>
+            <li>Local Documents path contains <code>profiles</code> folder.</li>
+            <li><code>profiles</code> contains at least one alphanumeric profile folder.</li>
+            <li>Selected save slot is a numeric folder under <code>save</code> that contains <code>game.sii</code>.</li>
+            <li>SimDuty Custom Delivery root points to this local profile path.</li>
+            <li>Custom Jobs flows open without profile context mismatch warnings.</li>
+          </ul>
+          <div class="callout"><strong>Next step:</strong> follow <a href="econ.html#base-save-selection">How to choose Base Save</a> before running Dispatch Offer or Dispatch Active.</div>
+        </section>
+
+        <section id="support" class="section">
+          <h2>Quick support</h2>
+          <div class="path-list">
+            <p><strong>Symptom:</strong> Custom Jobs cannot detect expected profile data.</p>
+            <ul>
+              <li><strong>Check:</strong> profile cloud sync state and selected root path in Setup.</li>
+              <li><strong>Fix:</strong> disable cloud sync, reopen game profile, and reselect local Documents path in SimDuty.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Symptom:</strong> <code>profiles</code> folder is empty or missing.</p>
+            <ul>
+              <li><strong>Check:</strong> whether you opened ATS path while using ETS2 (or vice versa).</li>
+              <li><strong>Fix:</strong> launch the correct game profile once, then re-check matching Documents folder.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Symptom:</strong> path points to cloud-mirrored location.</p>
+            <ul>
+              <li><strong>Check:</strong> OneDrive redirect of Documents folder and Steam userdata overlap.</li>
+              <li><strong>Fix:</strong> point SimDuty to the actual active local profile root and keep one offline profile for operations.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="faq" class="section">
+          <h2>FAQ</h2>
+          <ul>
+            <li><strong>Do I need offline save for all SimDuty features?</strong> It is the main requirement for reliable Custom Jobs flows.</li>
+            <li><strong>Can I keep Steam Cloud on?</strong> For Custom Jobs, keep it off on the operational profile to avoid context drift.</li>
+            <li><strong>Why is the profile folder name random?</strong> ATS/ETS2 uses ID-based alphanumeric folder names for profiles.</li>
+            <li><strong>Should I use one profile for everything?</strong> Recommended: keep one dedicated offline profile for Custom Jobs stability.</li>
+          </ul>
+        </section>
+      </div>
+    </div>
+
+    <nav class="page-nav" aria-label="Page navigation">
+      <a href="first-run.html">Previous page</a>
+      <a href="econ.html">Next page</a>
+    </nav>
+
+    <footer class="wiki-footer">
+      <span>Last updated: May 2026</span>
+      <span><a href="https://discord.gg/NATM3BEzbe" target="_blank" rel="noopener">Join Discord Support</a></span>
+    </footer>
+  </main>
+</body>
+
+</html>

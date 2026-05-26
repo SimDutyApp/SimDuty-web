@@ -8,6 +8,7 @@ This roadmap defines the structure, priorities, and quality bar for the SimDuty 
 docs/
   index.html                 -> Wiki hub (published)
   first-run.html             -> First run onboarding (published)
+  offline-save.html          -> ATS/ETS2 offline profile requirement for Custom Jobs (published)
   setup.html                 -> Setup tab guide (published)
   troubleshooting.html       -> Common issues and fixes (published)
   linux-setup.html           -> Linux/Proton setup guide (published)
@@ -23,11 +24,15 @@ docs/
 
 Current live flow:
 
-`index.html -> first-run.html -> home.html -> hos.html -> compliance.html -> dispatch.html -> setup.html -> dvir.html -> troubleshooting.html -> index.html`
+`index.html -> first-run.html -> home.html -> hos.html -> compliance.html -> dispatch.html -> econ.html -> setup.html -> dvir.html -> troubleshooting.html -> index.html`
 
 Optional support path:
 
 `index.html -> linux-setup.html`
+
+Custom Jobs prerequisite path:
+
+`first-run.html -> offline-save.html -> econ.html`
 
 ## 2) Page Structure Standard
 
@@ -84,7 +89,7 @@ Deliverable: expanded operational guidance integrated into the production docs f
 
 - `docs/compliance.html` (published)
 - `docs/dispatch.html` (published)
-- `docs/econ.html`
+- `docs/econ.html` (published)
 
 Deliverable: complete operational documentation for recurring usage.
 

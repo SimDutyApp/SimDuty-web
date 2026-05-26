@@ -44,6 +44,7 @@
         <a href="#step-1">Step 1 - Download</a>
         <a href="#step-2">Step 2 - Install DLLs</a>
         <a href="#step-3">Step 3 - Validate SDK/NET</a>
+        <a href="#custom-jobs-prereq">Custom Jobs prerequisite</a>
         <a href="#linux-path">Linux (Proton) path</a>
         <a href="#checkpoint">Validation checkpoint</a>
         <a href="#support">Quick support</a>
@@ -152,6 +153,13 @@
           </div>
           <div class="callout">If SDK/NET remain yellow or blinking, close both applications, verify DLL placement, then relaunch in this order: SimDuty first, game second.</div>
           <div class="callout"><strong>Expected state:</strong> after entering cabin and moving briefly, both SDK and NET remain in OK state.</div>
+        </section>
+
+        <section id="custom-jobs-prereq" class="section">
+          <h2>Custom Jobs prerequisite (offline profile)</h2>
+          <p>Before using Dispatch Offer, Dispatch Active, or SimDuty Loads, prepare an offline save profile to avoid cloud sync context conflicts.</p>
+          <div class="callout"><strong>Required guide:</strong> complete <a href="offline-save.html">Offline Save Setup (ATS/ETS2)</a> before running Custom Jobs in Economy.</div>
+          <div class="callout"><strong>Base Save rule:</strong> when you start Custom Jobs, choose a numeric save slot folder that contains <code>game.sii</code>. Follow <a href="econ.html#base-save-selection">Economy - How to choose Base Save</a>.</div>
         </section>
 
         <section id="linux-path" class="section">

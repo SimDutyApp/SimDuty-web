@@ -27,10 +27,16 @@ Use this checklist to track documentation delivery for GitHub Pages.
 - [x] `docs/home.html` -> `docs/hos.html`
 - [x] `docs/hos.html` -> `docs/compliance.html`
 - [x] `docs/compliance.html` -> `docs/dispatch.html`
-- [x] `docs/dispatch.html` -> `docs/setup.html`
+- [x] `docs/dispatch.html` -> `docs/econ.html`
+- [x] `docs/econ.html` -> `docs/setup.html`
 - [x] `docs/setup.html` -> `docs/dvir.html`
 - [x] `docs/dvir.html` -> `docs/troubleshooting.html`
 - [x] `docs/troubleshooting.html` -> `docs/index.html`
+
+## Custom Jobs Prerequisite Flow
+
+- [x] `docs/first-run.html` -> `docs/offline-save.html`
+- [x] `docs/offline-save.html` -> `docs/econ.html`
 
 ## Phase 1.1 - Deferred for Next Session
 
@@ -44,7 +50,8 @@ Use this checklist to track documentation delivery for GitHub Pages.
 - [x] Publish `docs/compliance.html`
 - [x] Publish `docs/dispatch.html`
 - [x] Publish `docs/dvir.html`
-- [ ] Publish `docs/econ.html`
+- [x] Publish `docs/econ.html`
+- [x] Publish `docs/offline-save.html` (Custom Jobs prerequisite)
 - [ ] Verify internal links across all published pages
 
 ## Didactic Copy Pass (English)
