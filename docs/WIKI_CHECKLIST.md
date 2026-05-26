@@ -52,6 +52,7 @@ Use this checklist to track documentation delivery for GitHub Pages.
 - [x] Publish `docs/dvir.html`
 - [x] Publish `docs/econ.html`
 - [x] Publish `docs/offline-save.html` (Custom Jobs prerequisite)
+- [x] Update flow to `dispatch -> econ -> setup`
 - [ ] Verify internal links across all published pages
 
 ## Didactic Copy Pass (English)
@@ -98,6 +99,7 @@ Use this checklist to track documentation delivery for GitHub Pages.
 
 ## Phase 3 - Scale
 
+- [ ] Draft and approve `docs/faq.html` structure
 - [ ] Publish `docs/faq.html`
 - [ ] Publish `docs/changelog.html`
 - [ ] Implement client-side search

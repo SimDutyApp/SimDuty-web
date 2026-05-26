@@ -4,46 +4,46 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SimDuty Docs | Economy Custom Delivery</title>
-  <meta name="description" content="Operate Economy Custom Delivery safely with Dispatch Offer, Dispatch Active, and SimDuty Loads workflows.">
+  <title>SimDuty Docs | Economy Operations</title>
+  <meta name="description" content="Operate all Economy tabs safely: Overview, Banking, Statement, Audit, Declarations, and Custom Delivery workflows.">
   <meta name="author" content="SimDuty Project">
   <link rel="canonical" href="https://simduty.com/docs/econ.html">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://simduty.com/docs/econ.html">
-  <meta property="og:title" content="SimDuty Docs | Economy Custom Delivery">
-  <meta property="og:description" content="Operate Economy Custom Delivery safely with Dispatch Offer, Dispatch Active, and SimDuty Loads workflows.">
+  <meta property="og:title" content="SimDuty Docs | Economy Operations">
+  <meta property="og:description" content="Operate all Economy tabs safely: Overview, Banking, Statement, Audit, Declarations, and Custom Delivery workflows.">
   <meta property="og:image" content="https://simduty.com/assets/imgs/simduty-home-tablet.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="SimDuty Docs | Economy Custom Delivery">
-  <meta name="twitter:description" content="Operate Economy Custom Delivery safely with Dispatch Offer, Dispatch Active, and SimDuty Loads workflows.">
+  <meta name="twitter:title" content="SimDuty Docs | Economy Operations">
+  <meta name="twitter:description" content="Operate all Economy tabs safely: Overview, Banking, Statement, Audit, Declarations, and Custom Delivery workflows.">
   <meta name="twitter:image" content="https://simduty.com/assets/imgs/simduty-home-tablet.png">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "HowTo",
-    "name": "How to use Economy Custom Delivery",
-    "description": "Choose Dispatch Offer or Dispatch Active correctly, complete clone workflow, and use SimDuty Loads for team collaboration.",
+    "name": "How to operate Economy tab workflows",
+    "description": "Use Economy Overview, Banking, Statement, Audit, Declarations, and Custom Delivery with clear operational decision flow.",
     "totalTime": "PT10M",
     "step": [
       {
         "@type": "HowToStep",
-        "name": "Pick the correct flow",
-        "text": "Use Dispatch Offer when there is no active delivery context and Dispatch Active when a valid active delivery is already loaded in Base Save."
+        "name": "Read Economy state",
+        "text": "Start in Overview, then choose Banking, Statement, Audit, Declarations, or Custom Delivery based on your active operational goal."
       },
       {
         "@type": "HowToStep",
-        "name": "Prepare Base Save and scan",
-        "text": "Select Base Save, run Rescan when required, and validate context before applying route values."
+        "name": "Validate action gates",
+        "text": "Before executing actions, verify each section's prerequisites such as approval states, contest eligibility, telemetry availability, or base-save context."
       },
       {
         "@type": "HowToStep",
-        "name": "Apply and clone",
-        "text": "Apply route/context values and generate clone preview. Execution creates a new slot and does not overwrite Base Save."
+        "name": "Execute section workflow",
+        "text": "Apply the section checklist: simulate/start/return in Banking, filter/contest in Statement, correction in Audit, submit in Declarations, or clone in Custom Delivery."
       },
       {
         "@type": "HowToStep",
-        "name": "Use SimDuty Loads when collaborating",
-        "text": "Use SimDuty Loads to preview learned data, share valid payloads with the team, import shared context, and inspect audit history."
+        "name": "Verify result and traceability",
+        "text": "Confirm status outputs after each action, then use statement/audit/custom-delivery result surfaces to validate final operational outcome."
       }
     ]
   }
@@ -58,8 +58,8 @@
   <main class="docs-shell">
     <header class="docs-topbar">
       <div>
-        <h1 class="docs-title">Economy Custom Delivery</h1>
-        <p class="docs-subtitle">Execute dispatch route retarget flows safely with Dispatch Offer, Dispatch Active, and SimDuty Loads collaboration tools.</p>
+        <h1 class="docs-title">Economy Operations</h1>
+        <p class="docs-subtitle">Use Overview, Banking, Statement, Audit, Declarations, and Custom Delivery with clear action gates and validation checklists.</p>
       </div>
       <nav class="docs-links" aria-label="Docs navigation">
         <a href="index.html">Wiki</a>
@@ -71,7 +71,12 @@
       <aside class="doc-sidebar" aria-label="On this page">
         <h3>On this page</h3>
         <a href="#overview">Overview</a>
-        <a href="#prerequisite">Required prerequisite</a>
+        <a href="#overview-tab">Overview workflow</a>
+        <a href="#banking-tab">Banking workflow</a>
+        <a href="#statement-tab">Statement workflow</a>
+        <a href="#audit-tab">Audit workflow</a>
+        <a href="#declarations-tab">Declarations workflow</a>
+        <a href="#prerequisite">Custom Jobs prerequisite</a>
         <a href="#quick-path">Operational quick path</a>
         <a href="#base-save-selection">How to choose Base Save</a>
         <a href="#decision-rule">Decision checklist</a>
@@ -89,25 +94,102 @@
       <div class="doc-content">
         <section id="overview" class="section section-step">
           <h2>Overview</h2>
-          <p>Economy Custom Delivery is the operational bridge between dispatch requests and safe save-slot cloning.</p>
-          <p>Use this page to decide the correct flow, avoid context mismatch, and complete clone operations with predictable outcomes.</p>
+          <p>Economy is the operational finance and route-control workspace for daily simulation decisions.</p>
+          <p>Use this page as a full wiki for all Economy tabs, then apply the correct checklist for your current task.</p>
           <div class="quick-facts">
-            <span>Estimated time: 10 minutes</span>
-            <span>Result: correct flow choice and safe clone execution</span>
-            <span>Scope: Dispatch Offer, Dispatch Active, SimDuty Loads</span>
+            <span>Estimated time: 15 minutes</span>
+            <span>Result: correct tab usage with validated outcomes</span>
+            <span>Scope: Overview, Banking, Statement, Audit, Declarations, Custom Delivery</span>
           </div>
-          <div class="impact-matrix" aria-label="Custom Delivery impact matrix">
+          <div class="impact-matrix" aria-label="Economy operations impact matrix">
+            <div class="impact-row"><span class="impact-tag">Required</span><p>Choose the correct Economy tab before executing actions.</p></div>
+            <div class="impact-row"><span class="impact-tag">Required</span><p>Validate action gates (approval, contest eligibility, telemetry status, base-save context).</p></div>
+            <div class="impact-row"><span class="impact-tag">Required</span><p>Use validation checkpoints after each section action to prevent finance/context drift.</p></div>
             <div class="impact-row"><span class="impact-tag">Required</span><p>Use an offline profile (Steam Cloud disabled) before Custom Jobs operations.</p></div>
             <div class="impact-row"><span class="impact-tag">Required</span><p>Select a valid Base Save before route actions.</p></div>
             <div class="impact-row"><span class="impact-tag">Required</span><p>Choose Dispatch Active only when active delivery context exists in Base Save.</p></div>
-            <div class="impact-row"><span class="impact-tag">Required</span><p>Run <code>Rescan</code> whenever flow status indicates <code>scan_required</code>.</p></div>
-            <div class="impact-row"><span class="impact-tag">Required</span><p>Execution creates clone in new slot; Base Save is never overwritten.</p></div>
-            <div class="impact-row"><span class="impact-tag">Recommended</span><p>Use SimDuty Loads share/import for team-coordinated route and combo handling.</p></div>
+            <div class="impact-row"><span class="impact-tag">Required</span><p>Run <code>Rescan</code> whenever Custom Delivery status indicates <code>scan_required</code>.</p></div>
+            <div class="impact-row"><span class="impact-tag">Required</span><p>Custom Delivery execution creates clone in new slot; Base Save is never overwritten.</p></div>
           </div>
         </section>
 
+        <section id="overview-tab" class="section">
+          <h2>Overview workflow</h2>
+          <p>Use <code>OVERVIEW</code> for quick financial health and rules posture before running cost-sensitive actions.</p>
+          <ol>
+            <li>Open <code>Economy &gt; OVERVIEW</code> and read Economy Summary values first.</li>
+            <li>Review <code>Economy rules</code> toggles (admin fee, interest, bonuses, penalties).</li>
+            <li>Confirm rule toggles match your current operation policy before continuing to Banking or Statement.</li>
+          </ol>
+          <ul>
+            <li><strong>Validate:</strong> summary values are coherent with recent trip events and no accidental rule toggle is active.</li>
+            <li><strong>Common failure:</strong> changing rule toggles without intent and misreading later statement deltas.</li>
+          </ul>
+        </section>
+
+        <section id="banking-tab" class="section">
+          <h2>Banking workflow</h2>
+          <p>Use <code>BANKING</code> to simulate rental costs, start rental only when eligible, and complete return safely.</p>
+          <ol>
+            <li>Open <code>Economy &gt; BANKING</code> and run <code>SIMULATE</code> to preview expected outcome.</li>
+            <li>Check simulation/rental status values before taking any commitment action.</li>
+            <li>Use <code>START RENTAL</code> only when approval status is available.</li>
+            <li>After operation window, open Return section and use <code>CONFIRM RETURN</code> only when settlement is available.</li>
+          </ol>
+          <ul>
+            <li><strong>Validate:</strong> action buttons are enabled by state, not forced by retries.</li>
+            <li><strong>Common failure:</strong> attempting return before settlement conditions are met.</li>
+          </ul>
+        </section>
+
+        <section id="statement-tab" class="section">
+          <h2>Statement workflow</h2>
+          <p>Use <code>STATEMENT</code> to inspect ledger events by window, group, and contest status.</p>
+          <ol>
+            <li>Open <code>Economy &gt; STATEMENT</code> and choose window preset (<code>4H</code>, <code>24H</code>, <code>7D</code>).</li>
+            <li>Apply filters (<code>Contestable</code>, <code>Pending</code>) to isolate actionable entries.</li>
+            <li>Inspect grouped history (Fines, Tolls &amp; Fees, Operations, Fuel) and open event detail context.</li>
+            <li>Use <code>Contest</code> only on entries where contest action is available, then track status chips (Pending/Approved/Denied).</li>
+            <li>Use <code>CLEAR</code> when you intentionally want to reset temporary filter focus.</li>
+          </ol>
+          <ul>
+            <li><strong>Validate:</strong> contest count and status chips align with your latest actions.</li>
+            <li><strong>Common failure:</strong> contesting non-eligible entries or reading grouped totals without filter awareness.</li>
+          </ul>
+        </section>
+
+        <section id="audit-tab" class="section">
+          <h2>Audit workflow</h2>
+          <p>Use <code>AUDIT</code> for controlled cash correction when statement context requires manual adjustment.</p>
+          <ol>
+            <li>Open <code>Economy &gt; AUDIT</code> and review current correction context carefully.</li>
+            <li>Confirm value and reason before any write action.</li>
+            <li>Execute <code>APPLY CORRECTION</code> once, then re-check statement impact and audit trace.</li>
+          </ol>
+          <ul>
+            <li><strong>Validate:</strong> correction appears once with expected amount and rationale.</li>
+            <li><strong>Common failure:</strong> repeated correction attempts without re-validating current balance context.</li>
+          </ul>
+        </section>
+
+        <section id="declarations-tab" class="section">
+          <h2>Declarations workflow</h2>
+          <p>Use <code>DECLARATIONS</code> to combine telemetry-backed trip data with RP expenses before submission.</p>
+          <ol>
+            <li>Open <code>Economy &gt; DECLARATIONS</code> and review telemetry route summary first.</li>
+            <li>Confirm telemetry details (fuel, infractions, fines, tolls, revenue, net) are coherent.</li>
+            <li>Fill RP expenses (reference, lodging, meal, notes) with clear operational reason.</li>
+            <li>Review preview block for final net impact.</li>
+            <li>Submit with <code>SUBMIT</code> only after telemetry and RP fields are consistent.</li>
+          </ol>
+          <ul>
+            <li><strong>Validate:</strong> telemetry section is available and submit result matches expected declaration intent.</li>
+            <li><strong>Common failure:</strong> submitting with incomplete reference/notes and losing audit clarity later.</li>
+          </ul>
+        </section>
+
         <section id="prerequisite" class="section">
-          <h2>Required prerequisite</h2>
+          <h2>Custom Jobs prerequisite</h2>
           <p>Custom Jobs depends on stable local profile context. Keep your ATS/ETS2 operational profile in offline mode before cloning flows.</p>
           <div class="callout"><strong>Complete first:</strong> <a href="offline-save.html">Offline Save Setup (ATS/ETS2)</a>.</div>
         </section>
@@ -115,14 +197,14 @@
         <section id="quick-path" class="section">
           <h2>Operational quick path</h2>
           <ol>
-            <li>Confirm offline profile prerequisite is complete and local profile root is selected in Setup.</li>
-            <li>Open <code>Economy &gt; Custom Delivery</code> and select Base Save context.</li>
-            <li>Pick <code>Dispatch Offer</code> or <code>Dispatch Active</code> based on active delivery availability.</li>
-            <li>If flow status requires scan, run <code>Rescan</code> before apply/clone.</li>
-            <li>Apply route/context values and review <code>Clone Preview</code>.</li>
-            <li>Execute clone and verify result in new slot.</li>
+            <li>Open <code>Economy &gt; OVERVIEW</code> and verify current financial/rules posture.</li>
+            <li>Pick the correct operational tab: <code>BANKING</code>, <code>STATEMENT</code>, <code>AUDIT</code>, <code>DECLARATIONS</code>, or <code>CUSTOM DELIVERY</code>.</li>
+            <li>Validate action gate conditions for the selected tab before executing any command.</li>
+            <li>If using Custom Delivery, confirm offline profile + valid Base Save + flow selection (Offer vs Active).</li>
+            <li>Execute action and verify result in the same tab (status chips/result messages/audit traces).</li>
+            <li>Before leaving Economy, confirm no unresolved pending/blocked state remains.</li>
           </ol>
-          <div class="callout"><strong>Operator rule:</strong> choosing the wrong flow creates avoidable blockers; context check first, then route actions.</div>
+          <div class="callout"><strong>Operator rule:</strong> pick tab by objective first, then run only actions that are currently unlocked for that tab context.</div>
         </section>
 
         <section id="base-save-selection" class="section">
@@ -455,6 +537,11 @@
           <div class="path-list">
             <p><strong>Main paths:</strong></p>
             <ul>
+              <li><code>Economy &gt; OVERVIEW</code></li>
+              <li><code>Economy &gt; BANKING</code> (<code>SIMULATE</code>, <code>START RENTAL</code>, <code>CONFIRM RETURN</code>)</li>
+              <li><code>Economy &gt; STATEMENT</code> (<code>4H</code>, <code>24H</code>, <code>7D</code>, <code>Contestable</code>, <code>Pending</code>, <code>CLEAR</code>)</li>
+              <li><code>Economy &gt; AUDIT</code> (<code>APPLY CORRECTION</code>)</li>
+              <li><code>Economy &gt; DECLARATIONS</code> (<code>SUBMIT</code>)</li>
               <li><code>Economy &gt; Custom Delivery</code></li>
               <li><code>Custom Delivery &gt; Dispatch Offer</code></li>
               <li><code>Custom Delivery &gt; Dispatch Active</code></li>
@@ -482,6 +569,11 @@
         <section id="checkpoint" class="section">
           <h2>Validation checkpoint</h2>
           <ul>
+            <li>Overview rules are reviewed before cost-impact actions in other Economy tabs.</li>
+            <li>Banking actions run only when corresponding gate state enables them.</li>
+            <li>Statement filters/presets are applied intentionally before contest decisions.</li>
+            <li>Audit correction is applied once with clear reason and revalidated in statement context.</li>
+            <li>Declaration telemetry and RP fields are consistent before submit.</li>
             <li>Flow selection matches context (Offer without active delivery, Active with active delivery).</li>
             <li>Base Save is selected and recognized before route actions.</li>
             <li><code>scan_required</code> is resolved with Rescan before apply/clone.</li>
@@ -497,6 +589,41 @@
 
         <section id="support" class="section">
           <h2>Quick support</h2>
+          <div class="path-list">
+            <p><strong>Symptom:</strong> Banking action buttons stay disabled.</p>
+            <ul>
+              <li><strong>Check:</strong> whether approval/settlement state is actually available for the selected action.</li>
+              <li><strong>Fix:</strong> rerun <code>SIMULATE</code>, refresh operation context, and retry only when gate is enabled.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Symptom:</strong> Statement numbers look inconsistent.</p>
+            <ul>
+              <li><strong>Check:</strong> active time preset and filter combination before reading grouped totals.</li>
+              <li><strong>Fix:</strong> reset with <code>CLEAR</code>, apply one filter at a time, then re-check event groups.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Symptom:</strong> Contest action does not appear for an entry.</p>
+            <ul>
+              <li><strong>Check:</strong> whether that entry is contest-eligible in the current state.</li>
+              <li><strong>Fix:</strong> move to eligible entries via <code>Contestable</code> filter and track status chips after submit.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Symptom:</strong> Audit correction applied but expected balance did not match.</p>
+            <ul>
+              <li><strong>Check:</strong> amount sign, reason context, and whether another correction was already applied.</li>
+              <li><strong>Fix:</strong> validate latest statement entries first, then apply one controlled correction with explicit rationale.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Symptom:</strong> Declaration submit is blocked or result is unclear.</p>
+            <ul>
+              <li><strong>Check:</strong> telemetry availability and required RP fields (reference/notes/expense values).</li>
+              <li><strong>Fix:</strong> complete missing fields, revalidate preview net impact, then submit once.</li>
+            </ul>
+          </div>
           <div class="path-list">
             <p><strong>Symptom:</strong> Dispatch Active flow is blocked.</p>
             <ul>
@@ -587,6 +714,12 @@
         <section id="faq" class="section">
           <h2>FAQ</h2>
           <ul>
+            <li><strong>When should I use each Economy tab?</strong> Use Overview for posture, Banking for rental lifecycle, Statement for ledger/contest, Audit for correction, Declarations for trip declaration, and Custom Delivery for route cloning workflows.</li>
+            <li><strong>Can I skip Overview and go straight to action tabs?</strong> You can, but operationally you should check Overview first to avoid rule-state surprises in Banking or Statement outcomes.</li>
+            <li><strong>Why is a Banking action unavailable?</strong> Banking buttons are state-gated; action only unlocks when approval/settlement conditions are met.</li>
+            <li><strong>How should I read Statement safely?</strong> Select time preset first, then apply filters deliberately, then interpret grouped events and contest status chips.</li>
+            <li><strong>When should I use Audit correction?</strong> Only when statement context confirms manual correction is required; apply once and verify resulting entries.</li>
+            <li><strong>What is the safe Declarations order?</strong> Telemetry validation first, RP expenses second, preview third, submit last.</li>
             <li><strong>Can Custom Delivery overwrite my Base Save?</strong> No. Execution creates a clone in a new slot; Base Save is preserved.</li>
             <li><strong>Why does Dispatch Active block sometimes?</strong> It needs active delivery context in the loaded Base Save. Without it, the flow is intentionally blocked.</li>
             <li><strong>What is the core difference between Offer and Active?</strong> Dispatch Offer edits observed Freight Market offers; Dispatch Active redirects a delivery already in progress.</li>

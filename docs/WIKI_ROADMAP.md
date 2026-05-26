@@ -17,7 +17,7 @@ docs/
   compliance.html            -> Compliance tab reference (published)
   dispatch.html              -> Dispatch tab reference (published)
   dvir.html                  -> DVIR tab reference (published)
-  econ.html                  -> Economy tab reference (planned)
+  econ.html                  -> Economy tab reference (published)
   faq.html                   -> Global FAQ (planned)
   changelog.html             -> Release notes for docs users (planned)
 ```
@@ -113,12 +113,12 @@ Deliverable: self-service knowledge base with lower support load.
 
 ## 4) Content Backlog by Area
 
-### Home (Deferred)
+### Home (Published, iterate)
 - Explain score, net profit, trip profit, active trip, and truck health.
 - Clarify OFF DUTY / ON DUTY / DRIVING states.
 - Add annotated dashboard screenshot.
 
-### HOS (Deferred)
+### HOS (Published, iterate)
 - Cover Drive Left, Shift Left, and Cycle Left.
 - Document practical differences across US/CA/EU/BR.
 - Explain rest timing and non-compliance impact.
@@ -136,8 +136,8 @@ Deliverable: self-service knowledge base with lower support load.
 - Defect logging and recommended actions.
 
 ### Economy
-- Reading costs, penalties, and margins.
-- Using data to improve profitability.
+- Deepen Offer vs Active decision examples for edge contexts.
+- Expand SimDuty Loads collaboration scenarios and audit interpretation.
 
 ## 5) Asset Requirements
 
@@ -185,7 +185,7 @@ A docs page is considered complete only when:
 
 1. Run full responsive validation for all published docs pages at 1200px, 768px, and 375px.
 2. Verify internal links across all published pages and close checklist item.
-3. Start `docs/econ.html` with the same didactic structure used in Compliance and Dispatch.
+3. Draft `docs/faq.html` scope and first publishable structure.
 
 ## 9) Didactic Copy Review Plan
 
