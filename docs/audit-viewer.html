@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SimDuty Docs | Audit Viewer</title>
+  <meta name="description" content="Open local SimDuty audit exports to review findings, finance, timeline, and print a compliance report.">
+  <meta name="robots" content="index,follow">
+  <meta name="author" content="SimDuty Project">
+  <link rel="canonical" href="https://simduty.com/docs/audit-viewer.html">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://simduty.com/docs/audit-viewer.html">
+  <meta property="og:title" content="SimDuty Docs | Audit Viewer">
+  <meta property="og:description" content="Open local SimDuty audit exports to review findings, finance, timeline, and print a compliance report.">
+  <meta property="og:image" content="https://simduty.com/assets/imgs/simduty-home-tablet.png">
+  <meta property="og:image:alt" content="SimDuty Audit Viewer documentation page">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SimDuty Docs | Audit Viewer">
+  <meta name="twitter:description" content="Open local SimDuty audit exports to review findings, finance, timeline, and print a compliance report.">
+  <meta name="twitter:image" content="https://simduty.com/assets/imgs/simduty-home-tablet.png">
+  <meta name="twitter:image:alt" content="SimDuty Audit Viewer documentation page">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to review a local audit export in SimDuty",
+    "description": "Load a simduty_audit_export_v1 JSON file in Audit Viewer, inspect the compliance day, triage findings, review finance and timeline data, and print a report.",
+    "totalTime": "PT6M",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "name": "Open the viewer",
+        "text": "Open the local Audit Viewer page and choose a simduty_audit_export_*.json file from the drop zone or file picker."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Select the compliance day",
+        "text": "Choose the day you want to inspect and confirm the loaded export context matches the intended session."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Review Day Summary and Findings",
+        "text": "Read the summary cards first, then triage critical, warning, and info findings in order."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Inspect Finance and Timeline",
+        "text": "Check financial entries and duty timeline events, then toggle local time or hide routine snapshots if needed."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Print the report",
+        "text": "Use Print DOT Report when you need a shareable audit output for review or records."
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Does Audit Viewer upload my file?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. The viewer processes the export locally in your browser and does not upload it to a server."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which file does Audit Viewer expect?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It expects a SimDuty audit export JSON file such as simduty_audit_export_*.json using the simduty_audit_export_v1 format."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which tab should I read first?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Start with Day Summary, then move to Findings, Finance, and Timeline in that order."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why use local time?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Local time makes it easier to compare event timestamps with your own timezone while keeping UTC available in the timeline."
+        }
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="docs.css">
+</head>
+
+<body>
+  <main class="docs-shell">
+    <header class="docs-topbar">
+      <div>
+        <h1 class="docs-title">Audit Viewer</h1>
+        <p class="docs-subtitle">Review exported audit data locally before you share or print anything.</p>
+      </div>
+      <nav class="docs-links" aria-label="Docs navigation">
+        <a href="index.html">Wiki</a>
+        <a href="dispatch.html">Next: Dispatch</a>
+      </nav>
+    </header>
+
+    <div class="doc-layout">
+      <aside class="doc-sidebar" aria-label="On this page">
+        <h3>On this page</h3>
+        <a href="#overview">Overview</a>
+        <a href="#quick-path">Quick path</a>
+        <a href="#controls">Viewer controls</a>
+        <a href="#tabs">Tabs and signals</a>
+        <a href="#interpretation">Interpretation guide</a>
+        <a href="#references">Path and reference</a>
+        <a href="#checkpoint">Validation checkpoint</a>
+        <a href="#support">Quick support</a>
+        <a href="#faq">FAQ</a>
+      </aside>
+
+      <div class="doc-content">
+        <section id="overview" class="section section-step">
+          <h2>Overview</h2>
+          <p>Audit Viewer is a local browser viewer for the SimDuty audit export format (<code>simduty_audit_export_v1</code>). Export the file in <code>Compliance / ELD &gt; Records &gt; Export JSON</code>, then open it here. Nothing is uploaded to a server.</p>
+          <p>Use this page when you need to inspect day-level compliance evidence outside the live UI, especially for findings, finance entries, timeline sequencing, and printable reports.</p>
+          <div class="quick-facts">
+            <span>Estimated time: 6 minutes</span>
+            <span>Purpose: local audit review</span>
+            <span>Output: printable compliance report</span>
+          </div>
+          <div class="impact-matrix" aria-label="Audit viewer impact matrix">
+            <div class="impact-row"><span class="impact-tag">Required</span><p>Export JSON from Compliance / ELD Records and open the saved audit file in the viewer.</p></div>
+            <div class="impact-row"><span class="impact-tag">Required</span><p>Confirm the selected compliance day before trusting any summary or timeline reading.</p></div>
+            <div class="impact-row"><span class="impact-tag">Required</span><p>Review critical findings first, then warnings, before using the report for decisions.</p></div>
+            <div class="impact-row"><span class="impact-tag">Recommended</span><p>Toggle local time when comparing UTC timestamps against your own timezone.</p></div>
+            <div class="impact-row"><span class="impact-tag">Recommended</span><p>Print DOT Report when you need a shareable record of the review.</p></div>
+            <div class="impact-row"><span class="impact-tag">Optional</span><p>Hide routine snapshots to reduce noise in the timeline table.</p></div>
+          </div>
+          <div class="callout"><strong>Open the live tool:</strong> <a href="../audit-viewer.html">audit-viewer.html</a> after exporting JSON from Records.</div>
+        </section>
+
+        <section id="quick-path" class="section">
+          <h2>Quick path</h2>
+          <ol>
+            <li>Open <code>Compliance / ELD &gt; Records</code> and click <code>Export JSON</code>.</li>
+            <li>Open <code>../audit-viewer.html</code> and load the exported <code>simduty_audit_export_*.json</code> with the drop zone or file picker.</li>
+            <li>Select the compliance day you want to inspect.</li>
+            <li>Read Day Summary first, then Findings, Finance, and Timeline.</li>
+            <li>Toggle local time or hide routine snapshots if needed, then print the DOT report.</li>
+          </ol>
+        </section>
+
+        <section id="controls" class="section">
+          <h2>Viewer controls</h2>
+          <ul>
+            <li><strong>Drop file here / click to choose:</strong> loads the JSON export from your device.</li>
+            <li><strong>Change file:</strong> replaces the current export without leaving the page.</li>
+            <li><strong>Compliance day:</strong> filters the report to the selected day.</li>
+            <li><strong>Show local time:</strong> converts the timeline display for easier operator reading.</li>
+            <li><strong>Hide routine snapshots:</strong> removes low-value snapshot events from the timeline table.</li>
+            <li><strong>Print DOT Report:</strong> opens the print flow for a shareable report.</li>
+          </ul>
+        </section>
+
+        <section id="tabs" class="section">
+          <h2>Tabs and signals</h2>
+          <div class="path-list">
+            <p><strong>Day Summary</strong></p>
+            <ul>
+              <li>Shows operational status, vehicle context, duty capacity, cost exposure, and quality signals.</li>
+              <li>Use it first to confirm the loaded export and understand the current day at a glance.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>DOT Lite Findings</strong></p>
+            <ul>
+              <li>Groups findings into Critical, Warning, and Info buckets.</li>
+              <li>Start with critical items, then warnings, then informational evidence.</li>
+              <li>Use open and resolved defect lists to understand what still needs attention.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Finance</strong></p>
+            <ul>
+              <li>Lists financial entries with game time, category, event, amount, and description.</li>
+              <li>Use it to trace costs, refunds, penalties, or any finance-impacting audit event.</li>
+            </ul>
+          </div>
+          <div class="path-list">
+            <p><strong>Timeline</strong></p>
+            <ul>
+              <li>Shows OFF/SB/D/ON duty events, sequence markers, and the current now line.</li>
+              <li>Use it to understand what happened during the day, not just the final status.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="interpretation" class="section">
+          <h2>Interpretation guide</h2>
+          <ul>
+            <li>Audit Viewer reads local data only. If the file looks wrong, the usual fix is to reload the correct export.</li>
+            <li><code>OK TO DRIVE</code> means no critical blockers were detected in the current filtered view.</li>
+            <li>Use the compliance day selector before interpreting any summary card or finance line.</li>
+            <li><code>UTC Timestamp</code> and <code>Game Time</code> are different views of the same event; use local time when comparing against your timezone.</li>
+            <li>If the report is going to support a review, resolve or document critical findings before printing.</li>
+          </ul>
+        </section>
+
+        <section id="references" class="section">
+          <h2>Path and reference</h2>
+          <div class="path-list">
+            <p><strong>Main paths:</strong></p>
+            <ul>
+              <li><a href="../audit-viewer.html">audit-viewer.html</a> - open the live viewer.</li>
+              <li><code>Audit Viewer &gt; Day Summary</code></li>
+              <li><code>Audit Viewer &gt; DOT Lite Findings</code></li>
+              <li><code>Audit Viewer &gt; Finance</code></li>
+              <li><code>Audit Viewer &gt; Timeline</code></li>
+              <li><code>simduty_audit_export_v1</code> - expected audit export format.</li>
+            </ul>
+          </div>
+          <div class="callout"><strong>Related docs:</strong> <a href="compliance.html#records">Compliance / ELD - Records and audit</a></div>
+        </section>
+
+        <section id="checkpoint" class="section">
+          <h2>Validation checkpoint</h2>
+          <ul>
+            <li>The correct JSON export is loaded without errors.</li>
+            <li>The selected compliance day matches the day you intended to review.</li>
+            <li>Critical findings were checked before reading finance or printing.</li>
+            <li>Timeline and finance entries match the event sequence you expected.</li>
+            <li>The printed report was verified if you needed a shareable copy.</li>
+          </ul>
+        </section>
+
+        <section id="support" class="section">
+          <h2>Quick support</h2>
+          <ul>
+            <li>If no file loads, confirm you exported a JSON audit file and that the filename matches the <code>simduty_audit_export_*.json</code> pattern.</li>
+            <li>If the day list looks empty or wrong, reload the export or switch to the intended compliance day.</li>
+            <li>If the timeline is noisy, enable <code>Hide routine snapshots</code> to reduce non-essential entries.</li>
+            <li>If the report needs to be shared, use <code>Print DOT Report</code> after verifying the summary and findings.</li>
+          </ul>
+        </section>
+
+        <section id="faq" class="section">
+          <h2>FAQ</h2>
+          <ul>
+            <li><strong>Does Audit Viewer upload my file?</strong> No. The viewer processes the export locally in your browser and does not upload it to a server.</li>
+            <li><strong>Which file does it expect?</strong> A SimDuty audit export JSON file using the <code>simduty_audit_export_v1</code> format.</li>
+            <li><strong>Which tab should I read first?</strong> Start with Day Summary, then move to Findings, Finance, and Timeline.</li>
+            <li><strong>Why use local time?</strong> It makes event comparison easier while keeping UTC visible in the timeline.</li>
+            <li><strong>What if the report looks stale?</strong> Reload the correct export and verify the selected compliance day before reading it again.</li>
+          </ul>
+        </section>
+      </div>
+    </div>
+
+    <nav class="page-nav" aria-label="Page navigation">
+      <a href="compliance.html">Previous page</a>
+      <a href="dispatch.html">Next page</a>
+    </nav>
+
+    <footer class="wiki-footer">
+      <span>Last updated: May 2026</span>
+      <span><a href="https://discord.gg/NATM3BEzbe" target="_blank" rel="noopener">Join Discord Support</a></span>
+    </footer>
+  </main>
+</body>
+
+</html>

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Local viewer for SimDuty audit export (simduty_audit_export_v1).">
+  <title>SimDuty | Audit Viewer</title>
+  <link rel="icon" href="assets/imgs/simduty-logo.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Roboto+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/print.css" media="print">
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="logo">SimDuty <span>Audit Viewer</span></a>
+      <nav class="nav-links audit-viewer-top-nav">
+        <a href="index.html" data-i18n="av.nav.back_site">Back to site</a>
+        <a href="docs/index.html" data-i18n="av.nav.wiki">Wiki</a>
+        <label for="language-selector" class="sr-only">Language</label>
+        <select id="language-selector" aria-label="Language selector">
+          <option value="en">English</option>
+          <option value="pt-br">Portuguese (BR)</option>
+          <option value="es">Espanol</option>
+          <option value="ru">Russkiy</option>
+        </select>
+      </nav>
+    </div>
+  </header>
+
+  <main class="audit-viewer-page">
+    <section class="audit-viewer-hero container" id="upload-hero">
+      <div class="audit-viewer-hero-copy">
+        <h1 data-i18n="av.hero.title">Analyze local ELD export</h1>
+        <p data-i18n="av.hero.desc">
+          100% local processing in your browser. No files are uploaded to a server.
+        </p>
+        <ol class="audit-viewer-steps">
+          <li data-i18n="av.hero.step1">Export audit data in SimDuty (JSON).</li>
+          <li data-i18n="av.hero.step2">Drag the file <code>simduty_audit_export_*.json</code>.</li>
+          <li data-i18n="av.hero.step3">Select the compliance day and review Findings/Finance.</li>
+        </ol>
+      </div>
+      <div class="audit-viewer-drop" id="drop-zone" role="button" tabindex="0" aria-label="Audit export upload area">
+        <p id="drop-label" data-i18n="av.drop.label">Drop file here or click to choose</p>
+        <input id="file-input" type="file" accept=".json,application/json" />
+      </div>
+      <p class="audit-viewer-help" id="load-status" data-i18n="av.status.waiting">Waiting for file...</p>
+      <div class="audit-loaded-hero is-hidden" id="loaded-hero-summary">
+        <div class="audit-loaded-hero-main">
+          <span class="audit-loaded-label" data-i18n="av.hero.loaded_label">Loaded export</span>
+          <strong id="hero-loaded-file">-</strong>
+        </div>
+        <div class="audit-chip-grid audit-loaded-meta" id="hero-loaded-meta"></div>
+      </div>
+    </section>
+
+    <section class="audit-viewer-app container is-hidden" id="viewer-app">
+      <div class="audit-viewer-toolbar">
+          <div class="audit-viewer-toolbar-header">
+            <div class="audit-viewer-toolbar-titles">
+              <h2 id="file-name" class="audit-header-title" data-i18n="av.toolbar.shift_overview">Shift Overview</h2>
+              <div class="audit-toolbar-meta">
+                <span class="audit-toolbar-eyebrow" data-i18n="av.toolbar.eyebrow">DRIVER CONSOLE</span>
+                <span class="audit-toolbar-divider">|</span>
+                <p id="file-meta" data-i18n="av.toolbar.contract_unknown">Contract -</p>
+              </div>
+              <div class="audit-chip-grid audit-toolbar-chips" id="toolbar-context-chips"></div>
+            </div>
+            <div class="audit-viewer-toolbar-actions">
+              <button class="audit-command-button" id="btn-print-report" type="button" data-i18n="av.toolbar.print" onclick="window.print()">Print DOT Report</button>
+              <button class="audit-command-button" id="reload-file-btn" type="button" data-i18n="av.toolbar.change_file">Change file</button>
+            </div>
+        </div>
+        <div class="audit-viewer-toolbar-filters">
+          <div class="audit-filter-group">
+            <label for="day-select" data-i18n="av.toolbar.day">Compliance day</label>
+            <select id="day-select"></select>
+          </div>
+          <div class="audit-filter-group" style="display: none;">
+            <!-- Hidden inputs to avoid breaking any remaining legacy JS that might expect them before cleanup -->
+            <select id="event-type-select"></select>
+            <input id="search-input" type="text">
+          </div>
+          <div class="audit-inline-toggle">
+            <span data-i18n="av.toolbar.local_time">Show local time</span>
+            <label class="toggle-switch">
+              <input id="local-time-toggle" type="checkbox">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <section class="audit-executive-grid" aria-live="polite">
+        <article class="audit-executive-card audit-executive-status" id="operational-status">
+          <div class="audit-operational-head">
+            <span data-i18n="av.ops.title">Operational status</span>
+            <strong id="ops-badge" class="ops-badge ops-ok" data-i18n="av.ops.ok">OK TO DRIVE</strong>
+          </div>
+          <p id="ops-reason" class="audit-operational-reason" data-i18n="av.ops.reason_ok">No critical blockers detected in current filters.</p>
+        </article>
+        <article class="audit-executive-card">
+          <div class="audit-executive-head">
+            <span data-i18n="av.exec.vehicle_title">Vehicle context</span>
+            <strong id="exec-vehicle-name">-</strong>
+          </div>
+          <p class="audit-executive-copy" data-i18n="av.exec.vehicle_copy">Identity for the selected compliance day.</p>
+        </article>
+        <article class="audit-executive-card">
+          <div class="audit-executive-head">
+            <span data-i18n="av.exec.capacity_title">Duty capacity</span>
+            <strong id="exec-duty-status">-</strong>
+          </div>
+          <p id="exec-duty-copy" class="audit-executive-copy" data-i18n="av.exec.capacity_copy">Remaining duty windows for the active compliance day.</p>
+          <div class="audit-mini-kpis" id="exec-duty-kpis"></div>
+        </article>
+        <article class="audit-executive-card">
+          <div class="audit-executive-head">
+            <span data-i18n="av.exec.cost_title">Cost exposure</span>
+            <strong id="exec-cost-name">-</strong>
+          </div>
+          <p id="exec-cost-copy" class="audit-executive-copy" data-i18n="av.exec.cost_copy">Operating cost signals for the current compliance day.</p>
+          <div class="audit-mini-kpis" id="exec-cost-kpis"></div>
+        </article>
+      </section>
+
+      <div class="audit-viewer-tabs" role="tablist" aria-label="Viewer sections">
+        <button class="audit-tab is-active" data-tab="summary" role="tab" aria-selected="true" aria-controls="pane-summary" id="tab-summary" data-i18n="av.tab.summary">Day Summary</button>
+        <button class="audit-tab" data-tab="findings" role="tab" aria-selected="false" aria-controls="pane-findings" id="tab-findings" data-i18n="av.tab.findings">DOT Lite Findings</button>
+        <button class="audit-tab" data-tab="finance" role="tab" aria-selected="false" aria-controls="pane-finance" id="tab-finance" data-i18n="av.tab.finance">Finance</button>
+        <button class="audit-tab" data-tab="timeline" role="tab" aria-selected="false" aria-controls="pane-timeline" id="tab-timeline" data-i18n="av.tab.timeline">Timeline</button>
+      </div>
+
+      <section class="audit-pane" id="pane-summary" role="tabpanel" tabindex="0" aria-labelledby="tab-summary">
+        <div class="audit-hud-grid" id="driver-performance-hud">
+          <div class="neon-card audit-hud-card">
+            <div class="gauge-label" data-i18n="av.hud.safety">Safety</div>
+            <div class="gauge-container hud-gauge">
+              <svg class="progress-ring" width="100%" height="100%" viewBox="0 0 120 120">
+                <circle class="progress-ring__bg" stroke="rgba(0, 229, 255, 0.1)" stroke-width="8" fill="transparent" r="50" cx="60" cy="60"/>
+                <circle class="progress-ring__circle" id="hud-safety-ring" stroke="var(--status-good)" stroke-width="8" fill="transparent" r="50" cx="60" cy="60" style="stroke-dasharray: 314; stroke-dashoffset: 314;"/>
+              </svg>
+              <div class="gauge-text"><span class="gauge-value" id="hud-safety-val">--</span><span class="hud-percent">%</span></div>
+            </div>
+          </div>
+          <div class="neon-card audit-hud-card">
+            <div class="gauge-label" data-i18n="av.hud.compliance">Compliance</div>
+            <div class="gauge-container hud-gauge">
+              <svg class="progress-ring" width="100%" height="100%" viewBox="0 0 120 120">
+                <circle class="progress-ring__bg" stroke="rgba(0, 229, 255, 0.1)" stroke-width="8" fill="transparent" r="50" cx="60" cy="60"/>
+                <circle class="progress-ring__circle" id="hud-compliance-ring" stroke="var(--accent-primary)" stroke-width="8" fill="transparent" r="50" cx="60" cy="60" style="stroke-dasharray: 314; stroke-dashoffset: 314;"/>
+              </svg>
+              <div class="gauge-text"><span class="gauge-value" id="hud-compliance-val">--</span><span class="hud-percent">%</span></div>
+            </div>
+          </div>
+          <div class="neon-card audit-hud-card">
+            <div class="gauge-label" data-i18n="av.hud.efficiency">Efficiency</div>
+            <div class="gauge-container hud-gauge">
+              <svg class="progress-ring" width="100%" height="100%" viewBox="0 0 120 120">
+                <circle class="progress-ring__bg" stroke="rgba(0, 229, 255, 0.1)" stroke-width="8" fill="transparent" r="50" cx="60" cy="60"/>
+                <circle class="progress-ring__circle" id="hud-efficiency-ring" stroke="var(--accent-primary)" stroke-width="8" fill="transparent" r="50" cx="60" cy="60" style="stroke-dasharray: 314; stroke-dashoffset: 314;"/>
+              </svg>
+              <div class="gauge-text"><span class="gauge-value" id="hud-efficiency-val">--</span><span class="hud-percent">%</span></div>
+            </div>
+          </div>
+          <div class="neon-card audit-hud-card">
+            <div class="gauge-label" data-i18n="av.hud.care">Vehicle Care</div>
+            <div class="gauge-container hud-gauge">
+              <svg class="progress-ring" width="100%" height="100%" viewBox="0 0 120 120">
+                <circle class="progress-ring__bg" stroke="rgba(0, 229, 255, 0.1)" stroke-width="8" fill="transparent" r="50" cx="60" cy="60"/>
+                <circle class="progress-ring__circle" id="hud-care-ring" stroke="var(--accent-active)" stroke-width="8" fill="transparent" r="50" cx="60" cy="60" style="stroke-dasharray: 314; stroke-dashoffset: 314;"/>
+              </svg>
+              <div class="gauge-text"><span class="gauge-value" id="hud-care-val">--</span><span class="hud-percent">%</span></div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="audit-card audit-card-priority">
+          <div class="audit-section-head">
+            <div>
+              <h3 data-i18n="av.summary.shift_overview">Shift overview</h3>
+              <p class="audit-section-copy" data-i18n="av.summary.shift_overview_copy">Priority operational signals for the selected compliance day.</p>
+            </div>
+          </div>
+          <div class="audit-kpis audit-kpis-primary" id="summary-primary-kpis"></div>
+        </div>
+        <div class="audit-card">
+          <h3 data-i18n="av.summary.eld_snapshot">ELD Snapshot</h3>
+          <div class="audit-kpis" id="eld-kpis"></div>
+        </div>
+        <div class="audit-grid-2">
+          <div class="audit-card audit-card-accent">
+            <h3 data-i18n="av.summary.day_conclusion">Day conclusion</h3>
+            <p id="day-conclusion"></p>
+          </div>
+          <div class="audit-card">
+            <h3 data-i18n="av.summary.ops_snapshot">Operational snapshot</h3>
+            <div class="audit-kpis audit-kpis-compact" id="summary-support-kpis"></div>
+          </div>
+        </div>
+        <div class="audit-card">
+          <h3 data-i18n="av.summary.shift_narrative">Shift narrative</h3>
+          <div id="shift-narrative" class="audit-narrative"></div>
+        </div>
+        <div class="audit-grid-2">
+          <div class="audit-card">
+            <h3 data-i18n="av.quality.title">Data quality and integrity</h3>
+            <div class="audit-kpis" id="quality-kpis"></div>
+            <ul id="quality-warnings" class="audit-list"></ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="audit-pane is-hidden" id="pane-findings" role="tabpanel" tabindex="0" aria-labelledby="tab-findings">
+        <div class="audit-card audit-card-priority">
+          <div class="audit-section-head">
+            <div>
+              <h3 data-i18n="av.findings.triage_title">Risk triage</h3>
+              <p class="audit-section-copy" data-i18n="av.findings.triage_copy">Review blocking issues first, then warnings and informational evidence.</p>
+            </div>
+          </div>
+          <div class="audit-kpis audit-kpis-primary" id="findings-kpis"></div>
+        </div>
+        <div class="audit-grid-3">
+          <div class="audit-card audit-risk-card audit-risk-card-critical">
+            <div class="audit-risk-head">
+              <h3 data-i18n="av.findings.critical">Critical</h3>
+              <span class="audit-risk-badge" id="critical-count">0</span>
+            </div>
+            <ul id="critical-findings" class="audit-list"></ul>
+          </div>
+          <div class="audit-card audit-risk-card audit-risk-card-warning">
+            <div class="audit-risk-head">
+              <h3 data-i18n="av.findings.warning">Warning</h3>
+              <span class="audit-risk-badge" id="warning-count">0</span>
+            </div>
+            <ul id="warning-findings" class="audit-list"></ul>
+          </div>
+          <div class="audit-card audit-risk-card audit-risk-card-info">
+            <div class="audit-risk-head">
+              <h3 data-i18n="av.findings.info">Info</h3>
+              <span class="audit-risk-badge" id="info-count">0</span>
+            </div>
+            <ul id="info-findings" class="audit-list"></ul>
+          </div>
+        </div>
+        <div class="audit-grid-2">
+          <div class="audit-card">
+            <h3 data-i18n="av.findings.open_defects">Open defects</h3>
+            <ul id="open-defects" class="audit-list"></ul>
+          </div>
+          <div class="audit-card">
+            <h3 data-i18n="av.findings.resolved_defects">Resolved defects</h3>
+            <ul id="resolved-defects" class="audit-list"></ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="audit-pane is-hidden" id="pane-finance" role="tabpanel" tabindex="0" aria-labelledby="tab-finance">
+        <div class="audit-card audit-card-priority">
+          <div class="audit-section-head">
+            <div>
+              <h3 data-i18n="av.finance.title">My Trip Finances</h3>
+            </div>
+          </div>
+          <div class="audit-kpis audit-kpis-primary" id="finance-kpis"></div>
+          <p id="finance-summary" class="audit-section-copy audit-finance-summary"></p>
+        </div>
+        <div class="audit-card">
+          <h3 data-i18n="av.finance.entries">Financial entries</h3>
+          <div class="audit-table-wrap">
+            <table class="audit-table" id="finance-table">
+              <thead>
+                <tr>
+                  <th data-i18n="av.finance.col_time">Game Time</th>
+                  <th data-i18n="av.finance.col_type">Category</th>
+                  <th data-i18n="av.finance.col_event">Event</th>
+                  <th data-i18n="av.finance.col_value">Amount</th>
+                  <th data-i18n="av.finance.col_desc">Description</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="audit-pane is-hidden" id="pane-timeline" role="tabpanel" tabindex="0" aria-labelledby="tab-timeline">
+        <div class="audit-card">
+          <h3 data-i18n="av.timeline.chart_title">OFF/SB/D/ON timeline</h3>
+          <div class="audit-timeline-chart-wrap" style="position: relative; padding-left: 2.5rem;">
+            <div id="duty-y-labels" style="position: absolute; left: 0.5rem; top: 0.7rem; bottom: 0.7rem; width: 2rem; display: flex; flex-direction: column;">
+              <span style="position: absolute; top: 12px; font-size: 11px; color: #9ca3af; font-family: monospace;">OFF</span>
+              <span style="position: absolute; top: 67px; font-size: 11px; color: #9ca3af; font-family: monospace;">SB</span>
+              <span style="position: absolute; top: 122px; font-size: 11px; color: #9ca3af; font-family: monospace;">D</span>
+              <span style="position: absolute; top: 178px; font-size: 11px; color: #9ca3af; font-family: monospace;">ON</span>
+            </div>
+            <svg id="duty-chart" class="audit-timeline-chart" viewBox="0 0 1000 210" preserveAspectRatio="none" role="img" aria-label="Duty status timeline">
+              <g id="duty-grid"></g>
+              <g id="duty-segments"></g>
+              <g id="duty-markers"></g>
+              <line id="duty-now-line" x1="0" y1="0" x2="0" y2="190"></line>
+            </svg>
+            <div class="audit-timeline-labels" id="duty-labels"></div>
+          </div>
+        </div>
+        <div class="audit-grid-2 timeline-layout">
+          <div class="audit-card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+              <h3 data-i18n="av.timeline.events_title" style="margin-bottom: 0;">Events</h3>
+              <label style="font-size: 0.85rem; color: var(--text-dim); display: flex; align-items: center; gap: 0.4rem; cursor: pointer;">
+                <input type="checkbox" id="chk-hide-snapshots" checked>
+                <span data-i18n="av.timeline.hide_snapshots">Hide routine snapshots</span>
+              </label>
+            </div>
+            <div class="audit-table-wrap">
+              <table class="audit-table" id="timeline-table">
+                <thead>
+                  <tr>
+                    <th data-i18n="av.timeline.col_ts">UTC Timestamp</th>
+                    <th data-i18n="av.timeline.col_game_time">Game Time</th>
+                    <th data-i18n="av.timeline.col_risk">Risk</th>
+                    <th data-i18n="av.timeline.col_event">Event</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="audit-card">
+            <h3 data-i18n="av.timeline.detail_title">Event detail</h3>
+            <div id="event-detail" class="audit-detail-empty" data-i18n="av.timeline.detail_empty">Select an event in the timeline.</div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <div id="print-signature-block" style="display: none;">
+      <div class="signature-line" data-i18n="av.print.signature_driver">Driver Signature: ___________________________</div>
+      <div class="signature-line" data-i18n="av.print.signature_dot">DOT Inspector Signature: ___________________________</div>
+      <div class="signature-line" data-i18n="av.print.date">Date: ___________________________</div>
+    </div>
+  </main>
+
+  <script src="assets/js/audit-viewer-i18n.js"></script>
+  <script src="assets/js/audit-viewer.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,93 @@
+
+@media print {
+  /* Reseta tema escuro para branco */
+  body, html {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  
+  /* Esconde navegação, botões e barras que não são para impressão */
+  .audit-viewer-toolbar,
+  .audit-viewer-tabs,
+  .audit-command-button,
+  .audit-inline-toggle,
+  .audit-drop-zone {
+    display: none !important;
+  }
+  
+  /* Remove box-shadows e bordas neon */
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  
+  .audit-card, .audit-executive-card, .audit-risk-card {
+    border: 1px solid #ccc !important;
+    background: #fff !important;
+    color: #000 !important;
+    page-break-inside: avoid;
+    margin-bottom: 1rem;
+  }
+
+  .audit-executive-card {
+    backdrop-filter: none !important;
+  }
+  
+  /* Expande todas as abas (panes) simultaneamente para que o relatório mostre tudo */
+  .audit-pane.is-hidden {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  /* Muda textos claros para escuros */
+  .audit-header-title,
+  .audit-executive-head strong,
+  .audit-section-head h3,
+  .audit-risk-head h3,
+  .audit-tab.is-active,
+  h1, h2, h3, h4, h5, h6 {
+    color: #000 !important;
+  }
+  
+  .audit-section-copy,
+  .audit-executive-head span {
+    color: #444 !important;
+  }
+
+  /* Ajustes na tabela */
+  .audit-table th {
+    background: #eee !important;
+    color: #000 !important;
+    border-bottom: 2px solid #ccc !important;
+  }
+  .audit-table td {
+    border-bottom: 1px solid #eee !important;
+    color: #000 !important;
+  }
+
+  /* Timeline específica para impressão */
+  .audit-timeline-chart-wrap {
+    background: #fff !important;
+    border: 1px solid #ccc !important;
+  }
+  #duty-grid line {
+    stroke: #eee !important;
+  }
+
+  /* Exibe o Signature Block e formata */
+  #print-signature-block {
+    display: block !important;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 2px dashed #ccc;
+    page-break-inside: avoid;
+  }
+  
+  .signature-line {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 2.5rem;
+    color: #000 !important;
+  }
+}

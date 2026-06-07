@@ -111,7 +111,7 @@
       </div>
       <nav class="docs-links" aria-label="Docs navigation">
         <a href="index.html">Wiki</a>
-        <a href="dispatch.html">Next: Dispatch</a>
+        <a href="audit-viewer.html">Next: Audit Viewer</a>
       </nav>
     </header>
 
@@ -274,7 +274,7 @@
               <li>Daily log certification card with status and certify action.</li>
               <li>DVIR summary card with last report and start-DVIR action.</li>
               <li>Audit log list showing timestamp, event, origin, and notes.</li>
-              <li>Open-audit-file action to view local stored records.</li>
+              <li><a href="audit-viewer.html">Audit Viewer</a> opens local stored records for deeper review of findings, finance, and timeline data.</li>
             </ul>
           </div>
         </section>
@@ -283,9 +283,11 @@
           <h2>Records and audit</h2>
           <p>Records is the control center for closing pending requirements and validating what happened in the operational day.</p>
           <ul>
+            <li>Use <code>Export JSON</code> to save the local <code>simduty_audit_export_*.json</code> file for offline review.</li>
             <li>Daily certification may be requested at day close, post-trip contexts, or pre-trip checks.</li>
             <li>When pending, a clear status message is shown and certification should be completed as soon as safe.</li>
             <li>Audit events can include log requests/signatures, HOS extension lifecycle, DVIR events, and finance-related compliance events.</li>
+            <li>Use <a href="audit-viewer.html">Audit Viewer</a> for a fuller offline review when the local JSON export is easier to inspect than the in-app log.</li>
             <li>Use day filtering to keep review scoped and easier to validate.</li>
           </ul>
           <div class="compare-grid">
@@ -342,6 +344,8 @@
               <li><code>Dispatch &gt; Compliance Status</code> card</li>
               <li><code>Compliance Panel &gt; Timeline</code></li>
               <li><code>Compliance Panel &gt; Records</code></li>
+              <li><code>Compliance Panel &gt; Records &gt; Export JSON</code></li>
+              <li><a href="audit-viewer.html">Audit Viewer</a> - offline export review</li>
               <li><code>Records &gt; Certify log</code></li>
               <li><code>Records &gt; Open audit log</code></li>
             </ul>
@@ -406,7 +410,7 @@
             <li><strong>Can I keep driving with a pending certification?</strong> You may continue briefly in some contexts, but pending logs should be resolved immediately to avoid escalations and pre-trip restrictions.</li>
             <li><strong>What is the difference between Timeline events and Audit Log?</strong> Timeline events explain duty-status transitions across the day; Audit Log records compliance actions and decisions with origin and notes.</li>
             <li><strong>When does pending become operationally critical?</strong> Pending is critical when tied to pre-trip certification, unresolved DVIR context, or a warning/critical risk state that reduces safe decision margin.</li>
-            <li><strong>Where can I see what changed during the day?</strong> Use Timeline day events for transitions and Records audit log for event-by-event traceability.</li>
+            <li><strong>Where can I see what changed during the day?</strong> Use Timeline day events for transitions, Records audit log for event-by-event traceability, and Audit Viewer for offline export review.</li>
             <li><strong>What happens if a contest is approved?</strong> The event is updated with decision status and related score/financial impact can be adjusted according to policy.</li>
           </ul>
         </section>
@@ -415,7 +419,7 @@
 
     <nav class="page-nav" aria-label="Page navigation">
       <a href="hos.html">Previous page</a>
-      <a href="dispatch.html">Next page</a>
+      <a href="audit-viewer.html">Next page</a>
     </nav>
 
     <footer class="wiki-footer">
