@@ -4,8 +4,73 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Local viewer for SimDuty audit export (simduty_audit_export_v1).">
-  <title>SimDuty | Audit Viewer</title>
+  <meta name="description" content="Open the online SimDuty Audit Viewer to review exported audit JSON, findings, finance, and timeline in your browser.">
+  <meta name="robots" content="index,follow">
+  <meta name="author" content="SimDuty Project">
+  <link rel="canonical" href="https://simduty.com/audit-viewer.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://simduty.com/audit-viewer.html">
+  <meta property="og:title" content="SimDuty Audit Viewer | Review Exported Audit JSON">
+  <meta property="og:description" content="Open the online SimDuty Audit Viewer to review exported audit JSON, findings, finance, and timeline in your browser.">
+  <meta property="og:image" content="https://simduty.com/assets/imgs/simduty-home-tablet.png">
+  <meta property="og:image:alt" content="SimDuty Audit Viewer open in a browser">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SimDuty Audit Viewer | Review Exported Audit JSON">
+  <meta name="twitter:description" content="Open the online SimDuty Audit Viewer to review exported audit JSON, findings, finance, and timeline in your browser.">
+  <meta name="twitter:image" content="https://simduty.com/assets/imgs/simduty-home-tablet.png">
+  <meta name="twitter:image:alt" content="SimDuty Audit Viewer open in a browser">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "SimDuty Audit Viewer",
+    "url": "https://simduty.com/audit-viewer.html",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web Browser",
+    "description": "Open the online SimDuty Audit Viewer to review exported audit JSON, findings, finance, and timeline in your browser."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Does Audit Viewer upload my file?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. The viewer processes the export in your browser and does not upload it to a server."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which file does Audit Viewer expect?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It expects a SimDuty audit export JSON file such as simduty_audit_export_*.json using the simduty_audit_export_v1 format."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which tab should I read first?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Start with Day Summary, then move to Findings, Finance, and Timeline in that order."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why use local time?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Local time makes it easier to compare event timestamps with your own timezone while keeping UTC available in the timeline."
+        }
+      }
+    ]
+  }
+  </script>
+  <title>SimDuty Audit Viewer | Review Exported Audit JSON</title>
   <link rel="icon" href="assets/imgs/simduty-logo.ico" type="image/x-icon">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,9 +100,9 @@
   <main class="audit-viewer-page">
     <section class="audit-viewer-hero container" id="upload-hero">
       <div class="audit-viewer-hero-copy">
-        <h1 data-i18n="av.hero.title">Analyze local ELD export</h1>
+        <h1 data-i18n="av.hero.title">Analyze exported audit JSON</h1>
         <p data-i18n="av.hero.desc">
-          100% local processing in your browser. No files are uploaded to a server.
+          100% online in your browser. No files are uploaded to a server.
         </p>
         <ol class="audit-viewer-steps">
           <li data-i18n="av.hero.step1">Export audit data in SimDuty (JSON).</li>

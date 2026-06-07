@@ -6,8 +6,8 @@
     en: {
       "av.nav.back_site": "Back to site",
       "av.nav.wiki": "Wiki",
-      "av.hero.title": "SimDuty Audit Viewer",
-      "av.hero.desc": "100% local processing in your browser. No files are uploaded to a server.",
+      "av.hero.title": "Analyze exported audit JSON",
+      "av.hero.desc": "100% online in your browser. No files are uploaded to a server.",
       "av.hero.step1": "Export audit data in SimDuty (JSON).",
       "av.hero.step2": "Drag the file `simduty_audit_export_*.json`.",
       "av.hero.step3": "Select the compliance day and review Findings/Finance.",
@@ -219,8 +219,8 @@
     "pt-br": {
       "av.nav.back_site": "Voltar ao site",
       "av.nav.wiki": "Wiki",
-      "av.hero.title": "SimDuty Audit Viewer",
-      "av.hero.desc": "Processamento 100% local no navegador. Nenhum arquivo é enviado para um servidor.",
+      "av.hero.title": "Analise o JSON exportado",
+      "av.hero.desc": "Processamento 100% online no navegador. Nenhum arquivo é enviado para um servidor.",
       "av.hero.step1": "Exporte a auditoria no SimDuty (JSON).",
       "av.hero.step2": "Arraste o arquivo `simduty_audit_export_*.json`.",
       "av.hero.step3": "Selecione o dia de compliance e revise Findings/Finance.",
@@ -315,8 +315,8 @@
     es: {
       "av.nav.back_site": "Volver al sitio",
       "av.nav.wiki": "Wiki",
-      "av.hero.title": "SimDuty Audit Viewer",
-      "av.hero.desc": "Procesamiento 100% local en el navegador. Ningun archivo se sube al servidor.",
+      "av.hero.title": "Analiza el JSON exportado",
+      "av.hero.desc": "Procesamiento 100% online en el navegador. Ningun archivo se sube al servidor.",
       "av.hero.step1": "Exporta la auditoria en SimDuty (JSON).",
       "av.hero.step2": "Arrastra el archivo `simduty_audit_export_*.json`.",
       "av.hero.step3": "Selecciona el dia de compliance y revisa Findings/Finance.",
@@ -390,8 +390,8 @@
     ru: {
       "av.nav.back_site": "Назад на сайт",
       "av.nav.wiki": "Вики",
-      "av.hero.title": "SimDuty Audit Viewer",
-      "av.hero.desc": "100% локальная обработка в браузере. Файлы не отправляются на сервер.",
+      "av.hero.title": "Анализируйте экспортированный JSON",
+      "av.hero.desc": "100% онлайн-обработка в браузере. Файлы не отправляются на сервер.",
       "av.hero.step1": "Экспортируйте аудит в SimDuty (JSON).",
       "av.hero.step2": "Перетащите файл `simduty_audit_export_*.json`.",
       "av.hero.step3": "Выберите compliance day и проверьте Findings/Finance.",
