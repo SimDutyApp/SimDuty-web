@@ -1,1 +1,11 @@
 dll/
+
+# IDE files
+.idea/
+
+# Local design/source assets
+*.psd
+
+# Local release staging folders
+releases/alpha/
+releases/release.alpha.v*/
