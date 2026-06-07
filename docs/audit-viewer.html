@@ -133,7 +133,7 @@
         <section id="overview" class="section section-step">
           <h2>Overview</h2>
           <p>Audit Viewer is an online SimDuty page that reads the audit export format (<code>simduty_audit_export_v1</code>) in your browser. Export the file in <code>Compliance / ELD &gt; Records &gt; Export JSON</code>, then open it here. Nothing is uploaded to a server.</p>
-          <p>Use this page when you need to inspect day-level compliance evidence outside the live UI, especially for findings, finance entries, timeline sequencing, and printable reports.</p>
+          <p>Use this page when you need to inspect day-level compliance evidence from a saved export, especially for findings, finance entries, timeline sequencing, and printable reports.</p>
           <div class="quick-facts">
             <span>Estimated time: 6 minutes</span>
             <span>Purpose: online audit review</span>
@@ -147,14 +147,14 @@
             <div class="impact-row"><span class="impact-tag">Recommended</span><p>Print DOT Report when you need a shareable record of the review.</p></div>
             <div class="impact-row"><span class="impact-tag">Optional</span><p>Hide routine snapshots to reduce noise in the timeline table.</p></div>
           </div>
-          <div class="callout"><strong>Open the live tool:</strong> <a href="../audit-viewer.html">audit-viewer.html</a> after exporting JSON from Records.</div>
+          <div class="callout"><strong>Open the online <a href="../audit-viewer.html">Audit Viewer</a>:</strong> use it after exporting JSON from Records.</div>
         </section>
 
         <section id="quick-path" class="section">
           <h2>Quick path</h2>
           <ol>
             <li>Open <code>Compliance / ELD &gt; Records</code> and click <code>Export JSON</code>.</li>
-            <li>Open <code>../audit-viewer.html</code> and load the exported <code>simduty_audit_export_*.json</code> with the drop zone or file picker.</li>
+            <li>Open the online <a href="../audit-viewer.html">Audit Viewer</a> and load the exported <code>simduty_audit_export_*.json</code> file.</li>
             <li>Select the compliance day you want to inspect.</li>
             <li>Read Day Summary first, then Findings, Finance, and Timeline.</li>
             <li>Toggle local time or hide routine snapshots if needed, then print the DOT report.</li>
@@ -209,7 +209,7 @@
         <section id="interpretation" class="section">
           <h2>Interpretation guide</h2>
           <ul>
-            <li>Audit Viewer reads local data only. If the file looks wrong, the usual fix is to reload the correct export.</li>
+            <li>Audit Viewer reads the exported file in your browser. If the file looks wrong, the usual fix is to reload the correct export.</li>
             <li><code>OK TO DRIVE</code> means no critical blockers were detected in the current filtered view.</li>
             <li>Use the compliance day selector before interpreting any summary card or finance line.</li>
             <li><code>UTC Timestamp</code> and <code>Game Time</code> are different views of the same event; use local time when comparing against your timezone.</li>
@@ -222,11 +222,11 @@
           <div class="path-list">
             <p><strong>Main paths:</strong></p>
             <ul>
-              <li><a href="../audit-viewer.html">audit-viewer.html</a> - open the live viewer.</li>
-              <li><code>Audit Viewer &gt; Day Summary</code></li>
-              <li><code>Audit Viewer &gt; DOT Lite Findings</code></li>
-              <li><code>Audit Viewer &gt; Finance</code></li>
-              <li><code>Audit Viewer &gt; Timeline</code></li>
+              <li><a href="../audit-viewer.html">Open the online Audit Viewer</a>.</li>
+              <li><strong>Audit Viewer:</strong> Day Summary</li>
+              <li><strong>Audit Viewer:</strong> DOT Lite Findings</li>
+              <li><strong>Audit Viewer:</strong> Finance</li>
+              <li><strong>Audit Viewer:</strong> Timeline</li>
               <li><code>simduty_audit_export_v1</code> - expected audit export format.</li>
             </ul>
           </div>
