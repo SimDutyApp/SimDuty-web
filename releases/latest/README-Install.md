@@ -4,6 +4,11 @@
 - Run `SimDuty.exe` from the release package.
 - Recommended game settings:
   - Fatigue simulation must be OFF.
+- DirectX overlay MVP (experimental):
+  - treat the in-game overlay as experimental until the first compatibility round is complete.
+  - prefer the graphics backend selected in `docs/directx_overlay_mvp_plan.md` for the current test cycle.
+  - install `simduty_overlay.dll` as an optional SCS plugin beside `simduty.dll`; do not install it as `dxgi.dll` and do not place it inside the ReShade folder.
+  - current validation focus: `CLOSE` must leave `VISIBLE=0 INPUT=0`, then the overlay UI/UX should be approved before full app integration.
 - Window tips:
   - You can enable Always On Top in Settings.
   - Minimize to tray is available for quick hide/restore.
