@@ -20,11 +20,11 @@
 - `%LOCALAPPDATA%\SimDuty\Logs`
 - `%LOCALAPPDATA%\SimDuty\Saves`
 - `%LOCALAPPDATA%\SimDuty\Config`
-- Key files you may see:
-  - `Config/gui_setup.json`
-  - `Saves/eld_save_<PLATE>_<TRUCK>.json` (+ `.bak`/`.tmp`)
-  - `Saves/eld_audit_<PLATE>_<TRUCK>.jsonl`
-  - `Saves/user_save_<DRIVER>_<POLICY>.json`
+- A persistência padrão usa `Config/simduty.db` (SQLite).
+- Arquivos JSON de save e JSONL de auditoria podem existir como compatibilidade,
+  fallback ou mirror opcional; eles não são garantidos pelo fluxo padrão.
+- Consulte [`docs/persistence_and_logging.md`](persistence_and_logging.md) para
+  os detalhes e os nomes condicionais de arquivos.
 
 ## Plugins (ATS / ETS)
 - The DLLs located in the **plugins** folder must be installed in the game plugins directory:
