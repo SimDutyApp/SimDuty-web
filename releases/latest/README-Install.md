@@ -36,3 +36,12 @@
 ## Troubleshooting
 - If SimDuty does not connect, verify the plugin DLLs are in the correct game plugins folder.
 - Open the Debug tab and confirm the DLL status is OK and `GET_GAME_TIME_INFO` returns a source.
+- In every build, this diagnostic is intentionally sanitized: it reports only
+  `SRC` and `VAL` when resolved and must not expose addresses, offsets, bases or
+  pointers. `SET_TIME_BASE` and `CLEAR_TIME_BASE` are compiled only when
+  `NDEBUG` is not defined and are not required for installation or normal
+  operation.
+- Do not copy PDB, dump, map, log, symbol/build, source/project or
+  development-configuration files into the game plugin folder. The tracked
+  `release.ps1` removes PDBs from staging and rejects residual prohibited
+  artifacts before creating or accepting the ZIP.
