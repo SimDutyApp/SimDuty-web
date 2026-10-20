@@ -14,7 +14,7 @@
   - Minimize to tray is available for quick hide/restore.
 - DVIR v2:
   - DVIR now uses the single-page accordion flow (Pre-Trip/Post-Trip).
-  - Minimum inspection time is 45s before submit.
+  - No minimum waiting time: submit when the checklist and signature are valid.
   - Defects require a note; Safe Mode warns if DVIR is pending.
 - Logs/Saves/Config will be created in:
 - `%LOCALAPPDATA%\SimDuty\Logs`

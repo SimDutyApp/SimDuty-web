@@ -1,7 +1,7 @@
 ﻿{
-    "date":  "2026-10-16",
-    "url":  "https://github.com/SimDutyApp/SimDuty-web/releases/download/release.alpha.v63/SimDuty-Release.zip",
-    "version":  "alpha-20261016.1",
-    "tag":  "release.alpha.v63",
-    "sha256":  "228D9C60CFCBEC2FD83ABEAC9B9E8CA78E628E4F7816B42FE9CE829D0EFCEE6D"
+    "date":  "2026-10-20",
+    "url":  "https://github.com/SimDutyApp/SimDuty-web/releases/download/release.alpha.v64/SimDuty-Release.zip",
+    "version":  "alpha-20261020.1",
+    "tag":  "release.alpha.v64",
+    "sha256":  "0793EF8E955AAFE3AEE0C403B7CD467D5AC4D2DDC39A0BEB5FD0A88E5B12E2F7"
 }
