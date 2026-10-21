@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="overlay_meta_title">SimDuty Docs | Game Overlay</title>
+  <meta name="description" content="Learn how to show and interact with the SimDuty game overlay, configure its widgets, and understand its controls." data-i18n-content="overlay_meta_description">
+  <meta name="robots" content="index,follow">
+  <meta name="author" content="SimDuty Project">
+  <link rel="canonical" href="https://simduty.com/docs/overlay.html">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://simduty.com/docs/overlay.html">
+  <meta property="og:site_name" content="SimDuty">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:title" content="SimDuty Docs | Game Overlay" data-i18n-content="overlay_meta_title">
+  <meta property="og:description" content="Learn how to show and interact with the SimDuty game overlay, configure its widgets, and understand its controls." data-i18n-content="overlay_meta_description">
+  <meta property="og:image" content="https://simduty.com/assets/imgs/docs/docs-overlay_all.png">
+  <meta property="og:image:alt" content="SimDuty game overlay showing Clocks, Deck, Context, Compact, and pre-trip inspection reminders" data-i18n-content="overlay_meta_image_alt">
+  <meta property="og:image:width" content="820">
+  <meta property="og:image:height" content="789">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://simduty.com/docs/overlay.html">
+  <meta name="twitter:title" content="SimDuty Docs | Game Overlay" data-i18n-content="overlay_meta_title">
+  <meta name="twitter:description" content="Learn how to show and interact with the SimDuty game overlay, configure its widgets, and understand its controls." data-i18n-content="overlay_meta_description">
+  <meta name="twitter:image" content="https://simduty.com/assets/imgs/docs/docs-overlay_all.png">
+  <meta name="twitter:image:alt" content="SimDuty game overlay showing Clocks, Deck, Context, Compact, and pre-trip inspection reminders" data-i18n-content="overlay_meta_image_alt">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "TechArticle",
+        "@id": "https://simduty.com/docs/overlay.html#article",
+        "url": "https://simduty.com/docs/overlay.html",
+        "headline": "SimDuty Game Overlay Guide",
+        "description": "Learn how to show and interact with the SimDuty game overlay, configure its widgets, and understand its controls.",
+        "inLanguage": "en",
+        "isPartOf": { "@type": "WebSite", "name": "SimDuty Wiki", "url": "https://simduty.com/docs/index.html" },
+        "publisher": { "@type": "Organization", "name": "SimDuty Project", "url": "https://simduty.com/" },
+        "image": "https://simduty.com/assets/imgs/docs/docs-overlay_all.png"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "SimDuty Wiki", "item": "https://simduty.com/docs/index.html" },
+          { "@type": "ListItem", "position": 2, "name": "Game Overlay", "item": "https://simduty.com/docs/overlay.html" }
+        ]
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="docs.css">
+</head>
+<body class="overlay-page">
+  <main class="docs-shell">
+    <header class="docs-topbar">
+      <div>
+        <h1 class="docs-title" data-i18n="overlay_title">Game Overlay</h1>
+        <p class="docs-subtitle" data-i18n="overlay_subtitle">Keep selected SimDuty tools available over ATS/ETS2, and understand when they are visible versus ready for interaction.</p>
+      </div>
+      <nav class="docs-links" aria-label="Docs navigation" data-i18n-aria-label="overlay_docs_navigation">
+        <a href="index.html" data-i18n="overlay_wiki_link">Wiki</a>
+        <a href="dvir.html" data-i18n="overlay_next_dvir">Next: DVIR</a>
+      </nav>
+      <label class="overlay-language" for="language-selector">
+        <span data-i18n="overlay_language_label">Language</span>
+        <select id="language-selector" aria-label="Language" data-i18n-aria-label="overlay_language_label">
+          <option value="en">English</option>
+          <option value="pt-br">Português</option>
+          <option value="es">Español</option>
+          <option value="ru">Русский</option>
+        </select>
+      </label>
+    </header>
+
+    <div class="doc-layout">
+      <aside class="doc-sidebar" aria-label="On this page" data-i18n-aria-label="overlay_on_this_page">
+        <h3 data-i18n="overlay_toc_title">On this page</h3>
+        <a href="#overview" data-i18n="overlay_toc_overview">Overview</a>
+        <a href="#getting-started" data-i18n="overlay_toc_start">Getting started</a>
+        <a href="#visibility" data-i18n="overlay_toc_visibility">Show, hide, and interact</a>
+        <a href="#widgets" data-i18n="overlay_toc_widgets">Widgets</a>
+        <a href="#rest-actions" data-i18n="overlay_toc_rest">Rest actions</a>
+        <a href="#system" data-i18n="overlay_toc_system">SYSTEM drawer</a>
+        <a href="#customize" data-i18n="overlay_toc_customize">Customize</a>
+        <a href="#settings" data-i18n="overlay_toc_settings">Settings and keybinds</a>
+        <a href="#hos-alerts" data-i18n="overlay_toc_alerts">HOS alerts</a>
+        <a href="#limits" data-i18n="overlay_toc_limits">Limitations and troubleshooting</a>
+        <a href="#checklist" data-i18n="overlay_toc_checklist">Validation checklist</a>
+        <a href="#faq" data-i18n="overlay_toc_faq">FAQ</a>
+      </aside>
+
+      <div class="doc-content">
+        <section id="overview" class="section section-step">
+          <h2 data-i18n="overlay_overview_heading">Overview</h2>
+          <div class="overlay-hero">
+            <div>
+              <p data-i18n="overlay_overview_copy">The game overlay brings selected SimDuty widgets into the game view. ARM enables interaction; it does not control whether the overlay is visible. Visibility, interaction readiness, and whether a particular action is eligible are separate checks.</p>
+              <div class="overlay-facts">
+                <span data-i18n="overlay_fact_minimum">Minimum viewport: 1024 × 720</span>
+                <span data-i18n="overlay_fact_full">Full: Clocks, Deck, Context, Compact, HUB</span>
+                <span data-i18n="overlay_fact_lite">Lite: Clocks and Deck</span>
+              </div>
+            </div>
+            <figure class="overlay-capture overlay-capture-hero">
+              <a href="../assets/imgs/docs/docs-overlay_all.png" target="_blank" rel="noopener" data-i18n-aria-label="overlay_hero_open_alt">
+                <img src="../assets/imgs/docs/docs-overlay_all.webp" width="820" height="789" fetchpriority="high" data-i18n-alt="overlay_hero_alt" alt="Game view with REST Deck choices, DRIVE, SHIFT, BREAK and CYCLE gauges, Compact CLOCKS, STATUS and REST, and truck and trailer pre-trip inspection reminders">
+              </a>
+              <figcaption data-i18n="overlay_hero_caption">Full overlay view with the REST Deck, four HOS gauges, Compact CLOCKS / STATUS / REST, and visible pre-trip inspection reminders. This capture does not show ARM status.</figcaption>
+            </figure>
+          </div>
+          <div class="callout"><strong data-i18n="overlay_note_label">Important:</strong> <span data-i18n="overlay_overview_note">Do not treat the initial layout as a fully enabled example: first use enables Full Context and Compact, while Clocks and Deck are hidden.</span></div>
+          <p class="overlay-language-note" data-i18n="overlay_screenshot_language_note">Screenshots show the app in English; this guide is available in four languages.</p>
+        </section>
+
+        <section id="getting-started" class="section">
+          <h2 data-i18n="overlay_start_heading">Getting started</h2>
+          <p data-i18n="overlay_start_copy">Before starting the game, install <code>simduty_overlay.dll</code> beside <code>simduty.dll</code> in the game's <code>bin/win_x64/plugins</code> folder. Enable Game Overlay in SimDuty Settings. The viewport must be at least 1024 × 720; losing game focus disarms interaction.</p>
+          <p><span data-i18n="overlay_first_run_reference">Need the installation sequence?</span> <a href="first-run.html" data-i18n="overlay_first_run_link">Read the First Run guide (English)</a>.</p>
+          <ol>
+            <li data-i18n="overlay_start_step1">With the plugins installed and Game Overlay enabled, open SimDuty before launching ATS or ETS2.</li>
+            <li data-i18n="overlay_start_step2">If hidden, show the overlay with <code>Ctrl + Alt + O</code>.</li>
+            <li data-i18n="overlay_start_step3">With the game focused, press <code>Insert</code> to enable interaction; then use SYSTEM to toggle widgets. First-use Full does not show every widget.</li>
+          </ol>
+        </section>
+
+        <section id="visibility" class="section">
+          <h2 data-i18n="overlay_visibility_heading">Show, hide, and interact</h2>
+          <p data-i18n="overlay_visibility_copy">The default show/hide shortcut is Ctrl + Alt + O. Press <code>Insert</code> to arm or disarm interaction. Hiding the overlay disarms interaction; showing it does not automatically enable interaction. ARM requires game focus and a valid state, and losing focus disarms it. The cursor indicator reflects the configured interaction behavior.</p>
+          <div class="overlay-strip-grid">
+             <figure class="overlay-capture"><a href="../assets/imgs/docs/docs-overlay_enable_statusbar.png" target="_blank" rel="noopener" data-i18n-aria-label="overlay_statusbar_on_open_alt"><img src="../assets/imgs/docs/docs-overlay_enable_statusbar.webp" width="792" height="68" loading="lazy" data-i18n-alt="overlay_statusbar_on_alt" alt="SimDuty app title bar with the eye and OVR indicator shown in green"></a><figcaption data-i18n="overlay_statusbar_on_caption">Green OVR means the game has reported the overlay as visible; it does not indicate ARM.</figcaption></figure>
+             <figure class="overlay-capture"><a href="../assets/imgs/docs/docs-overlay_disable_statusbar.png" target="_blank" rel="noopener" data-i18n-aria-label="overlay_statusbar_off_open_alt"><img src="../assets/imgs/docs/docs-overlay_disable_statusbar.webp" width="792" height="68" loading="lazy" data-i18n-alt="overlay_statusbar_off_alt" alt="SimDuty app title bar with the eye and OVR indicator shown in gray"></a><figcaption data-i18n="overlay_statusbar_off_caption">Gray OVR can mean hidden, disabled, or awaiting visibility confirmation. Hover OVR for the exact state; the indicator does not show ARM.</figcaption></figure>
+          </div>
+        </section>
+
+        <section id="widgets" class="section">
+          <h2 data-i18n="overlay_widgets_heading">Widgets</h2>
+           <p data-i18n="overlay_widgets_copy">The overlay has four widget surfaces. Full edition also includes HUB controls for Clocks, Context, and Deck visibility. Lite provides Clocks and Deck; Context, Compact, and HUB are Full-only. Use the overview image above to identify each widget.</p>
+          <div class="overlay-map" aria-label="Overlay widget reference" data-i18n-aria-label="overlay_widget_map_label">
+            <div><strong data-i18n="overlay_widget_clocks">Clocks</strong><span data-i18n="overlay_widget_clocks_desc">DRIVE, SHIFT, BREAK, and CYCLE gauges with warning and critical indicators.</span></div>
+            <div><strong data-i18n="overlay_widget_deck">Deck</strong><span data-i18n="overlay_widget_deck_desc">Rest and duty action surface.</span></div>
+            <div><strong data-i18n="overlay_widget_context">Context</strong><span data-i18n="overlay_widget_context_desc">Operational messages, up to three lines depending on available width (Full).</span></div>
+            <div><strong data-i18n="overlay_widget_compact">Compact</strong><span data-i18n="overlay_widget_compact_desc">Time and status at a glance (Full).</span></div>
+          </div>
+          <p data-i18n="overlay_hub_copy">HUB is a Full-edition control surface for showing or hiding Clocks, Context, and Deck.</p>
+        </section>
+
+        <section id="rest-actions" class="section">
+          <h2 data-i18n="overlay_rest_heading">Rest actions</h2>
+          <p data-i18n="overlay_rest_copy">Deck actions include Yard Move, Off Duty, Personal Conveyance, Custom Rest, Break, Rest, and Restart. Each action is an intent submitted through explicit confirmation in the Deck. SimDuty validates it against the current snapshot and duty state, so a listed action is not guaranteed to be eligible in every situation.</p>
+          <div class="overlay-strip-grid">
+            <figure class="overlay-capture"><a href="../assets/imgs/docs/docs-overlay_onduty.png" target="_blank" rel="noopener" data-i18n-aria-label="overlay_deck_open_alt"><img src="../assets/imgs/docs/docs-overlay_onduty.webp" width="445" height="147" loading="lazy" data-i18n-alt="overlay_deck_alt" alt="Overlay Deck displaying Yard Move, Off Duty, and Personal Conveyance options"></a><figcaption data-i18n="overlay_deck_caption">Deck options shown: Yard Move, Off Duty, and Personal Conveyance. This capture does not show current duty status, selection, confirmation, or an action result.</figcaption></figure>
+            <figure class="overlay-capture"><a href="../assets/imgs/docs/docs-overlay_sleep.png" target="_blank" rel="noopener" data-i18n-aria-label="overlay_rest_choices_open_alt"><img src="../assets/imgs/docs/docs-overlay_sleep.webp" width="440" height="141" loading="lazy" data-i18n-alt="overlay_rest_choices_alt" alt="Custom Rest selection with Break, Rest, and Restart choices"></a><figcaption data-i18n="overlay_rest_choices_caption">Custom Rest action selection: Break, Rest, and Restart. This is not a rest in progress or confirmation screen.</figcaption></figure>
+          </div>
+        </section>
+
+        <section id="system" class="section">
+          <h2 data-i18n="overlay_system_heading">SYSTEM drawer</h2>
+          <p data-i18n="overlay_system_copy">The SYSTEM button is in the upper-right corner of the game screen. The SYSTEM drawer is the normal place to customize the overlay, use Auto Arrange, reset its arrangement, toggle supported widgets, adjust opacity, and change HOS scale. Resetting the arrangement is distinct from the first-use default. Available controls depend on edition and widget.</p>
+          <figure class="overlay-capture overlay-capture-narrow"><a href="../assets/imgs/docs/docs-overlays_settings.png" target="_blank" rel="noopener" data-i18n-aria-label="overlay_system_open_alt"><img src="../assets/imgs/docs/docs-overlays_settings.webp" width="357" height="476" loading="lazy" data-i18n-alt="overlay_system_alt" alt="Overlay SYSTEM drawer with Customize Layout entry, four ACTIVE widget controls, Auto Arrange, opacity at 35 percent, Reset Session, and HOS Scale at 125 percent"></a><figcaption data-i18n="overlay_system_caption">SYSTEM drawer: Customize Layout entry, four ACTIVE widget controls, Auto Arrange, 35% opacity, Reset Session, and HOS Scale at 125%. This is not the Customize Layout editing view.</figcaption></figure>
+        </section>
+
+        <section id="customize" class="section">
+          <h2 data-i18n="overlay_customize_heading">Customize layout and scale</h2>
+          <p data-i18n="overlay_customize_copy">Customization lets you move and resize widgets; not every widget supports resizing. HOS scale choices are 100%, 125%, 150%, 175%, and 200%. Prefer a scale that keeps values readable without hiding necessary game context.</p>
+        </section>
+
+        <section id="settings" class="section">
+          <h2 data-i18n="overlay_settings_heading">Settings and keybinds</h2>
+          <p data-i18n="overlay_settings_copy">Settings include overlay behavior, cursor speed and starting position, and the interaction indicator. Both shortcuts are configurable: <code>Insert</code> defaults to interaction, and <code>Ctrl + Alt + O</code> to show/hide. Layout and HOS scale are saved locally for future sessions.</p>
+          <div class="overlay-settings-grid">
+            <figure class="overlay-capture"><a href="../assets/imgs/docs/docs-overlay_settings_app.png" target="_blank" rel="noopener" data-i18n-aria-label="overlay_settings_open_alt"><img src="../assets/imgs/docs/docs-overlay_settings_app.webp" width="655" height="818" loading="lazy" data-i18n-alt="overlay_settings_alt" alt="Game Overlay settings showing Enable overlay, Auto publish, Auto reconnect, cursor settings, and indicator options"></a><figcaption data-i18n="overlay_settings_caption">Game Overlay settings: enablement, behavior, cursor, and indicator options.</figcaption></figure>
+            <figure class="overlay-capture"><a href="../assets/imgs/docs/docs-overlay_settings_keybinds.png" target="_blank" rel="noopener" data-i18n-aria-label="overlay_keybinds_open_alt"><img src="../assets/imgs/docs/docs-overlay_settings_keybinds.webp" width="646" height="933" loading="lazy" data-i18n-alt="overlay_keybinds_alt" alt="Keybind settings showing Insert for ARM interaction and a focused show or hide binding field containing Ctrl plus K"></a><figcaption data-i18n="overlay_keybinds_caption">This capture shows Insert for ARM interaction and a customized show/hide binding, Ctrl + K, with its field focused. The app's default show/hide shortcut is Ctrl + Alt + O.</figcaption></figure>
+          </div>
+        </section>
+
+        <section id="hos-alerts" class="section">
+          <h2 data-i18n="overlay_alerts_heading">HOS alerts</h2>
+          <p data-i18n="overlay_alerts_copy">Clocks presents DRIVE, SHIFT, BREAK, and CYCLE gauges. Warning and Critical states use distinct colors and icons. Context summarizes operational messages. The hero capture's visible reminders are truck and trailer pre-trip inspection notices (DVIR), not HOS violations. The drawer can adjust HOS presentation scale.</p>
+          <p><span data-i18n="overlay_hos_reference">For HOS timers, policy, and duty-state guidance:</span> <a href="hos.html" data-i18n="overlay_hos_link">Read the HOS guide (English)</a>.</p>
+        </section>
+
+        <section id="limits" class="section">
+          <h2 data-i18n="overlay_limits_heading">Limitations and troubleshooting</h2>
+          <ul>
+            <li data-i18n="overlay_limit_viewport">Below 1024 × 720, the minimum viewport requirement is not met.</li>
+            <li data-i18n="overlay_limit_focus">If the game loses focus, ARM disarms; restore game focus and arm again when the state is valid.</li>
+            <li data-i18n="overlay_limit_visibility">If the overlay is hidden, use Ctrl + Alt + O; remember that visibility does not arm it.</li>
+            <li data-i18n="overlay_limit_action">If a Deck action is unavailable, check the current duty/snapshot state and follow any app validation or confirmation.</li>
+            <li data-i18n="overlay_limit_dvir">DVIR interaction is not supported by the game overlay.</li>
+            <li data-i18n="overlay_limit_edition">If a widget or HUB control is absent, verify edition: Context, Compact, and HUB are Full-only.</li>
+          </ul>
+          <p><span data-i18n="overlay_troubleshooting_reference">For setup and recovery steps:</span> <a href="troubleshooting.html" data-i18n="overlay_troubleshooting_link">Open Troubleshooting (English)</a> · <a href="setup.html" data-i18n="overlay_setup_link">Setup guide (English)</a>.</p>
+        </section>
+
+        <section id="checklist" class="section">
+          <h2 data-i18n="overlay_checklist_heading">Validation checklist</h2>
+          <ul>
+            <li data-i18n="overlay_check_1">Viewport is at least 1024 × 720 and the game has focus before arming.</li>
+            <li data-i18n="overlay_check_2">ARM state and visibility are checked as separate things.</li>
+            <li data-i18n="overlay_check_3">Widgets shown match the installed edition and intentional configuration.</li>
+            <li data-i18n="overlay_check_4">Rest actions are used only when available and after any required confirmation.</li>
+            <li data-i18n="overlay_check_5">Layout and HOS scale remain readable after restarting the app.</li>
+          </ul>
+        </section>
+
+        <section id="faq" class="section">
+          <h2 data-i18n="overlay_faq_heading">FAQ</h2>
+          <h3 data-i18n="overlay_faq_q1">Why is a visible overlay not responding?</h3>
+          <p data-i18n="overlay_faq_a1">Visibility and ARM are separate. Check game focus, ARM state, interaction behavior, and whether the action is eligible in the current state.</p>
+          <h3 data-i18n="overlay_faq_q2">Why are some widgets missing?</h3>
+          <p data-i18n="overlay_faq_a2">Lite includes Clocks and Deck. Context, Compact, and HUB require Full, and widget visibility can also be toggled.</p>
+          <h3 data-i18n="overlay_faq_q3">Why is a Deck rest action unavailable?</h3>
+          <p data-i18n="overlay_faq_a3">Eligibility depends on current duty state and fresh telemetry. Choose an available action, review its confirmation dialog, and let SimDuty validate the request.</p>
+          <div class="callout"><span data-i18n="overlay_legacy_note">Related setup guidance is available in English:</span> <a href="setup.html" data-i18n="overlay_setup_link">Setup guide (English)</a>.</div>
+        </section>
+      </div>
+    </div>
+
+    <footer class="wiki-footer">
+      <span data-i18n="overlay_footer_updated">Game Overlay guide</span>
+      <span><a href="index.html" data-i18n="overlay_footer_wiki">Return to Wiki</a></span>
+    </footer>
+  </main>
+  <script src="../assets/js/main.js" defer></script>
+</body>
+</html>

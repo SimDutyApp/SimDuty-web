@@ -176,9 +176,10 @@ Current real files already used (normalized naming):
 
 ## 6) Language Strategy
 
-- Current wiki scope is English-only.
-- Docs pages are static English content (no runtime dictionary on `/docs`).
-- Optional multilingual rollout can be planned later after the English baseline is finalized.
+- Existing guides remain static English content unless explicitly localized.
+- `docs/overlay.html` supports English, Portuguese (Brazil), Spanish, and Russian through `assets/js/main.js`, using the site's saved language preference.
+- Overlay copy, metadata, accessible labels, image alt text, and capture captions must have matching translation keys in all four language blocks. Product screenshots retain their captured interface language and illustrate only the visible state, not every runtime flow.
+- Localizing the remaining guides is outside the Overlay page scope.
 
 ## 7) Definition of Done
 

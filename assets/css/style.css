@@ -179,7 +179,7 @@ ul {
   }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 800px) {
   .site-header .container {
     flex-direction: column;
     align-items: flex-start;
@@ -459,6 +459,22 @@ ul {
   font-size: 0.95rem;
   line-height: 1.7;
   max-width: 320px;
+}
+
+.live-modules-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 1100px) {
+  .live-modules-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .live-modules-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Gallery Section */

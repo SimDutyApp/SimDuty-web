@@ -119,8 +119,8 @@ Use this checklist to track documentation delivery for GitHub Pages.
 
 ## Language and Quality
 
-- [x] Docs scope set to English-only on `/docs`
-- [x] Runtime i18n removed from docs pages
+- [x] Existing guides retain their English baseline; Overlay adds `en`, `pt-br`, `es`, and `ru`
+- [x] Overlay reuses the shared site dictionary; other guides remain static English
 - [x] Technical copy consistency review (all pages)
 - [x] Align docs labels with current Economy UI naming (`DECLARE`, share intents, Economy tab labels)
 - [ ] Manual verification on desktop and mobile
